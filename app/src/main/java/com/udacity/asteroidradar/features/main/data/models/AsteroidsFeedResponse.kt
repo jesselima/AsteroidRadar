@@ -2,6 +2,8 @@ package com.udacity.asteroidradar.database.asteroids.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.udacity.asteroidradar.features.main.domain.entities.AsteroidFeed
+import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 
 /**
  * Created by jesselima on 4/01/21.

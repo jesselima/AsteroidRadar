@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.udacity.asteroidradar.database.asteroids.models.AsteroidsFeedItem
-import com.udacity.asteroidradar.database.asteroids.datasource.AsteroidsDao
+import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
+import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsDao
 
 @Database(
     entities = [

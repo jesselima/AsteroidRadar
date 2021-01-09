@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.bindingadapters
+package com.udacity.asteroidradar.core.bindingadapters
 
 import android.widget.ImageView
 import android.widget.TextView

@@ -1,4 +1,5 @@
-package com.udacity.asteroidradar.database.asteroids.models
+package com.udacity.asteroidradar.features.main.domain.entities
+
 
 /**
  * Created by jesselima on 7/01/21.

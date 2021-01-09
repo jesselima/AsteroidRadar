@@ -1,8 +1,8 @@
-package com.udacity.asteroidradar.database.asteroids.di
+package com.udacity.asteroidradar.features.main.di
 
 import org.koin.dsl.module
-import com.udacity.asteroidradar.database.asteroids.datasource.AsteroidsLocalDataSource
-import com.udacity.asteroidradar.database.asteroids.datasource.AsteroidsLocalDataSourceImpl
+import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsLocalDataSource
+import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsLocalDataSourceImpl
 
 
 object AsteroidsLocalDatabaseModule {

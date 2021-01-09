@@ -6,7 +6,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-import com.udacity.asteroidradar.database.asteroids.di.AsteroidsLocalDatabaseModule
+import com.udacity.asteroidradar.features.main.di.AsteroidsLocalDatabaseModule
 
 
 internal class GlobalInjectableDependencies(

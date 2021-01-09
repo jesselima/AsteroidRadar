@@ -1,8 +1,8 @@
-package com.udacity.asteroidradar.main
+package com.udacity.asteroidradar.features.main.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.udacity.asteroidradar.api.AsteroidRadarApi
+import com.udacity.asteroidradar.core.api.AsteroidRadarApi
 import com.udacity.asteroidradar.database.asteroids.models.mapDataToDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +25,6 @@ class MainViewModel : ViewModel() {
 				)
 				Timber.d(data.toString())
 				Timber.d(data.mapDataToDomain().toString())
-				Timber.d("HELLO")
 			}
 		}
 	}

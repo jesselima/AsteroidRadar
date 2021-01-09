@@ -1,8 +1,8 @@
-package com.udacity.asteroidradar.database.asteroids.datasource
+package com.udacity.asteroidradar.features.main.data.datasource.local
 
 import android.app.Application
 import com.udacity.asteroidradar.database.AppDatabase
-import com.udacity.asteroidradar.database.asteroids.models.AsteroidsFeedItem
+import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 
 
 class AsteroidsLocalDataSourceImpl(
