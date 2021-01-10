@@ -3,3 +3,4 @@
 /screenshots
 /gradle
 local.properties
+/app/src/main/java/com/udacity/asteroidradar/core/api/Environment.kt
