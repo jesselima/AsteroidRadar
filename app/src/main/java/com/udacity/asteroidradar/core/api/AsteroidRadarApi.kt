@@ -3,7 +3,7 @@ package com.udacity.asteroidradar.core.api
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.udacity.asteroidradar.features.main.data.datasource.remote.AsteroidRadarService
+import com.udacity.asteroidradar.features.main.data.datasource.remote.api.AsteroidRadarService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -24,6 +24,10 @@ private val retrofit = Retrofit.Builder()
 	.addCallAdapterFactory(CoroutineCallAdapterFactory())
 	.build()
 
-object AsteroidRadarApi {
-	val service : AsteroidRadarService by lazy { retrofit.create(AsteroidRadarService::class.java) }
+class ApiService {
+	companion object {
+		fun <T> createService(service: Class<T>) : T {
+			return retrofit.create(service)
+		}
+	}
 }
