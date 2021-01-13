@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
-import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsDao
+import com.udacity.asteroidradar.features.main.data.datasource.local.dao.AsteroidsDao
+import com.udacity.asteroidradar.features.main.data.datasource.local.dao.PictureOfTheDayDao
+import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 
 @Database(
     entities = [
-        AsteroidsFeedItem::class
+        AsteroidsFeedItem::class,
+        PictureOfDay::class
     ],
     version = 1,
     exportSchema = false
@@ -17,6 +20,7 @@ import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsDa
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun asteroidsDao(): AsteroidsDao
+    abstract fun pictureOfTheDay(): PictureOfTheDayDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the same time
