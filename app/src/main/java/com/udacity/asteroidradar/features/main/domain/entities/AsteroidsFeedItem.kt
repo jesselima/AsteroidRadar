@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "asteroids")
 data class AsteroidsFeedItem(
-	@PrimaryKey
+	@PrimaryKey(autoGenerate = true)
 	val id: Long? = null,
 	@ColumnInfo(name = "codename")
 	val codename: String,
@@ -24,5 +24,11 @@ data class AsteroidsFeedItem(
 	@ColumnInfo(name = "distance_fromEarth")
 	val distanceFromEarth: Double,
 	@ColumnInfo(name = "is_potentially_hazardous")
-	val isPotentiallyHazardous: Boolean
+	val isPotentiallyHazardous: Boolean,
+	@ColumnInfo(name = "date")
+	val date: String,
+	@ColumnInfo(name = "created_at")
+	var createdAt: Long? = null,
+	@ColumnInfo(name = "modified_at")
+	var modifiedAt: Long? = null
 ) : Parcelable

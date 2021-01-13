@@ -115,19 +115,19 @@ data class Miles(
 )
 
 
-fun AsteroidsFeedResponse.mapDataToDomain() : List<AsteroidFeed> {
+fun AsteroidsFeedResponse.mapToLocalDatabaseModel() : List<AsteroidsFeedItem> {
 
-    val list:List<AsteroidFeed> = emptyList()
+    val list:List<AsteroidsFeedItem> = emptyList()
     val mutableList = list.toMutableList()
 
     this.nearEarthObjects?.map {
 
-
-        mutableList.add(AsteroidFeed(header = it.key))
+        val date = it.key
 
         it.value.forEach { nearEarthObject ->
-            mutableList.add(AsteroidFeed(
-                feedItem = AsteroidsFeedItem(
+            mutableList.add(
+                AsteroidsFeedItem(
+                    date = date,
                     codename = nearEarthObject.name.orEmpty(),
                     closeApproachDate = nearEarthObject.closeApproachData?.first()?.closeApproachDate ?: "",
                     absoluteMagnitude = nearEarthObject.absoluteMagnitudeH ?: 0.0,
@@ -136,7 +136,7 @@ fun AsteroidsFeedResponse.mapDataToDomain() : List<AsteroidFeed> {
                     distanceFromEarth = nearEarthObject.closeApproachData?.first()?.missDistance?.astronomical?.toDouble() ?: 0.0,
                     isPotentiallyHazardous = nearEarthObject.isPotentiallyHazardousAsteroid ?: false
                 )
-            ))
+            )
         }
     }
     return mutableList.toList()
