@@ -1,17 +1,20 @@
 package com.udacity.asteroidradar.features.main.presentation
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.MenuInflater
+import android.view.Menu
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
-    }
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
