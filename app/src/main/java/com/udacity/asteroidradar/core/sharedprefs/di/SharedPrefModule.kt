@@ -1,8 +1,8 @@
-package com.udacity.asteroidradar.sharedprefs.di
+package com.udacity.asteroidradar.core.sharedprefs.di
 
 import android.content.Context
-import com.udacity.asteroidradar.sharedprefs.SharedPrefStorage
-import com.udacity.asteroidradar.sharedprefs.SharedPrefStorageImpl
+import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
+import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorageImpl
 import org.koin.dsl.module
 
 object SharedPrefModule {

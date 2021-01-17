@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.sharedprefs
+package com.udacity.asteroidradar.core.sharedprefs
 
 import android.content.SharedPreferences
 

@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.main.domain.usecase.AsteroidsFeedUseCase
 import com.udacity.asteroidradar.features.main.domain.usecase.PictureOfTheDayUseCase
-import com.udacity.asteroidradar.sharedprefs.SharedPrefStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

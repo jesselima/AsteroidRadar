@@ -1,12 +1,12 @@
-package com.udacity.asteroidradar.database
+package com.udacity.asteroidradar.core.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 import com.udacity.asteroidradar.features.main.data.datasource.local.dao.AsteroidsDao
 import com.udacity.asteroidradar.features.main.data.datasource.local.dao.PictureOfTheDayDao
+import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 
 @Database(
