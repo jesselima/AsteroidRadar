@@ -7,6 +7,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
 import com.udacity.asteroidradar.features.main.di.AsteroidsModule
+import com.udacity.asteroidradar.sharedprefs.di.SharedPrefModule
 
 
 internal class GlobalInjectableDependencies(
@@ -19,6 +20,7 @@ internal class GlobalInjectableDependencies(
             modules(
                 listOf(
                     AsteroidsModule.loadModuleDependency(),
+                    SharedPrefModule.loadModuleDependency(),
                 )
             )
         }
