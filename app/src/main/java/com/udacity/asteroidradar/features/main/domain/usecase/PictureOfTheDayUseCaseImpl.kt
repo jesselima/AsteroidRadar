@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.main.domain.reposirory.PictureOfTheDayRepository
 
@@ -12,7 +11,11 @@ class PictureOfTheDayUseCaseImpl(
 	private val repository: PictureOfTheDayRepository
 ) : PictureOfTheDayUseCase {
 
-	override suspend fun getLocalPictureOfTheDay() : LiveData<PictureOfDay> {
+	override suspend fun getRemotePictureOfTheDay() {
+		repository.getRemotePictureOfTheDay()
+	}
+
+	override suspend fun getLocalPictureOfTheDay() : PictureOfDay {
 		return repository.getLocalPictureOfTheDay()
 	}
 }

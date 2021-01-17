@@ -28,7 +28,7 @@ data class AsteroidsFeedItem(
 	@ColumnInfo(name = "date")
 	val date: String,
 	@ColumnInfo(name = "created_at")
-	var createdAt: Long? = null,
+	var createdAt: String? = null,
 	@ColumnInfo(name = "modified_at")
-	var modifiedAt: Long? = null
+	var modifiedAt: String? = null
 ) : Parcelable

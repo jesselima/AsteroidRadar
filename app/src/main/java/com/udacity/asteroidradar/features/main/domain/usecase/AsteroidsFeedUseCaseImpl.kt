@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 import com.udacity.asteroidradar.features.main.domain.reposirory.AsteroidsFeedRepository
 
@@ -12,7 +11,11 @@ class AsteroidsFeedUseCaseImpl(
 	private val repository: AsteroidsFeedRepository
 ) : AsteroidsFeedUseCase {
 
-	override suspend fun getLocalFeed() : LiveData<List<AsteroidsFeedItem>> {
+	override suspend fun getRemoteFeed() {
+		repository.getRemoteFeed()
+	}
+
+	override suspend fun getLocalFeed(): List<AsteroidsFeedItem> {
 		return repository.getLocalFeed()
 	}
 }

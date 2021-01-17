@@ -21,7 +21,7 @@ data class PictureOfDay(
 	@ColumnInfo(name = "explanation")
 	val explanation: String = "",
 	@ColumnInfo(name = "created_at")
-	var createdAt: Long? = null,
+	var createdAt: String? = null,
 	@ColumnInfo(name = "modified_at")
-	var modifiedAt: Long? = null,
+	var modifiedAt: String? = null,
 )

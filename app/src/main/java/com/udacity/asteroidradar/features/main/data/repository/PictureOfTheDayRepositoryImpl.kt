@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.data.repository
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.features.main.data.datasource.local.PictureOfTheDayLocalDataSource
 import com.udacity.asteroidradar.features.main.data.datasource.remote.PictureOfTheDayRemoteDataSource
@@ -24,7 +23,7 @@ class PictureOfTheDayRepositoryImpl(
 		}
 	}
 
-	override suspend fun getLocalPictureOfTheDay() : LiveData<PictureOfDay> {
+	override suspend fun getLocalPictureOfTheDay() : PictureOfDay {
 		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDay(date = getCurrentDate())
 	}
 }

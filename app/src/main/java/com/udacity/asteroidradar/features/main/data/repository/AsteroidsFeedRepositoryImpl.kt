@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.data.repository
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.database.asteroids.models.mapToLocalDatabaseModel
 import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsFeedLocalDataSource
 import com.udacity.asteroidradar.features.main.data.datasource.remote.AsteroidsFeedRemoteDataSource
@@ -23,7 +22,7 @@ class AsteroidsFeedRepositoryImpl(
 		}
 	}
 
-	override suspend fun getLocalFeed(): LiveData<List<AsteroidsFeedItem>> {
+	override suspend fun getLocalFeed(): List<AsteroidsFeedItem> {
 		return asteroidsFeedLocalDataSource.getLocalAsteroidsFeed()
 	}
 }

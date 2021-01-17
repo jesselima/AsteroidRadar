@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 
 /**
@@ -8,5 +7,6 @@ import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
  * This is a part of the project Asteroid Radar.
  */
 interface PictureOfTheDayUseCase {
-	suspend fun getLocalPictureOfTheDay() : LiveData<PictureOfDay>
+	suspend fun getRemotePictureOfTheDay()
+	suspend fun getLocalPictureOfTheDay() : PictureOfDay
 }

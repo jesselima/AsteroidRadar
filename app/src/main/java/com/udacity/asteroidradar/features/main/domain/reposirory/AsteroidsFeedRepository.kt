@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.domain.reposirory
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 
 /**
@@ -9,5 +8,5 @@ import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
  */
 interface AsteroidsFeedRepository {
 	suspend fun getRemoteFeed()
-	suspend fun getLocalFeed() : LiveData<List<AsteroidsFeedItem>>
+	suspend fun getLocalFeed() : List<AsteroidsFeedItem>
 }

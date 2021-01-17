@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.domain.reposirory
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 
 /**
@@ -9,5 +8,5 @@ import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
  */
 interface PictureOfTheDayRepository {
 	suspend fun getRemotePictureOfTheDay()
-	suspend fun getLocalPictureOfTheDay() : LiveData<PictureOfDay>
+	suspend fun getLocalPictureOfTheDay() : PictureOfDay
 }

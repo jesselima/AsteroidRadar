@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 
 /**
@@ -8,5 +7,6 @@ import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
  * This is a part of the project Asteroid Radar.
  */
 interface AsteroidsFeedUseCase {
-	suspend fun getLocalFeed() : LiveData<List<AsteroidsFeedItem>>
+	suspend fun getRemoteFeed()
+	suspend fun getLocalFeed() : List<AsteroidsFeedItem>
 }
