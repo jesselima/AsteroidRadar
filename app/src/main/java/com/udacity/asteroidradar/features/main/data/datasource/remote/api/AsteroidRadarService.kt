@@ -12,13 +12,13 @@ import retrofit2.http.Query
  */
 interface AsteroidRadarService {
 
-    @GET("feed")
+    @GET("neo/rest/v1/feed")
     suspend fun getRemoteAsteroidFeed(
         @Query("start_date") startDate: String,
         @Query("api_key") apiKey: String = Environment.getApiKey()
     ) : AsteroidsFeedResponse?
 
-    @GET("apod")
+    @GET("planetary/apod")
     suspend fun getRemotePictureOfTheDay(
         @Query("api_key") apiKey: String = Environment.getApiKey()
     ) : PictureOfDayResponse?

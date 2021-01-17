@@ -58,6 +58,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutine_adapter"
+    implementation "com.squareup.okhttp3:okhttp:$version_okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$version_okhttp"
+    implementation "com.squareup.okhttp3:mockwebserver:$version_okhttp"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
     implementation "com.squareup.picasso:picasso:$version_picasso"
 
