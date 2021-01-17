@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.features.main.di
 
-import org.koin.dsl.module
 import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsFeedLocalDataSource
 import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsFeedLocalDataSourceImpl
 import com.udacity.asteroidradar.features.main.data.datasource.local.PictureOfTheDayLocalDataSource
@@ -19,6 +18,7 @@ import com.udacity.asteroidradar.features.main.domain.usecase.PictureOfTheDayUse
 import com.udacity.asteroidradar.features.main.domain.usecase.PictureOfTheDayUseCaseImpl
 import com.udacity.asteroidradar.features.main.presentation.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
 
 object AsteroidsModule {
@@ -75,7 +75,7 @@ object AsteroidsModule {
             MainViewModel(
                 asteroidsFeedUseCase = get(),
                 pictureOfTheDayUseCase = get(),
-                /*asteroidsLocalDataSource = get()*/
+                sharedPrefStorage = get()
             )
         }
 
