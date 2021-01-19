@@ -19,10 +19,20 @@ data class AsteroidsFeedItem(
 	val absoluteMagnitude: Double,
 	@ColumnInfo(name = "estimated_diameter")
 	val estimatedDiameter: Double,
-	@ColumnInfo(name = "relative_velocity")
-	val relativeVelocity: Double,
-	@ColumnInfo(name = "distance_fromEarth")
-	val distanceFromEarth: Double,
+	@ColumnInfo(name = "relative_velocity_miles_per_hour")
+	val relativeVelocityMilesPerHour: Double,
+	@ColumnInfo(name = "relative_velocity_km_per_hour")
+	val relativeVelocityKilometersPerHour: Double,
+	@ColumnInfo(name = "relative_velocity_km_per_second")
+	val relativeVelocityKilometersPerSecond: Double,
+	@ColumnInfo(name = "distance_from_earth_au")
+	val distanceFromEarthAu: Double,
+	@ColumnInfo(name = "distance_from_earth_miles")
+	val distanceFromEarthMiles: Double,
+	@ColumnInfo(name = "distance_from_earth_km")
+	val distanceFromEarthKm: Double,
+	@ColumnInfo(name = "distance_from_earth_lunar")
+	val distanceFromEarthLunar: Double,
 	@ColumnInfo(name = "is_potentially_hazardous")
 	val isPotentiallyHazardous: Boolean,
 	@ColumnInfo(name = "date")

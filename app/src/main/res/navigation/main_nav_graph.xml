@@ -10,8 +10,13 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_showDetail"
+            android:id="@+id/navigateToAsteroidDetails"
             app:destination="@id/detailFragment" />
+        <argument
+            android:name="asteroidId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
     </fragment>
 
     <fragment
@@ -22,7 +27,8 @@
 
         <argument
             android:name="selectedAsteroidsFeedItem"
-            app:argType="com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem"/>
+            app:argType="string"
+            app:nullable="true"/>
     </fragment>
 
 </navigation>

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentDetailBinding
+import timber.log.Timber
 
 class DetailFragment : Fragment() {
 
@@ -22,7 +23,8 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         arguments?.let {
-            binding.asteroidsFeedItem = DetailFragmentArgs.fromBundle(it).selectedAsteroidsFeedItem
+            val asteroidId = it.getLong("ASTEROID_ID")
+            Timber.d(asteroidId.toString())
         }
 
         binding.helpButton.setOnClickListener {

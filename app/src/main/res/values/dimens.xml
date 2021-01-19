@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_margin_small">4dp</dimen>
+    <dimen name="layout_margin_medium">8dp</dimen>
+    <dimen name="layout_margin_default">16dp</dimen>
+    <dimen name="layout_margin_big">24dp</dimen>
+    <dimen name="layout_margin_extra">32dp</dimen>
+    <dimen name="cardCornerRadius_low">3dp</dimen>
+    <dimen name="cardCornerRadius_medium">5dp</dimen>
+    <dimen name="cardCornerRadius_high">8dp</dimen>
+    <dimen name="cardElevation_minimum">1dp</dimen>
+    <dimen name="cardElevation_low">3dp</dimen>
+    <dimen name="cardElevation_medium">5dp</dimen>
+    <dimen name="cardElevation_high">8dp</dimen>
+</resources>

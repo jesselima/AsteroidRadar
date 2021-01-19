@@ -2,7 +2,6 @@ package com.udacity.asteroidradar.database.asteroids.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.udacity.asteroidradar.features.main.domain.entities.AsteroidFeed
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 
 /**
@@ -132,8 +131,13 @@ fun AsteroidsFeedResponse.mapToLocalDatabaseModel() : List<AsteroidsFeedItem> {
                     closeApproachDate = nearEarthObject.closeApproachData?.first()?.closeApproachDate ?: "",
                     absoluteMagnitude = nearEarthObject.absoluteMagnitudeH ?: 0.0,
                     estimatedDiameter = nearEarthObject.estimatedDiameter?.kilometers?.estimatedDiameterMax ?: 0.0,
-                    relativeVelocity = nearEarthObject.closeApproachData?.first()?.relativeVelocity?.kilometersPerSecond?.toDouble() ?: 0.0,
-                    distanceFromEarth = nearEarthObject.closeApproachData?.first()?.missDistance?.astronomical?.toDouble() ?: 0.0,
+                    relativeVelocityMilesPerHour = nearEarthObject.closeApproachData?.first()?.relativeVelocity?.milesPerHour?.toDouble() ?: 0.0,
+                    relativeVelocityKilometersPerHour = nearEarthObject.closeApproachData?.first()?.relativeVelocity?.kilometersPerHour?.toDouble() ?: 0.0,
+                    relativeVelocityKilometersPerSecond = nearEarthObject.closeApproachData?.first()?.relativeVelocity?.kilometersPerSecond?.toDouble() ?: 0.0,
+                    distanceFromEarthAu = nearEarthObject.closeApproachData?.first()?.missDistance?.astronomical?.toDouble() ?: 0.0,
+                    distanceFromEarthMiles = nearEarthObject.closeApproachData?.first()?.missDistance?.miles?.toDouble() ?: 0.0,
+                    distanceFromEarthKm = nearEarthObject.closeApproachData?.first()?.missDistance?.kilometers?.toDouble() ?: 0.0,
+                    distanceFromEarthLunar = nearEarthObject.closeApproachData?.first()?.missDistance?.lunar?.toDouble() ?: 0.0,
                     isPotentiallyHazardous = nearEarthObject.isPotentiallyHazardousAsteroid ?: false
                 )
             )

@@ -26,9 +26,12 @@ fun View.hideWithFadeOut() {
 }
 
 fun View.showListItemWithFadeIn() {
-    this.startAnimation(AnimationUtils.loadAnimation(context,
-        R.anim.fade_in
-    ))
+    this.startAnimation(
+        AnimationUtils.loadAnimation(
+            context,
+            R.anim.fade_in
+        )
+    )
 }
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false) : View {

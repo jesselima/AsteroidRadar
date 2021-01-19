@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/default_text_color"
-                    app:velocityText="@{asteroidsFeedItem.relativeVelocity}"
+                    app:velocityText="@{asteroidsFeedItem.relativeVelocityKilometersPerHour}"
                     tools:text="11.9 km/s" />
 
                 <TextView
@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/default_text_color"
-                    app:astronomicalUnitText="@{asteroidsFeedItem.distanceFromEarth}"
+                    app:astronomicalUnitText="@{asteroidsFeedItem.distanceFromEarthAu}"
                     tools:text="0.0924 au" />
 
             </LinearLayout>
