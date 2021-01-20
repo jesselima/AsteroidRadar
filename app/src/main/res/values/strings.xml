@@ -30,4 +30,7 @@
 
     <string name="tell_more_astronomical_units">The astronomical unit (symbol: au, or AU) is a unit of length, roughly the distance from Earth to the Sun and equal to about 150 million kilometres (93 million miles) or ~8 light minutes. The actual distance varies by about 3% as Earth orbits the Sun, from a maximum (aphelion) to a minimum (perihelion) and back again once each year. The au was originally conceived as the average of Earth\'s aphelion and perihelion; however, since 2012 it has been defined as exactly 149,597,870,700 m. Source: https://en.wikipedia.org/wiki/Astronomical_unit</string>
 
+    <string name="image_is_potentially_hazardous">Image is potentially hazardous</string>
+    <string name="image_not_potentially_hazardous">Image not potentially hazardous</string>
+
 </resources>

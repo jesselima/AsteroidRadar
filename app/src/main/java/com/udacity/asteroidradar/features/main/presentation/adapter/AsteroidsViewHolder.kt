@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.features.main.presentation.adapter
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -45,9 +46,27 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 		)
 
 		if (asteroid.isPotentiallyHazardous) {
+			view.textDistanceFromEarthAu.setTextColor(
+				ContextCompat.getColor(view.context, R.color.colorAccent)
+			)
+			view.textAsteroidSpeed.setTextColor(
+				ContextCompat.getColor(view.context, R.color.colorAccent)
+			)
 			view.imageIsPotentiallyHazardous.setImageResource(R.drawable.ic_emoji_angry)
+			view.imageIsPotentiallyHazardous.contentDescription = view.context.getString(
+				R.string.image_is_potentially_hazardous
+			)
 		} else {
+			view.textDistanceFromEarthAu.setTextColor(
+				ContextCompat.getColor(view.context, R.color.colorPrimary)
+			)
+			view.textAsteroidSpeed.setTextColor(
+				ContextCompat.getColor(view.context, R.color.colorPrimary)
+			)
 			view.imageIsPotentiallyHazardous.setImageResource(R.drawable.ic_emoji_friendly)
+			view.imageIsPotentiallyHazardous.contentDescription = view.context.getString(
+				R.string.image_not_potentially_hazardous
+			)
 		}
 	}
 }
