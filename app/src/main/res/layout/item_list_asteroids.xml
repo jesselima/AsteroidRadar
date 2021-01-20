@@ -27,24 +27,23 @@
 
             <ImageView
                 android:id="@+id/imageIsPotentiallyHazardous"
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/asteroidName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_emoji_friendly" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                app:layout_constraintStart_toEndOf="@+id/imageIsPotentiallyHazardous"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2"
                 app:srcCompat="@drawable/ic_globe" />
 
@@ -52,10 +51,11 @@
                 android:id="@+id/imageView2"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageIsPotentiallyHazardous"
-                app:layout_constraintStart_toEndOf="@+id/imageIsPotentiallyHazardous"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/asteroidName"
                 app:srcCompat="@drawable/ic_meteor" />
 
@@ -66,7 +66,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintStart_toStartOf="@+id/textAsteroidSpeed"
                 app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -80,7 +80,8 @@
                 android:layout_marginTop="8dp"
                 android:maxLines="2"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="(2014 WC5)" />
@@ -91,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
