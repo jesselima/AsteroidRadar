@@ -32,5 +32,6 @@
 
     <string name="image_is_potentially_hazardous">Image is potentially hazardous</string>
     <string name="image_not_potentially_hazardous">Image not potentially hazardous</string>
+    <string name="picture_of_the_day">Picture of the day</string>
 
 </resources>

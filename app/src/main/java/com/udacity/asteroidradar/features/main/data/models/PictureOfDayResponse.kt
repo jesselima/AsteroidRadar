@@ -9,10 +9,15 @@ data class PictureOfDayResponse(
 	val id: Long? = null,
 	@Json(name = "media_type")
 	val mediaType: String? = null,
+	@Json(name = "title")
 	val title: String? = null,
+	@Json(name = "url")
 	val imageUrl: String? = null,
+	@Json(name = "hdurl")
 	val highDefinitionImageUrl: String? = null,
+	@Json(name = "date")
 	val date: String? = null,
+	@Json(name = "explanation")
 	val explanation: String? = null,
 )
 
