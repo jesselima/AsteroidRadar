@@ -15,6 +15,10 @@ class PictureOfTheDayUseCaseImpl(
 		repository.getRemotePictureOfTheDay()
 	}
 
+	override suspend fun getRemotePictureOfTheDayByDate(date: String): PictureOfDay {
+		return repository.getRemotePictureOfTheDayByDate(date = date)
+	}
+
 	override suspend fun getLocalPictureOfTheDay() : PictureOfDay {
 		return repository.getLocalPictureOfTheDay()
 	}

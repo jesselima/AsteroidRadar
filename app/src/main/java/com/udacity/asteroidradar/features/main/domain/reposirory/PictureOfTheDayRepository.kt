@@ -8,5 +8,7 @@ import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
  */
 interface PictureOfTheDayRepository {
 	suspend fun getRemotePictureOfTheDay()
+	suspend fun getRemotePictureOfTheDayByDate(date: String) : PictureOfDay
+	suspend fun getRemotePictureOfTheLastSevenDays()
 	suspend fun getLocalPictureOfTheDay() : PictureOfDay
 }

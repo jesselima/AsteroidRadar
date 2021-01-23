@@ -55,10 +55,8 @@ class MainFragment : Fragment() {
             }
         })
         viewModel.asteroidFeed.observe(viewLifecycleOwner, {
-            it?.let { result ->
-                Timber.d("SIZE -->>> ${result.size}")
-                Timber.d("Data -->>> $result")
-                adapter.submitList(asteroidsData = it)
+            it?.let { asteroids ->
+                adapter.submitList(asteroidsData = asteroids)
             }
 
         })

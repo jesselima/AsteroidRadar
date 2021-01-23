@@ -15,7 +15,7 @@ data class PictureOfDay(
 	@ColumnInfo(name = "url")
 	val imageUrl: String = "",
 	@ColumnInfo(name = "hdurl")
-	val highDefinitionImageUrl: String,
+	val highDefinitionImageUrl: String = "",
 	@ColumnInfo(name = "date")
 	val date: String = "",
 	@ColumnInfo(name = "explanation")

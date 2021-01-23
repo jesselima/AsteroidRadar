@@ -23,4 +23,19 @@ interface AsteroidRadarService {
         @Query("api_key") apiKey: String = Environment.getApiKey()
     ) : PictureOfDayResponse?
 
+
+    @GET("planetary/apod")
+    suspend fun getRemotePictureOfTheDayByDate(
+        @Query("date") date: String,
+        @Query("api_key") apiKey: String = Environment.getApiKey()
+    ) : PictureOfDayResponse?
+
+
+    @GET("planetary/apod")
+    suspend fun getRemotePictureOfTheLastSevenDays(
+        @Query("start_date") startDate: String,
+        @Query("and_date") endDate: String,
+        @Query("api_key") apiKey: String = Environment.getApiKey()
+    ) : List<PictureOfDayResponse>?
+
 }

@@ -12,4 +12,12 @@ class PictureOfTheDayRemoteDataSourceImpl : PictureOfTheDayRemoteDataSource {
     override suspend fun getRemotePictureOfTheDay() : PictureOfDayResponse? {
         return  service.getRemotePictureOfTheDay()
     }
+
+    override suspend fun getRemotePictureOfTheDayByDate(date: String): PictureOfDayResponse? {
+        return service.getRemotePictureOfTheDayByDate(date = date)
+    }
+
+    override suspend fun getRemotePictureOfTheLastSevenDays(startDate: String, endDate: String): List<PictureOfDayResponse>? {
+        return service.getRemotePictureOfTheLastSevenDays(startDate = startDate, endDate = endDate)
+    }
 }

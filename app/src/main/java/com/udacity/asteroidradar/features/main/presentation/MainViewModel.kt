@@ -40,7 +40,7 @@ class MainViewModel(
 		}
 	}
 
-	private fun getPictureOfTheDayFeed() {
+	private fun getPictureOfTheDay() {
 		viewModelScope.launch {
 			val data = withContext(Dispatchers.IO) {
 				pictureOfTheDayUseCase.getLocalPictureOfTheDay()
@@ -49,6 +49,14 @@ class MainViewModel(
 		}
 	}
 
+	private fun getRemotePictureOfTheDayByDate(date: String) {
+		viewModelScope.launch {
+			val data = withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.getRemotePictureOfTheDayByDate(date = date)
+			}
+			_pictureOfTheDay.value = data
+		}
+	}
 
 	private fun hasLaunchTheAppPreviously() {
 		viewModelScope.launch {
@@ -57,7 +65,7 @@ class MainViewModel(
 			}
 			if (hasLaunchTheAppPreviously) {
 				getAsteroidsFeed()
-				getPictureOfTheDayFeed()
+				getPictureOfTheDay()
 			} else {
 				requestRemoteData()
 			}
@@ -71,52 +79,8 @@ class MainViewModel(
 				pictureOfTheDayUseCase.getRemotePictureOfTheDay()
 			}
 			getAsteroidsFeed()
-			getPictureOfTheDayFeed()
+			getPictureOfTheDay()
 			sharedPrefStorage.saveValue(key = HAS_LAUNCH_APP_PREVIOUSLY, value = true)
 		}
 	}
-
-
-	/**
-	 * USE THIS METHOD TO INSERT DUMMY DATA INTO THE LOCAL DATABASE.
-	 *
-	 */
-//	private fun insertDummyData() {
-//		viewModelScope.launch {
-//			withContext(Dispatchers.IO) {
-//
-//				for(index in 10..30) {
-//					pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(PictureOfDay(
-//						mediaType = "image",
-//						title = "Hello Space $index",
-//						imageUrl = "https://apod.nasa.gov/apod/image/2101/OldMan_Guerra_960_lines.jpg",
-//						highDefinitionImageUrl = "https://apod.nasa.gov/apod/image/2101/OldMan_Guerra_6000.jpg",
-//						date = "2021-01-${index}",
-//						explanation = "The night sky is filled with stories. Cultures throughout history have projected some of their most enduring legends onto the stars above. Generations of people see these stellar constellations, hear the associated stories, and pass them down. Featured here is the perhaps unfamiliar constellation of the Old Man, long recognized by the Tupi peoples native to regions of South America now known as Brazil.",
-//						createdAt = getCurrentDate(),
-//						modifiedAt = getCurrentDate(),
-//					))
-//				}
-//
-//				for(index in 10..30) {
-//					asteroidsFeedLocalDataSource.saveFeedToLocalDatabase(
-//						listOf(
-//							AsteroidsFeedItem(
-//								codename = "Space Boy $index",
-//								closeApproachDate = "2020-02-$index",
-//								absoluteMagnitude = 0.3,
-//								estimatedDiameter = 0.1,
-//								relativeVelocity = 0.7,
-//								distanceFromEarth = 1.2,
-//								isPotentiallyHazardous = true,
-//								date = "2020-02-$index",
-//								createdAt = getCurrentDate(),
-//								modifiedAt = getCurrentDate(),
-//							)
-//						)
-//					)
-//				}
-//			}
-//		}
-//	}
 }
