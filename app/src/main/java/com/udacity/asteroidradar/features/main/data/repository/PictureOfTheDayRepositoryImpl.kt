@@ -1,8 +1,7 @@
 package com.udacity.asteroidradar.features.main.data.repository
 
 import com.udacity.asteroidradar.core.extensions.getCurrentDate
-import com.udacity.asteroidradar.core.extensions.getDateSixDaysBehind
-import com.udacity.asteroidradar.core.extensions.getLastSevenDays
+import com.udacity.asteroidradar.core.extensions.getDateForDaysBehind
 import com.udacity.asteroidradar.features.main.data.datasource.local.PictureOfTheDayLocalDataSource
 import com.udacity.asteroidradar.features.main.data.datasource.remote.PictureOfTheDayRemoteDataSource
 import com.udacity.asteroidradar.features.main.data.models.mapToLocalDatabaseModel
@@ -25,25 +24,29 @@ class PictureOfTheDayRepositoryImpl(
 		}
 	}
 
-	/**
-	 * This request must have a connection available validation
-	 */
-	override suspend fun getRemotePictureOfTheDayByDate(date: String): PictureOfDay {
+	override suspend fun getRemotePictureOfTheDayByDate(date: String) {
 		val pictureOfTheDayByDate = pictureOfTheDayRemoteDataSource.getRemotePictureOfTheDayByDate(date = date)
-		return pictureOfTheDayByDate?.mapToLocalDatabaseModel() ?: PictureOfDay()
+		pictureOfTheDayByDate?.mapToLocalDatabaseModel() ?: PictureOfDay()
+	}
+
+	override suspend fun getLocalPictureOfTheDayByDate(date: String): PictureOfDay {
+		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDay(date = date)
 	}
 
 	override suspend fun getRemotePictureOfTheLastSevenDays() {
 		val picturesOfTheLastSevenDays = pictureOfTheDayRemoteDataSource.getRemotePictureOfTheLastSevenDays(
-			startDate = getCurrentDate(),
-			endDate = getDateSixDaysBehind()
+			startDate = getDateForDaysBehind(),
+			endDate = getCurrentDate()
 		)
 		picturesOfTheLastSevenDays?.forEach {
 			pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(it.mapToLocalDatabaseModel())
 		}
 	}
 
-	override suspend fun getLocalPictureOfTheDay() : PictureOfDay {
-		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDay(date = getCurrentDate())
+	override suspend fun getLocalPictureOfTheLastSevenDays(): List<PictureOfDay> {
+		return  pictureOfTheDayLocalDataSource.getLocalPictureOfTheLastSevenDays(
+			startDate = getDateForDaysBehind(),
+			endDate = getCurrentDate()
+		)
 	}
 }

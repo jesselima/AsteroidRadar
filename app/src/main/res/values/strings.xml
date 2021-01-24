@@ -32,6 +32,9 @@
 
     <string name="image_is_potentially_hazardous">Image is potentially hazardous</string>
     <string name="image_not_potentially_hazardous">Image not potentially hazardous</string>
-    <string name="picture_of_the_day">Picture of the day</string>
+    <string name="label_picture_of_the_day">Picture of the day</string>
+    <string name="picture_of_the_day_format">Picture of the day - %s</string>
+    <string name="picture_of_the_day_dummy_name">719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1</string>
+    <string name="label_asteroids">Asteroids</string>
 
 </resources>

@@ -1,9 +1,12 @@
 package com.udacity.asteroidradar.features.main.domain.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "picture_of_the_day")
 data class PictureOfDay(
 	@PrimaryKey(autoGenerate = true)
@@ -24,4 +27,4 @@ data class PictureOfDay(
 	var createdAt: String? = null,
 	@ColumnInfo(name = "modified_at")
 	var modifiedAt: String? = null,
-)
+) : Parcelable

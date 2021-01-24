@@ -20,7 +20,7 @@ import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun asteroidsDao(): AsteroidsDao
-    abstract fun pictureOfTheDay(): PictureOfTheDayDao
+    abstract fun pictureOfTheDayDao(): PictureOfTheDayDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the same time

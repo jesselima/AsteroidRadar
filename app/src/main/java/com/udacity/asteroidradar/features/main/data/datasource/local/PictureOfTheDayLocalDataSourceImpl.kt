@@ -10,10 +10,20 @@ class PictureOfTheDayLocalDataSourceImpl(
     application: Application
 ): PictureOfTheDayLocalDataSource {
 
-    private val pictureOfTheDayDao = AppDatabase.getDatabase(application).pictureOfTheDay()
+    private val pictureOfTheDayDao = AppDatabase.getDatabase(application).pictureOfTheDayDao()
 
     override suspend fun getLocalPictureOfTheDay(date: String): PictureOfDay {
         return pictureOfTheDayDao.getLocalPictureOfTheDay(date = date)
+    }
+
+    override suspend fun getLocalPictureOfTheLastSevenDays(
+        startDate: String,
+        endDate: String
+    ): List<PictureOfDay> {
+        return pictureOfTheDayDao.getLocalPictureOfTheDayLastSevenDays(
+            startDate = startDate,
+            endDate = endDate
+        )
     }
 
     override suspend fun savePictureOfTheDayToLocalDatabase(pictureOfDay: PictureOfDay) {

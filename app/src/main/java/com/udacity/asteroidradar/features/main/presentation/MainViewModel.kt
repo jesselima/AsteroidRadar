@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
@@ -28,10 +29,27 @@ class MainViewModel(
 	private val _asteroidsFeed = MutableLiveData<List<AsteroidsFeedItem>>()
 	val asteroidFeed: LiveData<List<AsteroidsFeedItem>> = _asteroidsFeed
 
-	private val _pictureOfTheDay = MutableLiveData<PictureOfDay>()
-	val pictureOfTheDay: LiveData<PictureOfDay> = _pictureOfTheDay
+	private val _pictureOfTheDayBySelectedDate = MutableLiveData<PictureOfDay>()
+	val pictureOfTheDayBySelectedDate: LiveData<PictureOfDay> = _pictureOfTheDayBySelectedDate
 
-	private fun getAsteroidsFeed() {
+	private val _listOfPicturesOfTheDays = MutableLiveData<List<PictureOfDay>>()
+	val listOfPicturesOfTheDays: LiveData<List<PictureOfDay>> = _listOfPicturesOfTheDays
+
+	private fun hasLaunchTheAppPreviously() {
+		viewModelScope.launch {
+			val hasLaunchTheAppPreviously = withContext(Dispatchers.IO) {
+				sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
+			}
+			if (hasLaunchTheAppPreviously) {
+				getLocalAsteroidsFeed()
+				getLocalPictureOfTheLastSevenDays()
+			} else {
+				requestRemoteData()
+			}
+		}
+	}
+
+	private fun getLocalAsteroidsFeed() {
 		viewModelScope.launch {
 			val data = withContext(Dispatchers.IO) {
 				asteroidsFeedUseCase.getLocalFeed()
@@ -40,35 +58,12 @@ class MainViewModel(
 		}
 	}
 
-	private fun getPictureOfTheDay() {
+	private fun getLocalPictureOfTheLastSevenDays() {
 		viewModelScope.launch {
 			val data = withContext(Dispatchers.IO) {
-				pictureOfTheDayUseCase.getLocalPictureOfTheDay()
+				pictureOfTheDayUseCase.getLocalPictureOfTheDayLastSevenDays()
 			}
-			_pictureOfTheDay.value = data
-		}
-	}
-
-	private fun getRemotePictureOfTheDayByDate(date: String) {
-		viewModelScope.launch {
-			val data = withContext(Dispatchers.IO) {
-				pictureOfTheDayUseCase.getRemotePictureOfTheDayByDate(date = date)
-			}
-			_pictureOfTheDay.value = data
-		}
-	}
-
-	private fun hasLaunchTheAppPreviously() {
-		viewModelScope.launch {
-			val hasLaunchTheAppPreviously = withContext(Dispatchers.IO) {
-				sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
-			}
-			if (hasLaunchTheAppPreviously) {
-				getAsteroidsFeed()
-				getPictureOfTheDay()
-			} else {
-				requestRemoteData()
-			}
+			_listOfPicturesOfTheDays.value = data
 		}
 	}
 
@@ -76,11 +71,21 @@ class MainViewModel(
 		viewModelScope.launch {
 			withContext(Dispatchers.IO) {
 				asteroidsFeedUseCase.getRemoteFeed()
-				pictureOfTheDayUseCase.getRemotePictureOfTheDay()
+				pictureOfTheDayUseCase.getRemotePictureOfTheLastSevenDays()
 			}
-			getAsteroidsFeed()
-			getPictureOfTheDay()
+			getLocalAsteroidsFeed()
+			getLocalPictureOfTheLastSevenDays()
 			sharedPrefStorage.saveValue(key = HAS_LAUNCH_APP_PREVIOUSLY, value = true)
 		}
 	}
+
+	private fun getPictureOfTheDayByDate(date: String = getCurrentDate()) {
+		viewModelScope.launch {
+			val data = withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.getLocalPictureOfTheDayByDate(date = date)
+			}
+			_pictureOfTheDayBySelectedDate.value = data
+		}
+	}
+
 }

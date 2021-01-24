@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by jesselima on 4/01/21.
@@ -28,6 +29,8 @@ fun setupRetrofit() : Retrofit {
 	val okHttpClient = OkHttpClient()
 		.newBuilder()
 		.addInterceptor(httpLoggingInterceptor)
+		.connectTimeout(30, TimeUnit.SECONDS)
+		.callTimeout(30, TimeUnit.SECONDS)
 		.build()
 
 	return Retrofit.Builder()
