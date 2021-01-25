@@ -5,6 +5,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.udacity.asteroidradar.features.main.domain.reposirory.AsteroidsFeedRepository
 import com.udacity.asteroidradar.features.main.domain.reposirory.PictureOfTheDayRepository
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import retrofit2.HttpException
 import timber.log.Timber
 
@@ -15,9 +17,10 @@ import timber.log.Timber
 class AsteroidsRadarWork(
 	appContext: Context,
 	params: WorkerParameters,
-	private val asteroidsFeedRepository: AsteroidsFeedRepository,
-	private val pictureOfTheDayRepository: PictureOfTheDayRepository
-) : CoroutineWorker(appContext, params) {
+) : CoroutineWorker(appContext, params), KoinComponent {
+
+	private val asteroidsFeedRepository: AsteroidsFeedRepository by inject()
+	private val pictureOfTheDayRepository: PictureOfTheDayRepository by inject()
 
 	override suspend fun doWork(): Result {
 
