@@ -33,9 +33,20 @@
     <string name="image_is_potentially_hazardous">Image is potentially hazardous</string>
     <string name="image_not_potentially_hazardous">Image not potentially hazardous</string>
     <string name="label_picture_of_the_day">Picture of the day</string>
-    <string name="picture_of_the_day_format">Picture of the day - %s</string>
+    <string name="label_picture_of_the_day_format">Picture of the day - %s</string>
+    <string name="label_picture_of_the_day_format_details">Picture of the day from %s</string>
     <string name="picture_of_the_day_dummy_name">719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1</string>
     <string name="label_asteroids">Asteroids</string>
     <string name="image_not_loaded_warning">Ooops! The image could not be loaded.</string>
+    <string name="dialog_test">Teste Dialog Fragment</string>
+    <string name="ok">OK</string>
+    <string name="toggle_full_screen_view">Toggle full screen view</string>
+
+    <string name="sample_text_picture_of_the_day_explanation">This shadowy landscape of majestic mountains and icy plains stretches toward the horizon on a small, distant world. It was captured from a range of about 18,000 kilometers when New Horizons looked back toward Pluto, 15 minutes after the spacecraft\'s closest approach on July 14, 2015. The dramatic, low-angle, near-twilight scene follows rugged mountains formally known as Norgay Montes from foreground left, and Hillary Montes along the horizon, giving way to smooth Sputnik Planum at right. Layers of Pluto\'s tenuous atmosphere are also revealed in the backlit view. With a strangely familiar appearance, the frigid terrain likely includes ices of nitrogen and carbon monoxide with water-ice mountains rising up to 3,500 meters (11,000 feet). That\'s comparable in height to the majestic mountains of planet Earth. The Plutonian landscape is 380 kilometers (230 miles) across.</string>
+    <string name="copyright">Copyright:</string>
+    <string name="picture_of_the_day">Picture of the day</string>
+    <string name="check_connection_message">Ooops! Are you connected?</string>
+    <string name="hd_image_loaded">High Definition image loaded.</string>
+    <string name="info">Info</string>
 
 </resources>

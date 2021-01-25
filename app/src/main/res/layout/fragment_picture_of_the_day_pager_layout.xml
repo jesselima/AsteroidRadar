@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_astronaut_image_not_found" />
+        tools:src="@drawable/ic_astronaut_image_not_found"
+        android:contentDescription="@string/picture_of_the_day" />
 
     <ImageView
         android:id="@+id/mainViewPagerImageViewBackground"
@@ -49,10 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="48dp"
         android:text="@string/label_picture_of_the_day"
         android:textColor="@color/text_grey"
-        app:layout_constraintBottom_toTopOf="@+id/mainViewPagerTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerCollapsingToolbarImageView"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -61,13 +62,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="48dp"
-        tools:text="@string/picture_of_the_day_dummy_name"
+        android:layout_marginBottom="8dp"
         android:textColor="@color/default_text_color"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/mainViewPagerLabelWithDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/picture_of_the_day_dummy_name" />
+
+    <ImageView
+        android:id="@+id/mainViewPagerToggleFullScreenView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/toggle_full_screen_view"
+        android:elevation="10dp"
+        android:src="@drawable/ic_fullscreen_enter"
+        app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerLabelWithDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mainViewPagerLabelWithDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

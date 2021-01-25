@@ -19,6 +19,8 @@ data class PictureOfDayResponse(
 	val date: String? = null,
 	@Json(name = "explanation")
 	val explanation: String? = null,
+	@Json(name = "copyright")
+	val copyright: String? = null,
 )
 
 
@@ -29,6 +31,7 @@ fun PictureOfDayResponse.mapToLocalDatabaseModel() : PictureOfDay {
 		imageUrl = this.imageUrl ?: "",
 		highDefinitionImageUrl = this.highDefinitionImageUrl ?: "",
 		date = this.date ?: "",
-		explanation = this.explanation ?: ""
+		explanation = this.explanation ?: "",
+		copyright = this.copyright
 	)
 }

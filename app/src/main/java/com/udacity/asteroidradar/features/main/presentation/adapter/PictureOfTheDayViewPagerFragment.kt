@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Callback
-import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.formatDate
@@ -21,6 +20,8 @@ import java.lang.Exception
 
 class PictureOfTheDayViewPagerFragment : Fragment() {
 
+    private var pictureOfTheDay: PictureOfDay? = PictureOfDay()
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -28,17 +29,18 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
         return inflateFragment(
             inflater = inflater,
             container = container,
-            layoutResId = R.layout.fragment_picture_of_the_day_pager_layout
+            layoutResId = R.layout.fragment_picture_of_the_day_pager_layout,
+            shouldLoadWIthAnimation = true
         )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListener()
 
-        val pictureOfTheDay = arguments?.getParcelable<PictureOfDay>(ARG_PICTURE_OF_THE_DAY_DATA)
+        pictureOfTheDay = arguments?.getParcelable(ARG_PICTURE_OF_THE_DAY_DATA)
 
         pictureOfTheDay?.let {
-
             it.imageUrl.let { url ->
                 Picasso.get()
                     .load(url)
@@ -47,20 +49,17 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
                     .into(mainViewPagerCollapsingToolbarImageView, object : Callback {
                         override fun onSuccess() {
                             mainViewPagerTextBalonImageNotLoaded.isVisible = false
-                            Timber.d("Image loaded successfully!")
                         }
-
                         override fun onError(e: Exception?) {
                             mainViewPagerTextBalonImageNotLoaded.isVisible = true
                         }
-
                     })
             }
 
             it.date.let { date ->
                 with(mainViewPagerLabelWithDate) {
                     showWithFadeIn()
-                    text = getString(R.string.picture_of_the_day_format, formatDate(date))
+                    text = getString(R.string.label_picture_of_the_day_format, formatDate(date))
                 }
             }
 
@@ -69,8 +68,27 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
                     showWithLongFadeIn()
                     text = title
                 }
+                with(mainViewPagerCollapsingToolbarImageView) {
+                    showWithLongFadeIn()
+                    contentDescription = title
+                }
             }
         }
+    }
+
+    private fun setupListener() {
+        mainViewPagerToggleFullScreenView.setOnClickListener {
+            openPictureDetails()
+        }
+        mainViewPagerCollapsingToolbarImageView.setOnClickListener {
+            openPictureDetails()
+        }
+    }
+
+    private fun openPictureDetails() {
+        PictureOfDayDialogFragment.newInstance(pictureOfDay = pictureOfTheDay).show(
+            childFragmentManager, PictureOfDayDialogFragment::class.java.simpleName
+        )
     }
 
     companion object {
