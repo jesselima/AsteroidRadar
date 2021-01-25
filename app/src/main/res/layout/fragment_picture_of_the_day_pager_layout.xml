@@ -27,23 +27,24 @@
         android:background="@drawable/backdrop_image_overlay_darker_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@null" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mainViewPagerTextBalonImageNotLoaded"
         android:layout_width="160dp"
         android:layout_height="55dp"
         android:layout_marginStart="16dp"
-        tools:visibility="visible"
-        android:visibility="gone"
-        android:text="@string/image_not_loaded_warning"
         android:background="@drawable/ic_text_ballon"
         android:padding="8dp"
+        android:text="@string/image_not_loaded_warning"
+        android:textColor="@color/textColorGrey"
         android:textSize="14sp"
-        android:textColor="@color/text_grey"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/mainViewPagerLabelWithDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mainViewPagerLabelWithDate"
@@ -52,7 +53,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="48dp"
         android:text="@string/label_picture_of_the_day"
-        android:textColor="@color/text_grey"
+        android:textColor="@color/textColorGrey"
         app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerCollapsingToolbarImageView"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -63,7 +64,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/default_text_color"
+        android:textColor="@color/primaryTextColor"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/mainViewPagerLabelWithDate"
         app:layout_constraintEnd_toEndOf="parent"

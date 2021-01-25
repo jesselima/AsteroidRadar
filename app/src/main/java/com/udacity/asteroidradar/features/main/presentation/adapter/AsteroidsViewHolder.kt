@@ -47,10 +47,10 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 
 		if (asteroid.isPotentiallyHazardous) {
 			view.textDistanceFromEarthAu.setTextColor(
-				ContextCompat.getColor(view.context, R.color.colorAccent)
+				ContextCompat.getColor(view.context, R.color.secondaryColor)
 			)
 			view.textAsteroidSpeed.setTextColor(
-				ContextCompat.getColor(view.context, R.color.colorAccent)
+				ContextCompat.getColor(view.context, R.color.secondaryColor)
 			)
 			view.imageIsPotentiallyHazardous.setImageResource(R.drawable.ic_emoji_angry)
 			view.imageIsPotentiallyHazardous.contentDescription = view.context.getString(
@@ -58,10 +58,10 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 			)
 		} else {
 			view.textDistanceFromEarthAu.setTextColor(
-				ContextCompat.getColor(view.context, R.color.colorPrimary)
+				ContextCompat.getColor(view.context, R.color.primaryTextColor)
 			)
 			view.textAsteroidSpeed.setTextColor(
-				ContextCompat.getColor(view.context, R.color.colorPrimary)
+				ContextCompat.getColor(view.context, R.color.primaryTextColor)
 			)
 			view.imageIsPotentiallyHazardous.setImageResource(R.drawable.ic_emoji_friendly)
 			view.imageIsPotentiallyHazardous.contentDescription = view.context.getString(

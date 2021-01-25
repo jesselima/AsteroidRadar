@@ -17,7 +17,8 @@
         app:cardCornerRadius="@dimen/cardElevation_low"
         app:cardElevation="@dimen/layout_margin_medium"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        app:cardBackgroundColor="@color/primaryDarkColor">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                 android:layout_height="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageIsPotentiallyHazardous"
-                app:srcCompat="@drawable/ic_globe" />
+                app:srcCompat="@drawable/ic_globe"
+                android:contentDescription="@string/image_closet_approach_to_earth" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -52,43 +54,44 @@
                 android:layout_height="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageIsPotentiallyHazardous"
-                app:srcCompat="@drawable/ic_meteor" />
+                app:srcCompat="@drawable/ic_meteor"
+                android:contentDescription="@string/image_asteroid_speed" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textDistanceFromEarthAu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextColor"
                 android:layout_marginTop="4dp"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView"
                 app:layout_constraintStart_toStartOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
                 tools:text="0.30" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/asteroidName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextColor"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
                 android:maxLines="2"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="(2014 WC5)" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textAsteroidSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextColor"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
                 app:layout_constraintStart_toStartOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2"

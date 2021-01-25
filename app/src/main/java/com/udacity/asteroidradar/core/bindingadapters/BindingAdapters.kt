@@ -9,9 +9,9 @@ import com.udacity.asteroidradar.R
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
-        imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
+        imageView.setImageResource(R.drawable.ic_emoji_angry)
     } else {
-        imageView.setImageResource(R.drawable.ic_status_normal)
+        imageView.setImageResource(R.drawable.ic_emoji_friendly)
     }
 }
 

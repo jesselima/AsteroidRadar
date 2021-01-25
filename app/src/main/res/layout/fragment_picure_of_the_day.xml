@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/app_background">
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/pictureOfTheDayDetailsImageView"
@@ -32,7 +33,7 @@
             android:padding="8dp"
             android:gravity="center_vertical"
             android:text="@string/image_not_loaded_warning"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/textColorGrey"
             android:textSize="14sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
@@ -48,7 +49,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:text="@string/label_picture_of_the_day_format_details"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/textColorGrey"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsImageView" />
 
@@ -59,7 +60,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/textColorGrey"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/textColorGrey"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsTitle"
@@ -85,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/textColorGrey"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsLabelCopyright"
@@ -102,7 +103,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/textColorGrey"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +141,7 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:indeterminate="true"
             android:layout_width="match_parent"
-            android:progressTint="@color/colorAccent"
+            android:progressTint="@color/secondaryColor"
             android:layout_height="5dp"
             android:visibility="gone"
             tools:visibility="visible"

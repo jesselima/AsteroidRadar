@@ -107,7 +107,7 @@ class MainFragment : Fragment() {
                     context = it,
                     title = getString(R.string.tell_more_astronomical_units_title),
                     message = getString(R.string.tell_more_astronomical_units),
-                    positiveButtonText = getString(R.string.remender_me_later),
+                    positiveButtonText = getString(R.string.remember_me_later),
                     positiveButtonAction = { saveMetricsInfoPreferences(shouldShowAgain = true) },
                     negativeButtonText = getString(R.string.ok_got_it),
                     negativeButtonAction =  { saveMetricsInfoPreferences(shouldShowAgain = false) },
