@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private const val HAS_LAUNCH_APP_PREVIOUSLY = "HAS_LAUNCH_APP_PREVIOUSLY"
+private const val SHOULD_SHOW_METRICS_INFO = "HAS_SEEN_METRICS_INFO"
 
 class MainViewModel(
 	private val asteroidsFeedUseCase: AsteroidsFeedUseCase,
@@ -23,7 +24,7 @@ class MainViewModel(
 ) : ViewModel() {
 
 	init {
-		hasLaunchTheAppPreviously()
+		isFirstLaunch()
 	}
 
 	private val _asteroidsFeed = MutableLiveData<List<AsteroidsFeedItem>>()
@@ -35,18 +36,22 @@ class MainViewModel(
 	private val _listOfPicturesOfTheDays = MutableLiveData<List<PictureOfDay>>()
 	val listOfPicturesOfTheDays: LiveData<List<PictureOfDay>> = _listOfPicturesOfTheDays
 
-	private fun hasLaunchTheAppPreviously() {
+	private fun isFirstLaunch() {
 		viewModelScope.launch {
-			val hasLaunchTheAppPreviously = withContext(Dispatchers.IO) {
-				sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
+			val isFirstAppLaunch = withContext(Dispatchers.IO) {
+				hasLaunchAppPreviously()
 			}
-			if (hasLaunchTheAppPreviously) {
+			if (isFirstAppLaunch) {
 				getLocalAsteroidsFeed()
 				getLocalPictureOfTheLastSevenDays()
 			} else {
 				requestRemoteData()
 			}
 		}
+	}
+
+	fun hasLaunchAppPreviously() : Boolean {
+		return sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
 	}
 
 	private fun getLocalAsteroidsFeed() {
@@ -88,4 +93,11 @@ class MainViewModel(
 		}
 	}
 
+	fun shouldShowAgainMetricsInfo() : Boolean {
+		return sharedPrefStorage.getBooleanValue(key = SHOULD_SHOW_METRICS_INFO)
+	}
+
+	fun saveShouldShowMetricsInfoDialog(shouldShowAgain: Boolean) {
+		sharedPrefStorage.saveValue(key = SHOULD_SHOW_METRICS_INFO, value = shouldShowAgain)
+	}
 }

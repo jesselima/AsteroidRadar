@@ -65,9 +65,7 @@ class PictureOfDayDialogFragment : DialogFragment() {
 					.into(view.pictureOfTheDayDetailsImageView, object : Callback {
 						override fun onSuccess() {
 							pictureOfTheDayDetailsTextBalonImageNotLoaded.isVisible = false
-							Timber.d("Image loaded successfully!")
 						}
-
 						override fun onError(e: Exception?) {
 							view.pictureOfTheDayDetailsTextBalonImageNotLoaded.isVisible = true
 						}

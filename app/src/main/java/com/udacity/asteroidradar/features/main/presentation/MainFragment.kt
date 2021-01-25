@@ -15,6 +15,7 @@ import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.AppBarState
 import com.udacity.asteroidradar.core.extensions.AppBarStateChangeListener
 import com.udacity.asteroidradar.core.extensions.getPagTransformer
+import com.udacity.asteroidradar.core.extensions.showDialogWithActions
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.features.main.presentation.adapter.AsteroidsAdapter
 import com.udacity.asteroidradar.features.main.presentation.adapter.PictureOfTheDayPagerAdapter
@@ -43,7 +44,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
-
+        validateMetricsInfoPreferences()
         asteroidRecyclerView.adapter = adapter
 
         mainAppBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
@@ -78,6 +79,10 @@ class MainFragment : Fragment() {
         })
     }
 
+    private fun saveMetricsInfoPreferences(shouldShowAgain: Boolean) {
+        viewModel.saveShouldShowMetricsInfoDialog(shouldShowAgain = shouldShowAgain)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -85,5 +90,29 @@ class MainFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
+    }
+
+    private fun validateMetricsInfoPreferences() {
+
+        val hasLaunchAppPreviously = viewModel.hasLaunchAppPreviously()
+        if (hasLaunchAppPreviously.not()) {
+            saveMetricsInfoPreferences(shouldShowAgain = true)
+        }
+
+        val shouldShowAgain = viewModel.shouldShowAgainMetricsInfo()
+
+        if (shouldShowAgain) {
+            context?.let {
+                showDialogWithActions(
+                    context = it,
+                    title = getString(R.string.tell_more_astronomical_units_title),
+                    message = getString(R.string.tell_more_astronomical_units),
+                    positiveButtonText = getString(R.string.remender_me_later),
+                    positiveButtonAction = { saveMetricsInfoPreferences(shouldShowAgain = true) },
+                    negativeButtonText = getString(R.string.ok_got_it),
+                    negativeButtonAction =  { saveMetricsInfoPreferences(shouldShowAgain = false) },
+                )
+            }
+        }
     }
 }
