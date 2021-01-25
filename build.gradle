@@ -23,6 +23,7 @@ buildscript {
         version_okhttp = '4.4.1'
         version_moshi = '1.9.3'
         version_picasso = '2.71828'
+        version_photo_view = '2.3.0'
         version_google_gson = '2.8.6'
 
         version_room = '2.2.6'
@@ -44,6 +45,7 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven { url "https://www.jitpack.io" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
@@ -58,6 +60,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://www.jitpack.io" }
     }
 }
 
