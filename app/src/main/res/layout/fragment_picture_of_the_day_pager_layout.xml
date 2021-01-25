@@ -29,6 +29,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mainViewPagerTextBalonImageNotLoaded"
+        android:layout_width="160dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:text="@string/image_not_loaded_warning"
+        android:background="@drawable/ic_text_ballon"
+        android:padding="8dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_grey"
+        app:layout_constraintBottom_toTopOf="@+id/mainViewPagerLabelWithDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mainViewPagerLabelWithDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

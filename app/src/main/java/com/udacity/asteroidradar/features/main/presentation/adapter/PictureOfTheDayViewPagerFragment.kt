@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.formatDate
@@ -13,6 +16,8 @@ import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
+import timber.log.Timber
+import java.lang.Exception
 
 class PictureOfTheDayViewPagerFragment : Fragment() {
 
@@ -39,7 +44,17 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
                     .load(url)
                     .placeholder(R.drawable.backdrop_image_overlay_darker_bottom)
                     .error(R.drawable.ic_astronaut_image_not_found)
-                    .into(mainViewPagerCollapsingToolbarImageView)
+                    .into(mainViewPagerCollapsingToolbarImageView, object : Callback {
+                        override fun onSuccess() {
+                            mainViewPagerTextBalonImageNotLoaded.isVisible = false
+                            Timber.d("Image loaded successfully!")
+                        }
+
+                        override fun onError(e: Exception?) {
+                            mainViewPagerTextBalonImageNotLoaded.isVisible = true
+                        }
+
+                    })
             }
 
             it.date.let { date ->

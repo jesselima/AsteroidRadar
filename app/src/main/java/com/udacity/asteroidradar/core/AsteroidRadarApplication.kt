@@ -7,6 +7,8 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.squareup.picasso.OkHttp3Downloader
+import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.core.di.GlobalInjectableDependencies
 import com.udacity.asteroidradar.core.work.AsteroidsRadarWork
 import kotlinx.coroutines.CoroutineScope
@@ -31,6 +33,16 @@ class AsteroidRadarApplication : Application() {
         Timber.plant(Timber.DebugTree())
         GlobalInjectableDependencies(this).initKoin()
         delayedInit()
+        setupPicassoInstance()
+    }
+
+    private fun setupPicassoInstance() {
+        val picassoBuilder = Picasso.Builder(this)
+        picassoBuilder.downloader(OkHttp3Downloader(this, Long.MAX_VALUE))
+        val picasso = picassoBuilder.build()
+        picasso.setIndicatorsEnabled(true)
+        picasso.isLoggingEnabled = true
+        Picasso.setSingletonInstance(picasso)
     }
 
     private fun delayedInit() {

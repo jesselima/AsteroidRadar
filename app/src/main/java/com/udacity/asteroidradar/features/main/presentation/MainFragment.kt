@@ -36,7 +36,6 @@ class MainFragment : Fragment() {
     ): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
         setHasOptionsMenu(true)
         return binding.root
     }
