@@ -18,9 +18,8 @@ import com.udacity.asteroidradar.core.extensions.showAppToast
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
-import kotlinx.android.synthetic.main.fragment_picure_of_the_day.*
-import kotlinx.android.synthetic.main.fragment_picure_of_the_day.view.*
-import timber.log.Timber
+import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.*
+import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.view.*
 
 /**
  * Created by jesselima on 25/01/21.
@@ -43,7 +42,7 @@ class PictureOfDayDialogFragment : DialogFragment() {
 		return inflateFragment(
 			inflater = inflater,
 			container = container,
-			layoutResId = R.layout.fragment_picure_of_the_day,
+			layoutResId = R.layout.fragment_picure_of_the_day_details,
 			shouldLoadWIthAnimation = true
 		)
 	}
@@ -107,7 +106,7 @@ class PictureOfDayDialogFragment : DialogFragment() {
 
 	private fun setupListeners() {
 		pictureOfTheDayDetailsCloseFullScreenView.setOnClickListener {
-			pictureOfTheDayDetailsToggleHighDefinition.setIconColorState(R.color.color_state_off)
+			pictureOfTheDayDetailsToggleHighDefinition.setIconColorState(R.color.colorStateOff)
 			dismiss()
 		}
 
@@ -124,7 +123,7 @@ class PictureOfDayDialogFragment : DialogFragment() {
 							showAppToast(getString(R.string.hd_image_loaded), ToastType.SUCCESS)
 							progressBarHighDefinitionImage.isVisible = false
 							pictureOfTheDayDetailsTextBalonImageNotLoaded.isVisible = false
-							pictureOfTheDayDetailsToggleHighDefinition.setIconColorState(R.color.color_state_on)
+							pictureOfTheDayDetailsToggleHighDefinition.setIconColorState(R.color.colorStateOn)
 						}
 
 						override fun onError(e: Exception?) {
