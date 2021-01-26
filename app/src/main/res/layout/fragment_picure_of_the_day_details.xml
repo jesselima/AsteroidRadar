@@ -139,9 +139,9 @@
         <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/progressBarHighDefinitionImage"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:theme="@style/AppTheme.PrimaryAccent"
             android:indeterminate="true"
             android:layout_width="match_parent"
-            android:progressTint="@color/secondaryColor"
             android:layout_height="5dp"
             android:visibility="gone"
             tools:visibility="visible"

@@ -38,4 +38,8 @@
         </item>
     </style>
 
+    <style name="AppTheme.PrimaryAccent">
+        <item name="colorAccent">@color/secondaryColor</item> <!-- Whatever color you want-->
+    </style>
+
 </resources>
