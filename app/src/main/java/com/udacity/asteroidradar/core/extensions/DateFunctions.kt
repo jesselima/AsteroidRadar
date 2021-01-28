@@ -1,7 +1,9 @@
 package com.udacity.asteroidradar.core.extensions
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+import java.util.Date
+import java.util.Calendar
 
 /**
  * Created by jesselima on 10/01/21.
@@ -50,7 +52,7 @@ fun padValue(number: Int) : String {
 
 fun formatDate(date: String) : String {
 	val stringToDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date)
-	val simpleDateFormat = SimpleDateFormat("E DD, MMM yyyy", Locale.getDefault())
+	val simpleDateFormat = SimpleDateFormat("E dd, MMM yyyy", Locale.getDefault())
 	return if(stringToDate != null) {
 		simpleDateFormat.format(stringToDate)
 	}else {

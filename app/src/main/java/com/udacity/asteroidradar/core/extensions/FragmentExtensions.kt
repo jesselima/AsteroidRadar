@@ -18,7 +18,7 @@ fun Fragment.showDialogWithActions(
     context: Context,
     title: String = resources.getString(R.string.attention),
     message: String = resources.getString(R.string.something_went_wrong),
-    positiveButtonText: String = resources.getString(R.string.label_ok),
+    positiveButtonText: String = resources.getString(R.string.label_ok_got_it),
     positiveButtonAction: (() -> Unit?)? = null,
     negativeButtonText: String = resources.getString(R.string.label_cancel),
     negativeButtonAction: (() -> Unit?)? = null
@@ -39,7 +39,7 @@ fun Fragment.showDialog(
     context: Context,
     title: String = resources.getString(R.string.attention),
     message: String = resources.getString(R.string.something_went_wrong),
-    positiveButtonText: String = resources.getString(R.string.label_ok),
+    positiveButtonText: String = resources.getString(R.string.label_ok_got_it),
     positiveButtonAction: (() -> Unit?)? = null,
 ) {
     MaterialAlertDialogBuilder(context)

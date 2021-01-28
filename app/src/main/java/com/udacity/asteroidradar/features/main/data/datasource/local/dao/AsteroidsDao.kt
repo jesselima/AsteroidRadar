@@ -20,7 +20,7 @@ interface AsteroidsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(asteroidsFeedItem: AsteroidsFeedItem) : Long
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(asteroidsFeedItem: AsteroidsFeedItem) : Int
 
     @Query("DELETE FROM asteroids")

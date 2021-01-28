@@ -3,6 +3,7 @@ package com.udacity.asteroidradar.features.detail.data.datasource.remote
 import retrofit2.http.GET
 import retrofit2.http.Query
 import com.udacity.asteroidradar.database.asteroids.models.AsteroidsFeedResponse
+import retrofit2.http.Path
 
 /**
  * Created by jesselima on 4/01/21.
@@ -10,10 +11,9 @@ import com.udacity.asteroidradar.database.asteroids.models.AsteroidsFeedResponse
  */
 interface AsteroidDetailsService {
 
-    @GET("feed")
+    @GET("neo/rest/v1/neo/{id}")
     suspend fun getAsteroidDetails(
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
+        @Path("id") id: String,
         @Query("api_key") apiKey: String
     ) : AsteroidsFeedResponse
 }

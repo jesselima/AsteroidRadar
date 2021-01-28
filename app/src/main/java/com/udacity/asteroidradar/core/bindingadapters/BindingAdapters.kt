@@ -2,9 +2,11 @@ package com.udacity.asteroidradar.core.bindingadapters
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.core.extensions.formatDate
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -24,10 +26,27 @@ fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
     }
 }
 
+@BindingAdapter("bindDetailsStatusTitle")
+fun bindDetailsStatusTitle(textView: TextView, isHazardous: Boolean) {
+    if (isHazardous) {
+        textView.text = textView.context.getString(R.string.title_is_potentially_hazardous)
+        textView.setTextColor(ContextCompat.getColor(textView.context, R.color.secondaryColor))
+    } else {
+        textView.text = textView.context.getString(R.string.title_not_potentially_hazardous)
+        textView.setTextColor(ContextCompat.getColor(textView.context, R.color.primaryTextColor))
+    }
+}
+
 @BindingAdapter("astronomicalUnitText")
 fun bindTextViewToAstronomicalUnit(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(R.string.astronomical_unit_format), number)
+}
+@BindingAdapter("formatDate")
+fun bindTextFormatDate(textView: TextView, date: String?) {
+    date?.let {
+        textView.text = formatDate(date = it)
+    }
 }
 
 @BindingAdapter("kmUnitText")

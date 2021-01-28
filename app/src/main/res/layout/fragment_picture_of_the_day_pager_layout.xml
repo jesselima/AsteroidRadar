@@ -38,7 +38,7 @@
         android:background="@drawable/ic_text_ballon"
         android:padding="8dp"
         android:text="@string/image_not_loaded_warning"
-        android:textColor="@color/textColorGrey"
+        android:textColor="@color/textColorDiscreet"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/mainViewPagerLabelWithDate"
@@ -53,7 +53,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="48dp"
         android:text="@string/label_picture_of_the_day"
-        android:textColor="@color/textColorGrey"
+        android:textColor="@color/textColorDiscreet"
         app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerCollapsingToolbarImageView"
         app:layout_constraintStart_toStartOf="parent" />
 

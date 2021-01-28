@@ -19,13 +19,10 @@ interface PictureOfTheDayDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(pictureOfDay: PictureOfDay) : Long
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(pictureOfDay: PictureOfDay) : Int
 
     @Query("DELETE FROM picture_of_the_day")
     fun deleteAllPicturesOfTheDay() : Int
-
-    @Query("DELETE FROM asteroids")
-    fun deleteAllAsteroids() : Int
 
 }

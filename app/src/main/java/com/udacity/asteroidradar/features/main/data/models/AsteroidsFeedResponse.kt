@@ -126,6 +126,7 @@ fun AsteroidsFeedResponse.mapToLocalDatabaseModel() : List<AsteroidsFeedItem> {
         it.value.forEach { nearEarthObject ->
             mutableList.add(
                 AsteroidsFeedItem(
+                    id = nearEarthObject.id?.toLong(),
                     date = date,
                     codename = nearEarthObject.name.orEmpty(),
                     closeApproachDate = nearEarthObject.closeApproachData?.first()?.closeApproachDate ?: "",

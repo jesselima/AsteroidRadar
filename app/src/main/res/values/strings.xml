@@ -33,6 +33,8 @@
 
     <string name="image_is_potentially_hazardous">Image is potentially hazardous</string>
     <string name="image_not_potentially_hazardous">Image not potentially hazardous</string>
+    <string name="title_is_potentially_hazardous">Potentially hazardous</string>
+    <string name="title_not_potentially_hazardous">Not potentially hazardous</string>
     <string name="label_picture_of_the_day">Picture of the day</string>
     <string name="label_picture_of_the_day_format">Picture of the day - %s</string>
     <string name="label_picture_of_the_day_format_details">Picture of the day from %s</string>
@@ -50,7 +52,7 @@
     <string name="hd_image_loaded">High Definition image loaded.</string>
     <string name="info">Info</string>
     <string name="remember_me_later">Remember me later</string>
-    <string name="ok_got_it">OK, got it!</string>
+    <string name="label_ok_got_it">OK, got it!</string>
     <string name="image_closet_approach_to_earth">Image Closet approach to earth</string>
     <string name="image_asteroid_speed">Image asteroid speed</string>
     <string name="image_information">Image Information</string>

@@ -27,7 +27,8 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 	}
 
 	override fun onClick(v: View?) {
-		val bundle = bundleOf(ASTEROID_ID to asteroidsFeedItem?.id)
+		val asteroidId: Long? = asteroidsFeedItem?.id
+		val bundle = bundleOf(ASTEROID_ID to asteroidId)
 		view.findNavController().navigate(R.id.navigateToAsteroidDetails, bundle)
 	}
 

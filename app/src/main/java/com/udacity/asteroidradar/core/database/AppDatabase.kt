@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.udacity.asteroidradar.features.detail.data.datasource.local.AsteroidDetailsDao
 import com.udacity.asteroidradar.features.main.data.datasource.local.dao.AsteroidsDao
 import com.udacity.asteroidradar.features.main.data.datasource.local.dao.PictureOfTheDayDao
 import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
@@ -20,6 +21,7 @@ import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun asteroidsDao(): AsteroidsDao
+    abstract fun asteroidDetailsDao(): AsteroidDetailsDao
     abstract fun pictureOfTheDayDao(): PictureOfTheDayDao
 
     companion object {

@@ -5,13 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.core.extensions.showDialog
+import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.databinding.FragmentDetailBinding
+import kotlinx.android.synthetic.main.fragment_detail.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class DetailFragment : Fragment() {
+
+    private val viewModel by viewModel<DetailsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,11 +26,7 @@ class DetailFragment : Fragment() {
 
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
-        arguments?.let {
-            val asteroidId = it.getLong("ASTEROID_ID")
-            Timber.d(asteroidId.toString())
-        }
+        binding.viewModel = viewModel
 
         binding.helpButton.setOnClickListener {
             displayAstronomicalUnitExplanationDialog()
@@ -34,12 +35,23 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        asteroidDetailsContent.showWithLongFadeIn()
+        arguments?.let {
+            val asteroidId = it.getLong("ASTEROID_ID")
+            Timber.d("ASTEROID_ID: $asteroidId")
+            viewModel.getLocalAsteroidById(id = asteroidId)
+        }
+    }
+
     private fun displayAstronomicalUnitExplanationDialog() {
-        activity?.let {
-            val builder = AlertDialog.Builder(it)
-                .setMessage(getString(R.string.astronomica_unit_explanation))
-                .setPositiveButton(android.R.string.ok, null)
-            builder.create().show()
+        context?.let {
+            showDialog(
+                context = it,
+                title = getString(R.string.tell_more_astronomical_units_title),
+                message = getString(R.string.tell_more_astronomical_units),
+            )
         }
     }
 }

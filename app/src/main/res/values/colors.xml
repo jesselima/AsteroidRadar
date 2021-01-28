@@ -11,7 +11,7 @@
     <color name="secondaryDarkColor">#af4448</color>
     <color name="secondaryTextColor">#000000</color>
 
-    <color name="textColorGrey">#A2A2A2</color>
+    <color name="textColorDiscreet">#A2A2A2</color>
     <color name="appBackground">#000000</color>
     <color name="colorStateOn">#FF8282</color>
     <color name="colorStateOff">#C2C2C2</color>

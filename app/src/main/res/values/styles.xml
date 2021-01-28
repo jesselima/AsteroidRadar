@@ -10,8 +10,6 @@
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
-        <!-- TODO (03) Add a “fontFamily” attribute to apply your downloadable font to the entire app. -->
-        <!--  Apply android:fontFamily and fontFamily is required to apply it to the parent theme too. -->
         <item name="android:fontFamily">@font/aldrich</item>
         <item name="fontFamily">@font/aldrich</item>
 
@@ -39,7 +37,7 @@
     </style>
 
     <style name="AppTheme.PrimaryAccent">
-        <item name="colorAccent">@color/secondaryColor</item> <!-- Whatever color you want-->
+        <item name="colorAccent">@color/secondaryColor</item>
     </style>
 
 </resources>
