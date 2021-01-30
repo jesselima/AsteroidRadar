@@ -57,15 +57,18 @@ class PictureOfDayDialogFragment : DialogFragment() {
 		pictureOfTheDay?.let {
 
 			it.imageUrl.let { url ->
+				progressBarHighDefinitionImage.isVisible = true
 				Picasso.get()
 					.load(url)
 					.placeholder(R.drawable.backdrop_image_overlay_darker_bottom)
 					.error(R.drawable.ic_astronaut_image_not_found)
 					.into(view.pictureOfTheDayDetailsImageView, object : Callback {
 						override fun onSuccess() {
+							progressBarHighDefinitionImage.isVisible = false
 							pictureOfTheDayDetailsTextBalonImageNotLoaded.isVisible = false
 						}
 						override fun onError(e: Exception?) {
+							progressBarHighDefinitionImage.isVisible = false
 							view.pictureOfTheDayDetailsTextBalonImageNotLoaded.isVisible = true
 						}
 

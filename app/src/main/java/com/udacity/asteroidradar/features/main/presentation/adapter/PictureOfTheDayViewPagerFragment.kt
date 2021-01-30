@@ -15,7 +15,6 @@ import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
-import timber.log.Timber
 import java.lang.Exception
 
 class PictureOfTheDayViewPagerFragment : Fragment() {
@@ -42,15 +41,18 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
 
         pictureOfTheDay?.let {
             it.imageUrl.let { url ->
+                progressBarImage.isVisible = true
                 Picasso.get()
                     .load(url)
                     .placeholder(R.drawable.backdrop_image_overlay_darker_bottom)
                     .error(R.drawable.ic_astronaut_image_not_found)
                     .into(mainViewPagerCollapsingToolbarImageView, object : Callback {
                         override fun onSuccess() {
+                            progressBarImage.isVisible = false
                             mainViewPagerTextBalonImageNotLoaded.isVisible = false
                         }
                         override fun onError(e: Exception?) {
+                            progressBarImage.isVisible = false
                             mainViewPagerTextBalonImageNotLoaded.isVisible = true
                         }
                     })
