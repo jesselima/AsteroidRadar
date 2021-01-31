@@ -20,30 +20,31 @@ private const val ASTEROID_ID = "ASTEROID_ID"
 class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
 	private var view: View = itemView
-	private var asteroidsFeedItem: AsteroidsFeedItem? = null
+	private var asteroidId: Long? = null
 
 	init {
 		itemView.setOnClickListener(this)
 	}
 
 	override fun onClick(v: View?) {
-		val asteroidId: Long? = asteroidsFeedItem?.id
+		val asteroidId: Long? = asteroidId
 		val bundle = bundleOf(ASTEROID_ID to asteroidId)
 		view.findNavController().navigate(R.id.navigateToAsteroidDetails, bundle)
 	}
 
 	fun bindDataToView(asteroid: AsteroidsFeedItem) {
-		this.asteroidsFeedItem = asteroid
-		view.asteroidName.text = asteroidsFeedItem?.codename
+		this.asteroidId = asteroid.id
+
+		view.asteroidName.text = asteroid.codename
 
 		view.textAsteroidSpeed.text = view.context.getString(
 			R.string.units_format_kilometers,
-			String.format("%.2f", asteroidsFeedItem?.relativeVelocityKilometersPerHour)
+			String.format("%.2f", asteroid.relativeVelocityKilometersPerHour)
 		)
 
 		view.textDistanceFromEarthAu.text = view.context.getString(
 			R.string.units_format_astronomical,
-			String.format("%.2f", asteroidsFeedItem?.distanceFromEarthAu)
+			String.format("%.2f", asteroid.distanceFromEarthAu)
 		)
 
 		if (asteroid.isPotentiallyHazardous) {
