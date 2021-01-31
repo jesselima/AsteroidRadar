@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.core.di
 
 import android.content.Context
+import com.udacity.asteroidradar.core.connectionchecker.di.ConnectionCheckerModule
 import com.udacity.asteroidradar.core.sharedprefs.di.SharedPrefModule
 import com.udacity.asteroidradar.features.detail.di.AsteroidDetailsModule
 import com.udacity.asteroidradar.features.main.di.AsteroidsModule
@@ -19,6 +20,7 @@ internal class GlobalInjectableDependencies(
             androidContext(applicationContext)
             modules(
                 listOf(
+                    ConnectionCheckerModule.loadModuleDependency(),
                     RequestModule.loadModuleDependency(),
                     AsteroidsModule.loadModuleDependency(),
                     SharedPrefModule.loadModuleDependency(),
