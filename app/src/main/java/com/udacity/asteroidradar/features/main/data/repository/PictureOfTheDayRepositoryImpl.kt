@@ -1,5 +1,7 @@
 package com.udacity.asteroidradar.features.main.data.repository
 
+import com.udacity.asteroidradar.core.api.ResultEither
+import com.udacity.asteroidradar.core.api.flow
 import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.core.extensions.getDateForDaysBehind
 import com.udacity.asteroidradar.features.main.data.datasource.local.PictureOfTheDayLocalDataSource
@@ -18,29 +20,53 @@ class PictureOfTheDayRepositoryImpl(
 ) : PictureOfTheDayRepository {
 
 	override suspend fun getRemotePictureOfTheDay() {
-		val pictureOfTheDayResponse = pictureOfTheDayRemoteDataSource.getRemotePictureOfTheDay()
-		pictureOfTheDayResponse?.let {
-			pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(it.mapToLocalDatabaseModel())
-		}
+		pictureOfTheDayRemoteDataSource.getRemotePictureOfTheDay()
+			.flow(
+				{ pictureOfTheDayResponse ->
+					pictureOfTheDayResponse?.let {
+						pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(
+							it.mapToLocalDatabaseModel()
+						)
+					}
+				},
+				{
+					ResultEither.Failure(it)
+				}
+			)
 	}
 
 	override suspend fun getRemotePictureOfTheDayByDate(date: String) {
-		val pictureOfTheDayByDate = pictureOfTheDayRemoteDataSource.getRemotePictureOfTheDayByDate(date = date)
-		pictureOfTheDayByDate?.mapToLocalDatabaseModel() ?: PictureOfDay()
+		pictureOfTheDayRemoteDataSource.getRemotePictureOfTheDayByDate(date = date)
+			.flow(
+				{
+					it?.mapToLocalDatabaseModel() ?: PictureOfDay()
+				},
+				{
+					ResultEither.Failure(it)
+				}
+			)
+	}
+
+	override suspend fun getRemotePictureOfTheLastSevenDays() {
+		pictureOfTheDayRemoteDataSource.getRemotePictureOfTheLastSevenDays(
+			startDate = getDateForDaysBehind(),
+			endDate = getCurrentDate()
+		).flow(
+			{ picturesOfTheDayResponse ->
+				picturesOfTheDayResponse?.forEach {
+					pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(
+						it.mapToLocalDatabaseModel()
+					)
+				}
+			},
+			{
+				ResultEither.Failure(it)
+			}
+		)
 	}
 
 	override suspend fun getLocalPictureOfTheDayByDate(date: String): PictureOfDay {
 		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDay(date = date)
-	}
-
-	override suspend fun getRemotePictureOfTheLastSevenDays() {
-		val picturesOfTheLastSevenDays = pictureOfTheDayRemoteDataSource.getRemotePictureOfTheLastSevenDays(
-			startDate = getDateForDaysBehind(),
-			endDate = getCurrentDate()
-		)
-		picturesOfTheLastSevenDays?.forEach {
-			pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(it.mapToLocalDatabaseModel())
-		}
 	}
 
 	override suspend fun getLocalPictureOfTheLastSevenDays(): List<PictureOfDay> {

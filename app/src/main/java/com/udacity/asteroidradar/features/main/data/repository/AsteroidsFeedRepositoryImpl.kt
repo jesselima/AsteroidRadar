@@ -1,5 +1,7 @@
 package com.udacity.asteroidradar.features.main.data.repository
 
+import com.udacity.asteroidradar.core.api.ResultEither
+import com.udacity.asteroidradar.core.api.flow
 import com.udacity.asteroidradar.database.asteroids.models.mapToLocalDatabaseModel
 import com.udacity.asteroidradar.features.main.data.datasource.local.AsteroidsFeedLocalDataSource
 import com.udacity.asteroidradar.features.main.data.datasource.remote.AsteroidsFeedRemoteDataSource
@@ -16,10 +18,20 @@ class AsteroidsFeedRepositoryImpl(
 ) : AsteroidsFeedRepository {
 
 	override suspend fun getRemoteFeed() {
-		val asteroidsFeedResponse = asteroidsFeedRemoteDataSource.getRemoteAsteroidsFeed()
-		asteroidsFeedResponse?.let {
-			asteroidsFeedLocalDataSource.saveFeedToLocalDatabase(asteroidsFeed = it.mapToLocalDatabaseModel())
-		}
+		asteroidsFeedRemoteDataSource.getRemoteAsteroidsFeed()
+			.flow(
+				{	asteroidsFeedResponse ->
+
+						asteroidsFeedResponse?.let {
+							asteroidsFeedLocalDataSource.saveFeedToLocalDatabase(
+								asteroidsFeed = it.mapToLocalDatabaseModel()
+							)
+						}
+				},
+				{
+					ResultEither.Failure(it)
+				}
+			)
 	}
 
 	override suspend fun getLocalFeed(): List<AsteroidsFeedItem> {

@@ -17,6 +17,7 @@ import com.udacity.asteroidradar.features.main.domain.usecase.AsteroidsFeedUseCa
 import com.udacity.asteroidradar.features.main.domain.usecase.PictureOfTheDayUseCase
 import com.udacity.asteroidradar.features.main.domain.usecase.PictureOfTheDayUseCaseImpl
 import com.udacity.asteroidradar.features.main.presentation.MainViewModel
+import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -38,11 +39,17 @@ object AsteroidsModule {
         }
 
         factory<AsteroidsFeedRemoteDataSource> {
-            AsteroidsFeedRemoteDataSourceImpl()
+            AsteroidsFeedRemoteDataSourceImpl(
+                requestExecutor = get(),
+                dispatcher = Dispatchers.IO
+            )
         }
 
         factory<PictureOfTheDayRemoteDataSource> {
-            PictureOfTheDayRemoteDataSourceImpl()
+            PictureOfTheDayRemoteDataSourceImpl(
+                requestExecutor = get(),
+                dispatcher = Dispatchers.IO
+            )
         }
 
         factory<AsteroidsFeedRepository> {
