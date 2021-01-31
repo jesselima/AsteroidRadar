@@ -19,6 +19,7 @@ internal class GlobalInjectableDependencies(
             androidContext(applicationContext)
             modules(
                 listOf(
+                    RequestModule.loadModuleDependency(),
                     AsteroidsModule.loadModuleDependency(),
                     SharedPrefModule.loadModuleDependency(),
                     AsteroidDetailsModule.loadModuleDependency(),
