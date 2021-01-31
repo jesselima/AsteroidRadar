@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.AppBarLayout
@@ -15,20 +16,27 @@ import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.AppBarState
 import com.udacity.asteroidradar.core.extensions.AppBarStateChangeListener
 import com.udacity.asteroidradar.core.extensions.getPagTransformer
+import com.udacity.asteroidradar.core.extensions.isConnected
+import com.udacity.asteroidradar.core.extensions.showDialog
 import com.udacity.asteroidradar.core.extensions.showDialogWithActions
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.features.main.presentation.adapter.AsteroidsAdapter
 import com.udacity.asteroidradar.features.main.presentation.adapter.PictureOfTheDayPagerAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
+
+private const val EMPTY = ""
 
 class MainFragment : Fragment() {
 
     private val viewModel by viewModel<MainViewModel>()
 
-    private val adapter: AsteroidsAdapter by lazy {
+    private val asteroidsAdapter: AsteroidsAdapter by lazy {
         AsteroidsAdapter()
     }
+
+    private lateinit var picturesViewPagerAdapter: PictureOfTheDayPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,40 +51,96 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        validateOnLaunchShouldRequestRemoteData()
         setupObservers()
-        validateMetricsInfoPreferences()
-        asteroidRecyclerView.adapter = adapter
+        picturesViewPagerAdapter = PictureOfTheDayPagerAdapter(fragmentActivity = requireActivity())
+        setupPictureOfTheDayPagerAdapter()
+
+        asteroidRecyclerView.adapter = asteroidsAdapter
 
         mainAppBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
             override fun onStateChanged(appBarLayout: AppBarLayout?, appBarState: AppBarState) {
                 if(appBarState == AppBarState.COLLAPSED) {
                     mainCollapsingToolbarLayout.title = getString(R.string.label_asteroids)
                 } else {
-                    mainCollapsingToolbarLayout.title = ""
+                    mainCollapsingToolbarLayout.title = EMPTY
                 }
             }
         })
     }
 
+    private fun validateOnLaunchShouldRequestRemoteData() {
+        val isConnected = context?.isConnected() ?: false
+        viewModel.validateShouldRequestRemoteData(isConnected = isConnected)
+    }
+
     private fun setupObservers() {
-        viewModel.asteroidFeed.observe(viewLifecycleOwner, {
-            it?.let { asteroids ->
-                adapter.submitList(asteroidsData = asteroids)
+        viewModel.resultsState.observe(viewLifecycleOwner, { state ->
+            when(state) {
+                is MainState.LoadingAsteroids -> handleLoadingAsteroids(state)
+                is MainState.ResultAsteroidsSuccess -> handleAsteroidsSuccess(state)
+                is MainState.LoadingPictures -> handleLoadingPictures(state)
+                is MainState.ResultPicturesOfTheDay -> handlePicturesSuccess(state)
+                is MainState.ShowError -> handleError(state)
+                is MainState.ResultPicturesOfTheDayByDate -> handlePictureOfTheDayByDate(state)
             }
-
         })
+    }
 
-        val viewPagerAdapter = PictureOfTheDayPagerAdapter(emptyList(), requireActivity())
-        pictureOfTheDayViewPager.adapter = viewPagerAdapter
+    private fun handlePicturesSuccess(state: MainState.ResultPicturesOfTheDay) {
+        if (state.picturesResult.isEmpty()) {
+            mainTextLoadingImages.isVisible = true
+            mainTextLoadingImages.text = context?.getString(R.string.message_no_pictures_found)
+        }
+        picturesViewPagerAdapter.submitList(state.picturesResult)
+    }
+
+    private fun handleAsteroidsSuccess(state: MainState.ResultAsteroidsSuccess) {
+        if (state.asteroidsResult.isEmpty()) {
+            mainAnimateLoadingAsteroids.isVisible = false
+            mainAnimateNoAsteroidsFound.isVisible = true
+            mainTextBalonMessage.isVisible = true
+            mainTextBalonMessage.text = context?.getString(R.string.message_no_asteroids_found)
+        } else {
+            asteroidsAdapter.submitList(asteroidsData = state.asteroidsResult)
+        }
+    }
+
+    private fun handleLoadingPictures(state: MainState.LoadingPictures) {
+        mainTextLoadingImages.isVisible = state.isLoadingPictures
+    }
+
+    private fun handleLoadingAsteroids(state: MainState.LoadingAsteroids) {
+        mainAppBarLayout.isVisible = state.isLoadingAsteroids.not()
+        mainAnimateLoadingAsteroids.isVisible = state.isLoadingAsteroids
+        mainTextBalonMessage.isVisible = state.isLoadingAsteroids
+        mainTextBalonMessage.text = context?.getString(R.string.message_searching_asteroids_for_you)
+    }
+
+    private fun handlePictureOfTheDayByDate(state: MainState.ResultPicturesOfTheDayByDate) {
+        picturesViewPagerAdapter.addToList(state.pictureByDate)
+    }
+
+    private fun handleError(state: MainState.ShowError) {
+        mainAnimateNoAsteroidsFound.isVisible = true
+        state.action?.invoke()
+        context?.let {
+            showDialog(
+                context= it,
+                title = it.getString(R.string.message_oops),
+                message = it.getString(R.string.message_something_went_wrong),
+                positiveButtonAction = { Timber.d("-->> Error button clicked!") }
+            )
+        }
+    }
+
+    private fun setupPictureOfTheDayPagerAdapter() {
+        pictureOfTheDayViewPager.adapter = picturesViewPagerAdapter
         pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pictureOfTheDayViewPager.setPageTransformer(getPagTransformer())
         TabLayoutMediator(tabLayout, pictureOfTheDayViewPager) { _, _ ->
             /* Use "tab" and "position" to set tabs texts */
         }.attach()
-
-        viewModel.listOfPicturesOfTheDays.observe(viewLifecycleOwner, { listOfPicturesOfTheDays ->
-            viewPagerAdapter.submitList(listOfPicturesOfTheDays)
-        })
     }
 
     private fun saveMetricsInfoPreferences(shouldShowAgain: Boolean) {
@@ -92,15 +156,8 @@ class MainFragment : Fragment() {
         return true
     }
 
-    private fun validateMetricsInfoPreferences() {
-
-        val hasLaunchAppPreviously = viewModel.hasLaunchAppPreviously()
-        if (hasLaunchAppPreviously.not()) {
-            saveMetricsInfoPreferences(shouldShowAgain = true)
-        }
-
-        val shouldShowAgain = viewModel.shouldShowAgainMetricsInfo()
-
+    private fun validateInfoDialogMetricsPreferences() {
+        val shouldShowAgain = viewModel.getShouldShowMetricsInfoDialog()
         if (shouldShowAgain) {
             context?.let {
                 showDialogWithActions(

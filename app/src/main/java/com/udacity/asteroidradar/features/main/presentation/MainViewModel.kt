@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
-import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
-import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.main.domain.usecase.AsteroidsFeedUseCase
 import com.udacity.asteroidradar.features.main.domain.usecase.PictureOfTheDayUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private const val HAS_LAUNCH_APP_PREVIOUSLY = "HAS_LAUNCH_APP_PREVIOUSLY"
+private const val ON_LAUNCH_APP_REQUEST_REMOTE_DATA = "ON_LAUNCH_APP_REQUEST_REMOTE_DATA"
 private const val SHOULD_SHOW_METRICS_INFO = "HAS_SEEN_METRICS_INFO"
 
 class MainViewModel(
@@ -23,35 +23,27 @@ class MainViewModel(
 	private val sharedPrefStorage: SharedPrefStorage
 ) : ViewModel() {
 
-	init {
-		isFirstLaunch()
-	}
+	private val _resultsState = MutableLiveData<MainState>()
+	val resultsState: LiveData<MainState> = _resultsState
 
-	private val _asteroidsFeed = MutableLiveData<List<AsteroidsFeedItem>>()
-	val asteroidFeed: LiveData<List<AsteroidsFeedItem>> = _asteroidsFeed
-
-	private val _pictureOfTheDayBySelectedDate = MutableLiveData<PictureOfDay>()
-	val pictureOfTheDayBySelectedDate: LiveData<PictureOfDay> = _pictureOfTheDayBySelectedDate
-
-	private val _listOfPicturesOfTheDays = MutableLiveData<List<PictureOfDay>>()
-	val listOfPicturesOfTheDays: LiveData<List<PictureOfDay>> = _listOfPicturesOfTheDays
-
-	private fun isFirstLaunch() {
+	fun validateShouldRequestRemoteData(isConnected: Boolean) {
+		_resultsState.value = MainState.LoadingAsteroids(isLoadingAsteroids = true)
 		viewModelScope.launch {
-			val isFirstAppLaunch = withContext(Dispatchers.IO) {
-				hasLaunchAppPreviously()
-			}
-			if (isFirstAppLaunch) {
-				getLocalAsteroidsFeed()
-				getLocalPictureOfTheLastSevenDays()
-			} else {
-				requestRemoteData()
+			withContext(Dispatchers.IO) {
+				val hasLaunchTheAppPreviously = sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
+				if (hasLaunchTheAppPreviously.not()) {
+					if (isConnected) {
+						requestRemoteData()
+					} else {
+						getLocalAsteroidsFeed()
+						getLocalPictureOfTheLastSevenDays()
+					}
+				} else {
+					getLocalAsteroidsFeed()
+					getLocalPictureOfTheLastSevenDays()
+				}
 			}
 		}
-	}
-
-	fun hasLaunchAppPreviously() : Boolean {
-		return sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
 	}
 
 	private fun getLocalAsteroidsFeed() {
@@ -59,7 +51,11 @@ class MainViewModel(
 			val data = withContext(Dispatchers.IO) {
 				asteroidsFeedUseCase.getLocalFeed()
 			}
-			_asteroidsFeed.value = data
+			delay(5000)
+			_resultsState.run {
+				value = MainState.LoadingAsteroids(isLoadingAsteroids = false)
+				postValue(MainState.ResultAsteroidsSuccess(data))
+			}
 		}
 	}
 
@@ -68,7 +64,11 @@ class MainViewModel(
 			val data = withContext(Dispatchers.IO) {
 				pictureOfTheDayUseCase.getLocalPictureOfTheDayLastSevenDays()
 			}
-			_listOfPicturesOfTheDays.value = data
+			delay(10000)
+			_resultsState.run {
+				value = MainState.LoadingPictures(isLoadingPictures = false)
+				postValue(MainState.ResultPicturesOfTheDay(data))
+			}
 		}
 	}
 
@@ -84,16 +84,27 @@ class MainViewModel(
 		}
 	}
 
-	private fun getPictureOfTheDayByDate(date: String = getCurrentDate()) {
+	private fun getTodayPictureOfTheDayByDate(date: String = getCurrentDate()) {
 		viewModelScope.launch {
 			val data = withContext(Dispatchers.IO) {
 				pictureOfTheDayUseCase.getLocalPictureOfTheDayByDate(date = date)
 			}
-			_pictureOfTheDayBySelectedDate.value = data
+			_resultsState.value = MainState.ResultPicturesOfTheDayByDate(data)
 		}
 	}
 
-	fun shouldShowAgainMetricsInfo() : Boolean {
+	private fun saveOnLaunchAppShouldRequestRemoteData(shouldRequestRemoteData: Boolean) {
+		sharedPrefStorage.saveValue(
+			key = ON_LAUNCH_APP_REQUEST_REMOTE_DATA,
+			value = shouldRequestRemoteData
+		)
+	}
+
+	private fun getOnLaunchAppShouldRequestRemoteData() : Boolean {
+		return sharedPrefStorage.getBooleanValue(key = ON_LAUNCH_APP_REQUEST_REMOTE_DATA)
+	}
+
+	fun getShouldShowMetricsInfoDialog() : Boolean {
 		return sharedPrefStorage.getBooleanValue(key = SHOULD_SHOW_METRICS_INFO)
 	}
 

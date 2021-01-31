@@ -133,7 +133,7 @@ class PictureOfDayDialogFragment : DialogFragment() {
 							val isConnected = context?.isConnected() ?: false
 							if(isConnected.not()) {
 								context?.let {
-									showAppToast(getString(R.string.check_connection_message), ToastType.WARNING)
+									showAppToast(getString(R.string.message_check_connection), ToastType.WARNING)
 								}
 							}
 							view?.pictureOfTheDayDetailsTextBalonImageNotLoaded?.isVisible = true
