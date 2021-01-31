@@ -35,50 +35,57 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupListener()
+        setupListeners()
+
+        loadingPagerImageItemProgressBar.isVisible = true
 
         pictureOfTheDay = arguments?.getParcelable(ARG_PICTURE_OF_THE_DAY_DATA)
 
-        pictureOfTheDay?.let {
-            it.imageUrl.let { url ->
-                progressBarImage.isVisible = true
-                Picasso.get()
-                    .load(url)
-                    .placeholder(R.drawable.backdrop_image_overlay_darker_bottom)
-                    .error(R.drawable.ic_astronaut_image_not_found)
-                    .into(mainViewPagerCollapsingToolbarImageView, object : Callback {
-                        override fun onSuccess() {
-                            progressBarImage.isVisible = false
-                            mainViewPagerTextBalonImageNotLoaded.isVisible = false
-                        }
-                        override fun onError(e: Exception?) {
-                            progressBarImage.isVisible = false
-                            mainViewPagerTextBalonImageNotLoaded.isVisible = true
-                        }
-                    })
-            }
-
-            it.date.let { date ->
-                with(mainViewPagerLabelWithDate) {
-                    showWithFadeIn()
-                    text = getString(R.string.label_picture_of_the_day_format, formatDate(date))
+        if (pictureOfTheDay == null) {
+            loadingPagerImageItemProgressBar.isVisible = false
+            mainViewPagerTextBalonImageNotLoaded.isVisible = false
+        } else {
+            pictureOfTheDay?.let {
+                it.imageUrl.let { url ->
+                    loadingPagerImageItemProgressBar.isVisible = true
+                    Picasso.get()
+                        .load(url)
+                        .placeholder(R.drawable.backdrop_image_overlay_darker_bottom)
+                        .error(R.drawable.ic_astronaut_image_not_found)
+                        .into(mainViewPagerCollapsingToolbarImageView, object : Callback {
+                            override fun onSuccess() {
+                                loadingPagerImageItemProgressBar.isVisible = false
+                                mainViewPagerTextBalonImageNotLoaded.isVisible = false
+                            }
+                            override fun onError(e: Exception?) {
+                                loadingPagerImageItemProgressBar.isVisible = false
+                                mainViewPagerTextBalonImageNotLoaded.isVisible = true
+                            }
+                        })
                 }
-            }
 
-            it.title.let { title ->
-                with(mainViewPagerTitle) {
-                    showWithLongFadeIn()
-                    text = title
+                it.date.let { date ->
+                    with(mainViewPagerLabelWithDate) {
+                        showWithFadeIn()
+                        text = getString(R.string.label_picture_of_the_day_format, formatDate(date))
+                    }
                 }
-                with(mainViewPagerCollapsingToolbarImageView) {
-                    showWithLongFadeIn()
-                    contentDescription = title
+
+                it.title.let { title ->
+                    with(mainViewPagerTitle) {
+                        showWithLongFadeIn()
+                        text = title
+                    }
+                    with(mainViewPagerCollapsingToolbarImageView) {
+                        showWithLongFadeIn()
+                        contentDescription = title
+                    }
                 }
             }
         }
     }
 
-    private fun setupListener() {
+    private fun setupListeners() {
         mainViewPagerToggleFullScreenView.setOnClickListener {
             openPictureDetails()
         }

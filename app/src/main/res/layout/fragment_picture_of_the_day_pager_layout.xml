@@ -85,13 +85,13 @@
         app:layout_constraintTop_toTopOf="@+id/mainViewPagerLabelWithDate" />
 
     <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/progressBarImage"
+        android:id="@+id/loadingPagerImageItemProgressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:indeterminate="true"
         android:theme="@style/AppTheme.PrimaryAccent"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerCollapsingToolbarImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
