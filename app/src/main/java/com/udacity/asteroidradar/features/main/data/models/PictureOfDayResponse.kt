@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.features.main.data.models
 
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
+import com.udacity.asteroidradar.core.extensions.mapDateToUniqueId
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 
 data class PictureOfDayResponse(
@@ -26,6 +27,7 @@ data class PictureOfDayResponse(
 
 fun PictureOfDayResponse.mapToLocalDatabaseModel() : PictureOfDay {
 	return PictureOfDay(
+		id = this.date?.mapDateToUniqueId(),
 		mediaType = this.mediaType ?: "",
 		title = this.title ?: "",
 		imageUrl = this.imageUrl ?: "",
