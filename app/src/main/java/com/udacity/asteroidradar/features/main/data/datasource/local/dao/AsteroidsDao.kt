@@ -26,4 +26,7 @@ interface AsteroidsDao {
     @Query("DELETE FROM asteroids")
     fun deleteAll() : Int
 
+    @Query("SELECT * FROM asteroids WHERE date < :currentDate")
+    fun deleteOldAsteroids(currentDate: String) : LiveData<List<AsteroidsFeedItem>>
+
 }

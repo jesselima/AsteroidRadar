@@ -13,7 +13,7 @@ interface PictureOfTheDayDao {
     @Query("SELECT * FROM picture_of_the_day WHERE date = :date")
     fun getLocalPictureOfTheDay(date: String): PictureOfDay
 
-    @Query("SELECT * FROM picture_of_the_day WHERE date >= :startDate AND date <= :endDate ORDER BY date DESC")
+    @Query("SELECT * FROM picture_of_the_day WHERE date >= :startDate AND date <= :endDate ORDER BY date DESC LIMIT 10")
     fun getLocalPictureOfTheDayLastSevenDays(startDate: String, endDate: String): List<PictureOfDay>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -24,5 +24,8 @@ interface PictureOfTheDayDao {
 
     @Query("DELETE FROM picture_of_the_day")
     fun deleteAllPicturesOfTheDay() : Int
+
+    @Query("DELETE FROM picture_of_the_day WHERE date = :date")
+    fun deletePictureOfTheDayByDate(date: String) : Int
 
 }
