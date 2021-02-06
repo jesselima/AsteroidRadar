@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar.core.bindingadapters
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -7,13 +8,34 @@ import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.formatDate
+import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
+import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 
-@BindingAdapter("statusIcon")
+
+@BindingAdapter("statusHazardousStatusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_emoji_angry)
     } else {
         imageView.setImageResource(R.drawable.ic_emoji_friendly)
+    }
+}
+
+@BindingAdapter("toggleVisibility")
+fun bindIsVisible(view: View, shouldDisplayView: Boolean) {
+    if(shouldDisplayView) {
+        view.showWithLongFadeIn()
+    } else {
+        view.hideWithFadeOut()
+    }
+}
+
+@BindingAdapter("showWhenListIsEmpty")
+fun bindShowWhenEmpty(view: View, isEmpty: Boolean) {
+    if(isEmpty) {
+        view.showWithLongFadeIn()
+    } else {
+        view.hideWithFadeOut()
     }
 }
 
