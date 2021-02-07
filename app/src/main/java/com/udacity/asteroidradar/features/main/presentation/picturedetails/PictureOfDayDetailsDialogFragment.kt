@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.features.main.presentation.adapter
+package com.udacity.asteroidradar.features.main.presentation.picturedetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.view.*
  * Created by jesselima on 25/01/21.
  * This is a part of the project Asteroid Radar.
  */
-class PictureOfDayDialogFragment : DialogFragment() {
+class PictureOfDayDetailsDialogFragment : DialogFragment() {
 
 	private var pictureOfTheDay: PictureOfDay? = null
 
@@ -148,8 +148,8 @@ class PictureOfDayDialogFragment : DialogFragment() {
 	companion object {
 		private const val ARG_PICTURE_OF_THE_DAY_DATA = "picture_of_da_day"
 		@JvmStatic
-		fun newInstance(pictureOfDay: PictureOfDay?): PictureOfDayDialogFragment {
-			return PictureOfDayDialogFragment().apply {
+		fun newInstance(pictureOfDay: PictureOfDay?): PictureOfDayDetailsDialogFragment {
+			return PictureOfDayDetailsDialogFragment().apply {
 				arguments = Bundle().apply {
 					putParcelable(ARG_PICTURE_OF_THE_DAY_DATA, pictureOfDay)
 				}

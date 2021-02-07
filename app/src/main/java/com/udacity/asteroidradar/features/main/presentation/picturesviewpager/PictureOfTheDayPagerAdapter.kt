@@ -1,9 +1,10 @@
-package com.udacity.asteroidradar.features.main.presentation.adapter
+package com.udacity.asteroidradar.features.main.presentation.picturesviewpager
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
+import com.udacity.asteroidradar.features.main.presentation.picturesviewpager.PictureOfTheDayViewPagerFragment
 
 private const val FIRST_POSITION = 0
 

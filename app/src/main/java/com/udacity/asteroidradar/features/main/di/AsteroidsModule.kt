@@ -82,7 +82,8 @@ object AsteroidsModule {
             MainViewModel(
                 asteroidsFeedUseCase = get(),
                 pictureOfTheDayUseCase = get(),
-                sharedPrefStorage = get()
+                sharedPrefStorage = get(),
+                connectionChecker = get()
             )
         }
 

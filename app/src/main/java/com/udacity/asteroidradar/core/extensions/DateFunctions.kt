@@ -12,7 +12,7 @@ import java.util.Calendar
 
 private const val DATE_DATABASE_FORMAT = "yyyy-MM-dd"
 private const val NUMBER_INCREMENT_MONTH_CORRECTION = 1
-private const val NUMBER_OF_DAY_BEHIND = 9
+private const val NUMBER_OF_DAY_BEHIND = 5
 private const val MAX_NUMBER_TO_PAD_WITH_ZERO = 10
 
 fun getCurrentDate() : String {

@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.features.main.presentation.adapter
+package com.udacity.asteroidradar.features.main.presentation.picturesviewpager
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +14,7 @@ import com.udacity.asteroidradar.core.extensions.inflateFragment
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
+import com.udacity.asteroidradar.features.main.presentation.picturedetails.PictureOfDayDetailsDialogFragment
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
 import java.lang.Exception
 
@@ -95,8 +96,8 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
     }
 
     private fun openPictureDetails() {
-        PictureOfDayDialogFragment.newInstance(pictureOfDay = pictureOfTheDay).show(
-            childFragmentManager, PictureOfDayDialogFragment::class.java.simpleName
+        PictureOfDayDetailsDialogFragment.newInstance(pictureOfDay = pictureOfTheDay).show(
+            childFragmentManager, PictureOfDayDetailsDialogFragment::class.java.simpleName
         )
     }
 

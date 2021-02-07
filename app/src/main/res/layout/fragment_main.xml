@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.udacity.asteroidradar.features.main.presentation.MainViewModel" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +19,7 @@
             android:id="@+id/mainAppBarLayout"
             android:layout_width="match_parent"
             app:titleTextColor="@color/primaryTextColor"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:visibility="visible"
             android:layout_height="350dp">
 
@@ -26,6 +32,7 @@
                 app:contentScrim="@color/primaryDarkColor">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rootViewPagerLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -70,23 +77,13 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mainTextLoadingImages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="150dp"
-            android:textColor="@color/primaryTextColor"
-            android:text="@string/loading_pictures_of_10_last_days"/>
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/mainAnimateLoadingAsteroids"
             android:layout_width="200dp"
             android:layout_height="150dp"
             android:layout_gravity="center|end"
             android:layout_marginTop="250dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/astronaut_loading"
@@ -113,11 +110,23 @@
             android:layout_gravity="start|center"
             android:background="@drawable/ic_text_ballon_dark"
             android:padding="16dp"
-            android:text="@string/message_no_asteroids_found"
             android:textColor="@color/primaryTextColor"
             android:textSize="14sp"
             android:visibility="visible"
+            tools:text="@string/message_searching_asteroids_for_you"
             tools:visibility="visible" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mainTextLoadingImages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:visibility="gone"
+            android:elevation="5dp"
+            tools:visibility="visible"
+            android:textColor="@color/primaryTextColor"
+            tools:text="@string/loading_pictures_of_10_last_days"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

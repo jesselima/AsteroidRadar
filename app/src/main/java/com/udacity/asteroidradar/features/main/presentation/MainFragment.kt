@@ -16,12 +16,16 @@ import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.AppBarState
 import com.udacity.asteroidradar.core.extensions.AppBarStateChangeListener
 import com.udacity.asteroidradar.core.extensions.getPagTransformer
-import com.udacity.asteroidradar.core.extensions.isConnected
+import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
 import com.udacity.asteroidradar.core.extensions.showDialog
 import com.udacity.asteroidradar.core.extensions.showDialogWithActions
+import com.udacity.asteroidradar.core.extensions.showWithFadeIn
+import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
+import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.main.presentation.adapter.AsteroidsAdapter
-import com.udacity.asteroidradar.features.main.presentation.adapter.PictureOfTheDayPagerAdapter
+import com.udacity.asteroidradar.features.main.presentation.picturesviewpager.PictureOfTheDayPagerAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -51,7 +55,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        validateOnLaunchShouldRequestRemoteData()
         setupObservers()
         picturesViewPagerAdapter = PictureOfTheDayPagerAdapter(fragmentActivity = requireActivity())
         setupPictureOfTheDayPagerAdapter()
@@ -69,66 +72,69 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun validateOnLaunchShouldRequestRemoteData() {
-        val isConnected = context?.isConnected() ?: false
-        viewModel.validateShouldRequestRemoteData(isConnected = isConnected)
-    }
-
     private fun setupObservers() {
-        viewModel.resultsState.observe(viewLifecycleOwner, { state ->
-            when(state) {
-                is MainState.LoadingAsteroids -> handleLoadingAsteroids(state)
-                is MainState.ResultAsteroidsSuccess -> handleAsteroidsSuccess(state)
-                is MainState.LoadingPictures -> handleLoadingPictures(state)
-                is MainState.ResultPicturesOfTheDay -> handlePicturesSuccess(state)
-                is MainState.ShowError -> handleError(state)
-                is MainState.ResultPicturesOfTheDayByDate -> handlePictureOfTheDayByDate(state)
-            }
+        viewModel.asteroidsState.observe(viewLifecycleOwner, { state ->
+            state.renderViewState()
+        })
+        viewModel.picturesState.observe(viewLifecycleOwner, { state ->
+            state.renderViewState()
         })
     }
 
-    private fun handlePicturesSuccess(state: MainState.ResultPicturesOfTheDay) {
-        if (state.picturesResult.isEmpty()) {
+    private fun PicturesState.renderViewState() {
+        if(isLoadingPictures) {
             mainTextLoadingImages.isVisible = true
-            mainTextLoadingImages.text = context?.getString(R.string.message_no_pictures_found)
+            mainTextLoadingImages.text = getString(R.string.loading_pictures_of_10_last_days)
         }
-        picturesViewPagerAdapter.submitList(state.picturesResult)
-    }
-
-    private fun handleAsteroidsSuccess(state: MainState.ResultAsteroidsSuccess) {
-        if (state.asteroidsResult.isEmpty()) {
-            mainAnimateLoadingAsteroids.isVisible = false
-            mainAnimateNoAsteroidsFound.isVisible = true
-            mainTextBalonMessage.isVisible = true
-            mainTextBalonMessage.text = context?.getString(R.string.message_no_asteroids_found)
+        else if (isLoadingPictures.not() && picturesResult.isEmpty()) {
+            mainTextLoadingImages.showWithLongFadeIn()
+            mainTextLoadingImages.text = getString(R.string.message_no_pictures_found)
         } else {
-            asteroidsAdapter.submitList(asteroidsData = state.asteroidsResult)
+            mainTextLoadingImages.hideWithFadeOut()
+            mainTextLoadingImages.isVisible = picturesResult.isEmpty()
+            handlePicturesSuccess(picturesResult)
         }
     }
 
-    private fun handleLoadingPictures(state: MainState.LoadingPictures) {
-        mainTextLoadingImages.isVisible = state.isLoadingPictures
+    private fun AsteroidsState.renderViewState() {
+        if(isLoadingAsteroids) {
+            mainAnimateLoadingAsteroids.isVisible = true
+            mainAnimateLoadingAsteroids.showWithFadeIn()
+            mainTextBalonMessage.showWithLongFadeIn()
+            mainTextBalonMessage.text = getString(R.string.message_searching_asteroids_for_you)
+        }
+        if (asteroidsResult.isEmpty() && isLoadingAsteroids.not()) {
+            mainAnimateLoadingAsteroids.isVisible = false
+            mainAnimateLoadingAsteroids.hideWithFadeOut()
+            mainTextBalonMessage.hideWithFadeOut()
+            mainTextBalonMessage.showWithLongFadeIn()
+            mainTextBalonMessage.text = getString(R.string.message_no_asteroids_found)
+            mainAnimateNoAsteroidsFound.isVisible = true
+            mainAnimateNoAsteroidsFound.showWithLongFadeIn()
+        } else if (asteroidsResult.isNotEmpty()) {
+            mainAnimateLoadingAsteroids.isVisible = false
+            mainAnimateNoAsteroidsFound.isVisible = false
+            mainTextBalonMessage.hideWithFadeOut()
+            handleAsteroidsSuccess(asteroidsResult)
+        }
     }
 
-    private fun handleLoadingAsteroids(state: MainState.LoadingAsteroids) {
-        mainAppBarLayout.isVisible = state.isLoadingAsteroids.not()
-        mainAnimateLoadingAsteroids.isVisible = state.isLoadingAsteroids
-        mainTextBalonMessage.isVisible = state.isLoadingAsteroids
-        mainTextBalonMessage.text = context?.getString(R.string.message_searching_asteroids_for_you)
+    private fun handlePicturesSuccess(picturesResult: List<PictureOfDay>) {
+        picturesViewPagerAdapter.submitList(picturesResult)
     }
 
-    private fun handlePictureOfTheDayByDate(state: MainState.ResultPicturesOfTheDayByDate) {
-        picturesViewPagerAdapter.addToList(state.pictureByDate)
+    private fun handleAsteroidsSuccess(asteroidsResult: List<AsteroidsFeedItem>) {
+        asteroidsAdapter.submitList(asteroidsData = asteroidsResult)
     }
 
-    private fun handleError(state: MainState.ShowError) {
+    private fun handleError(message: String, action: (() -> Unit)? = null) {
         mainAnimateNoAsteroidsFound.isVisible = true
-        state.action?.invoke()
+        action?.invoke()
         context?.let {
             showDialog(
                 context= it,
                 title = it.getString(R.string.message_oops),
-                message = it.getString(R.string.message_something_went_wrong),
+                message = message,
                 positiveButtonAction = { Timber.d("-->> Error button clicked!") }
             )
         }
@@ -138,9 +144,7 @@ class MainFragment : Fragment() {
         pictureOfTheDayViewPager.adapter = picturesViewPagerAdapter
         pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pictureOfTheDayViewPager.setPageTransformer(getPagTransformer())
-        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager) { _, _ ->
-            /* Use "tab" and "position" to set tabs texts */
-        }.attach()
+        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager) { _, _ -> }.attach()
     }
 
     private fun saveMetricsInfoPreferences(shouldShowAgain: Boolean) {

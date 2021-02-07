@@ -41,7 +41,7 @@
     <string name="picture_of_the_day_dummy_name">719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1</string>
     <string name="label_asteroids">Asteroids</string>
     <string name="image_not_loaded_warning">Ooops! The image could not be loaded.</string>
-    <string name="message_no_asteroids_found">Ooops! The universe looks empty.</string>
+    <string name="message_no_asteroids_found">Ooops! The universe looks a bit empty.</string>
     <string name="message_no_pictures_found">Ooops! No images found.</string>
     <string name="message_searching_asteroids_for_you">Searching some asteroids for you…</string>
     <string name="dialog_test">Teste Dialog Fragment</string>
@@ -61,6 +61,6 @@
     <string name="image_closet_approach_to_earth">Image Closet approach to earth</string>
     <string name="image_asteroid_speed">Image asteroid speed</string>
     <string name="image_information">Image Information</string>
-    <string name="loading_pictures_of_10_last_days">Loading pictures of 10 last days...</string>
+    <string name="loading_pictures_of_10_last_days">Loading pictures of 10 last days…</string>
 
 </resources>

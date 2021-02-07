@@ -28,7 +28,7 @@ class AsteroidsFeedRemoteDataSourceImpl(
                 )
             }.flow(
                 {
-                       ResultEither.Success(it)
+                    ResultEither.Success(it)
                 },
                 {
                     ResultEither.Failure(it)
