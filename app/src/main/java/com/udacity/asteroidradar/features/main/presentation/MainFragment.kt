@@ -114,7 +114,7 @@ class MainFragment : Fragment() {
         } else if (asteroidsResult.isNotEmpty()) {
             mainAnimateLoadingAsteroids.isVisible = false
             mainAnimateNoAsteroidsFound.isVisible = false
-            mainTextBalonMessage.hideWithFadeOut()
+            mainTextBalonMessage.isVisible = false
             handleAsteroidsSuccess(asteroidsResult)
         }
     }

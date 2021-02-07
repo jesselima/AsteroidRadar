@@ -130,6 +130,7 @@ class PictureOfDayDetailsDialogFragment : DialogFragment() {
 						}
 
 						override fun onError(e: Exception?) {
+							showAppToast(getString(R.string.hd_image_not_loaded), ToastType.ERROR)
 							val isConnected = context?.isConnected() ?: false
 							if(isConnected.not()) {
 								context?.let {

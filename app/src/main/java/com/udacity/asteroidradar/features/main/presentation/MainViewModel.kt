@@ -10,6 +10,7 @@ import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
 import com.udacity.asteroidradar.features.main.domain.usecase.AsteroidsFeedUseCase
 import com.udacity.asteroidradar.features.main.domain.usecase.PictureOfTheDayUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -40,16 +41,27 @@ class MainViewModel(
 		_asteroidsState.value = AsteroidsState(isLoadingAsteroids = true)
 
 		viewModelScope.launch {
+
 			withContext(Dispatchers.IO) {
 				val hasLaunchTheAppPreviously = sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
 				if (hasLaunchTheAppPreviously.not()) {
 					if (isConnected) {
 						requestRemoteData()
 					} else {
+						/**
+						 * This delay function is here to improve visual experience with lottie
+						 * loading animation. This avoid the blink loading whe query local data
+						 */
+						delay(1000)
 						getLocalAsteroidsFeed()
 						getLocalPictureOfTheLastSevenDays()
 					}
 				} else {
+					/**
+					 * This delay function is here to improve visual experience with lottie
+					 * loading animation. This avoid the blink loading whe query local data
+					 */
+					delay(1000)
 					getLocalAsteroidsFeed()
 					getLocalPictureOfTheLastSevenDays()
 				}
