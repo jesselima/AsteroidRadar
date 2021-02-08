@@ -80,7 +80,7 @@
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/toggle_full_screen_view"
         android:elevation="10dp"
-        android:src="@drawable/ic_fullscreen_enter"
+        android:src="@drawable/ic_info"
         app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerLabelWithDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/mainViewPagerLabelWithDate" />

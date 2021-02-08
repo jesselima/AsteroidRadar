@@ -63,5 +63,6 @@
     <string name="image_asteroid_speed">Image asteroid speed</string>
     <string name="image_information">Image Information</string>
     <string name="loading_pictures_of_10_last_days">Loading pictures of 10 last days…</string>
+    <string name="message_only_youtube_supported">App supports YouTube videos only or could not load the video.</string>
 
 </resources>

@@ -14,6 +14,7 @@ import com.udacity.asteroidradar.core.extensions.inflateFragment
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
+import com.udacity.asteroidradar.features.main.presentation.MediaType
 import com.udacity.asteroidradar.features.main.presentation.picturedetails.PictureOfDayDetailsDialogFragment
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
 import java.lang.Exception
@@ -46,8 +47,17 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
             loadingPagerImageItemProgressBar.isVisible = false
             mainViewPagerTextBalonImageNotLoaded.isVisible = false
         } else {
+
+            val url = when(pictureOfTheDay?.mediaType ?: MediaType.IMAGE) {
+                MediaType.IMAGE.type -> pictureOfTheDay?.imageUrl
+                else -> {
+                    val videoID = pictureOfTheDay?.imageUrl?.substringAfterLast("/embed/")?.substringBefore("?")
+                    "https://img.youtube.com/vi/$videoID/hqdefault.jpg"
+                }
+            }
+
             pictureOfTheDay?.let {
-                it.imageUrl.let { url ->
+                it.imageUrl.let {
                     loadingPagerImageItemProgressBar.isVisible = true
                     Picasso.get()
                         .load(url)
