@@ -46,7 +46,8 @@
     <string name="message_searching_asteroids_for_you">Searching some asteroids for you…</string>
     <string name="dialog_test">Teste Dialog Fragment</string>
     <string name="ok">OK</string>
-    <string name="toggle_full_screen_view">Toggle full screen view</string>
+    <string name="label_show_image_in_full_screen">View image in fullscreen</string>
+    <string name="label_show_image_details">Show picture details</string>
 
     <string name="sample_text_picture_of_the_day_explanation">This shadowy landscape of majestic mountains and icy plains stretches toward the horizon on a small, distant world. It was captured from a range of about 18,000 kilometers when New Horizons looked back toward Pluto, 15 minutes after the spacecraft\'s closest approach on July 14, 2015. The dramatic, low-angle, near-twilight scene follows rugged mountains formally known as Norgay Montes from foreground left, and Hillary Montes along the horizon, giving way to smooth Sputnik Planum at right. Layers of Pluto\'s tenuous atmosphere are also revealed in the backlit view. With a strangely familiar appearance, the frigid terrain likely includes ices of nitrogen and carbon monoxide with water-ice mountains rising up to 3,500 meters (11,000 feet). That\'s comparable in height to the majestic mountains of planet Earth. The Plutonian landscape is 380 kilometers (230 miles) across.</string>
     <string name="copyright">Copyright:</string>
@@ -54,6 +55,7 @@
     <string name="message_check_connection">Are you connected?</string>
     <string name="message_oops">Ooops!</string>
     <string name="message_something_went_wrong">Something went wrong!</string>
+    <string name="label_load_high_definition_image">Load high definition image</string>
     <string name="hd_image_loaded">High Definition image loaded.</string>
     <string name="hd_image_not_loaded">High Definition image could not be loaded.</string>
     <string name="info">Info</string>
@@ -64,5 +66,11 @@
     <string name="image_information">Image Information</string>
     <string name="loading_pictures_of_10_last_days">Loading pictures of 10 last days…</string>
     <string name="message_only_youtube_supported">App supports YouTube videos only or could not load the video.</string>
+    <string name="label_favorites">Favorites</string>
+    <string name="label_more">More</string>
+    <string name="message_picture_of">Picture name %s</string>
+    <string name="label_close">Close</string>
+    <string name="label_add_picture_to_favorites">Add picture to favorites</string>
+    <string name="message_not_valid_video_id_or_url">Oops! Invalid video id or url.</string>
 
 </resources>
