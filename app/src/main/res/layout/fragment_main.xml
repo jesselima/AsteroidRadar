@@ -28,6 +28,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:maxLines="1"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:contentScrim="@color/primaryDarkColor">
 
@@ -49,7 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="@dimen/layout_margin_default"
                         android:background="@color/transparent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

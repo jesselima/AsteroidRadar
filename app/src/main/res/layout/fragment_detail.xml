@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.udacity.asteroidradar.features.detail.presentation.DetailsViewModel" />
@@ -13,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/appBackground">
+        android:background="@color/backgroundColorDark">
 
         <ImageView
             android:id="@+id/activity_main_image_of_the_day"

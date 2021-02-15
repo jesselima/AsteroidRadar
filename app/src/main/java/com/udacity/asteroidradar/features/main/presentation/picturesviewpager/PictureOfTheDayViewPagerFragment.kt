@@ -19,6 +19,11 @@ import com.udacity.asteroidradar.features.main.presentation.picturedetails.Pictu
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
 import java.lang.Exception
 
+private const val YOUTUBE_VIDEO_THUMBNAIL_BASE_URL = "https://img.youtube.com/vi/"
+private const val YOUTUBE_VIDEO_THUMBNAIL_PREFIX_AND_FORMAT = "/hqdefault.jpg"
+private const val NASA_VIDEO_URL_PATH_EMBED = "/embed/"
+private const val URL_QUERY_DIVIDER = "?"
+
 class PictureOfTheDayViewPagerFragment : Fragment() {
 
     private var pictureOfTheDay: PictureOfDay? = PictureOfDay()
@@ -51,8 +56,7 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
             val url = when(pictureOfTheDay?.mediaType ?: MediaType.IMAGE) {
                 MediaType.IMAGE.type -> pictureOfTheDay?.imageUrl
                 else -> {
-                    val videoID = pictureOfTheDay?.imageUrl?.substringAfterLast("/embed/")?.substringBefore("?")
-                    "https://img.youtube.com/vi/$videoID/hqdefault.jpg"
+                    getVideoThumbnailUrl(pictureOfTheDay?.imageUrl)
                 }
             }
 
@@ -96,6 +100,11 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
         }
     }
 
+    private fun getVideoThumbnailUrl(imageUrl: String?): String {
+        val videoID = imageUrl?.substringAfterLast(NASA_VIDEO_URL_PATH_EMBED)?.substringBefore(URL_QUERY_DIVIDER)
+        return "$YOUTUBE_VIDEO_THUMBNAIL_BASE_URL$videoID$YOUTUBE_VIDEO_THUMBNAIL_PREFIX_AND_FORMAT"
+    }
+
     private fun setupListeners() {
         mainViewPagerToggleFullScreenView.setOnClickListener {
             openPictureDetails()
@@ -116,7 +125,7 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
          * The fragment argument representing the a PictureOfTheDay for this
          * fragment.
          */
-        private const val ARG_PICTURE_OF_THE_DAY_DATA = "picture_of_da_day"
+        private const val ARG_PICTURE_OF_THE_DAY_DATA = "picture_of_the_day"
         /**
          * Returns a new instance of this fragment for the given page in the ViewPager.
          */

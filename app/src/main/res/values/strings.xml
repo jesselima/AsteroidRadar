@@ -53,6 +53,7 @@
     <string name="copyright">Copyright:</string>
     <string name="picture_of_the_day">Picture of the day</string>
     <string name="message_check_connection">Are you connected?</string>
+    <string name="message_check_connection_before_to_play_video">Oops! Internet connection is required to play the video.\n\nAre you connected?</string>
     <string name="message_oops">Ooops!</string>
     <string name="message_something_went_wrong">Something went wrong!</string>
     <string name="label_load_high_definition_image">Load high definition image</string>

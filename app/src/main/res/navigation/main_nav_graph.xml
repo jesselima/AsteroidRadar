@@ -31,6 +31,9 @@
             android:name="selectedAsteroidsFeedItem"
             app:argType="string"
             app:nullable="true"/>
+        <action
+            android:id="@+id/action_detailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 
 </navigation>

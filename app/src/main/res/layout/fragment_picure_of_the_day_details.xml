@@ -1,154 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/containerPictureOfTheDayDetails">
+    android:layout_width="match_parent"
+    android:background="@color/backgroundColorDark"
+    android:fitsSystemWindows="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/pictureDetailsAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/appBackground">
+        android:fitsSystemWindows="true">
 
-        <com.github.chrisbanes.photoview.PhotoView
-            android:id="@+id/pictureOfTheDayDetailsImageView"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/pictureDetailsCollapsingToolbar"
+            android:layout_height="@dimen/collapsing_tool_bar_height"
             android:layout_width="match_parent"
-            android:layout_height="340dp"
-            android:scaleType="centerCrop"
-            app:layout_collapseMode="parallax"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:accessibilityLiveRegion="polite"
-            tools:src="@drawable/ic_astronaut_image_not_found" />
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="@color/transparent"
+            app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:statusBarScrim="?attr/colorPrimaryVariant">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pictureOfTheDayDetailsTextBalonImageNotLoaded"
-            android:layout_width="160dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/ic_text_ballon"
-            android:padding="8dp"
-            android:gravity="center_vertical"
-            android:text="@string/image_not_loaded_warning"
-            android:textColor="@color/textColorDiscreet"
-            android:textSize="14sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.36"
-            tools:visibility="visible" />
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/pictureOfTheDayDetailsImageView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/collapsing_tool_bar_height"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:accessibilityLiveRegion="polite"
+                tools:src="@drawable/ic_astronaut_image_not_found" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pictureOfTheDayDetailsLabelWithDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/label_picture_of_the_day_format_details"
-            android:textColor="@color/textColorDiscreet"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsImageView" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pictureOfTheDayDetailsTextBalonImageNotLoaded"
+                android:layout_width="160dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/ic_text_ballon"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:text="@string/image_not_loaded_warning"
+                android:textColor="@color/textColorDiscreet"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36"
+                tools:visibility="visible" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pictureOfTheDayDetailsTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/textColorDiscreet"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsLabelWithDate"
-            tools:text="A Plutonian Landscape" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/backIconAsteroidDetailsTopAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:titleTextColor="@color/primaryTextColor"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:layout_collapseMode="pin"
+                android:elevation="0dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pictureOfTheDayDetailsLabelCopyright"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/textColorDiscreet"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsTitle"
-            android:text="@string/copyright" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/loading_progress_bar_height_default">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pictureOfTheDayDetailsCopyrightAuthor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textColor="@color/textColorDiscreet"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsLabelCopyright"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/pictureOfTheDayDetailsLabelCopyright"
-            app:layout_constraintTop_toTopOf="@+id/pictureOfTheDayDetailsLabelCopyright"
-            tools:text="Russell Croman" />
+                <ImageView
+                    android:id="@+id/pictureOfTheDayDetailsToggleFavorite"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginEnd="@dimen/space_small"
+                    android:contentDescription="@string/label_load_high_definition_image"
+                    android:elevation="@dimen/elevation_default"
+                    android:src="@drawable/ic_favorite_filled"
+                    app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsToggleHighDefinition"
+                    app:layout_constraintEnd_toStartOf="@+id/pictureOfTheDayDetailsToggleHighDefinition"
+                    app:layout_constraintTop_toTopOf="@+id/pictureOfTheDayDetailsToggleHighDefinition" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pictureOfTheDayDetailsExplanation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            android:textColor="@color/textColorDiscreet"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsLabelCopyright"
-            tools:text="@string/sample_text_picture_of_the_day_explanation" />
+                <ImageView
+                    android:id="@+id/pictureOfTheDayDetailsToggleHighDefinition"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginEnd="@dimen/space_small"
+                    android:contentDescription="@string/label_load_high_definition_image"
+                    android:elevation="@dimen/elevation_default"
+                    android:src="@drawable/ic_high_definition_is_off"
+                    app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsOpenFullScreenDialog"
+                    app:layout_constraintEnd_toStartOf="@+id/pictureOfTheDayDetailsOpenFullScreenDialog"
+                    app:layout_constraintTop_toTopOf="@+id/pictureOfTheDayDetailsOpenFullScreenDialog" />
 
-        <ImageView
-            android:id="@+id/pictureOfTheDayDetailsCloseFullScreenView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/toggle_full_screen_view"
-            android:elevation="10dp"
-            android:src="@drawable/ic_fullscreen_exit"
-            app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
-            app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:id="@+id/pictureOfTheDayDetailsOpenFullScreenDialog"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginEnd="@dimen/layout_margin_default"
+                    android:layout_marginBottom="@dimen/layout_margin_extra"
+                    android:layout_gravity="end|bottom"
+                    android:contentDescription="@string/label_show_image_in_full_screen"
+                    android:elevation="@dimen/elevation_default"
+                    android:src="@drawable/ic_fullscreen_enter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageView
-            android:id="@+id/pictureOfTheDayDetailsToggleHighDefinition"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:contentDescription="@string/toggle_full_screen_view"
-            android:elevation="10dp"
-            android:src="@drawable/ic_high_definition_is_off"
-            app:layout_constraintBottom_toTopOf="@+id/pictureOfTheDayDetailsCloseFullScreenView"
-            app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:id="@+id/pictureOfTheDayDetailsPlayVideo"
+                    android:layout_width="@dimen/icon_size_large"
+                    android:layout_height="@dimen/icon_size_large"
+                    android:layout_gravity="bottom|start"
+                    android:contentDescription="@string/label_load_high_definition_image"
+                    android:elevation="@dimen/elevation_extra_high"
+                    android:src="@drawable/ic_play_circle"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:id="@+id/progressBarHighDefinitionImage"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:theme="@style/AppTheme.PrimaryAccent"
-            android:indeterminate="true"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBarHighDefinitionImage"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:theme="@style/AppTheme.PrimaryAccent"
+                android:indeterminate="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/loading_progress_bar_height_default"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_gravity="bottom"
+                app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:visibility="gone"
-            tools:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:background="@color/backgroundColorDark">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pictureOfTheDayDetailsLabelWithDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_picture_of_the_day_format_details"
+                android:textColor="@color/textColorDiscreet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</ScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pictureOfTheDayDetailsTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/textColorDiscreet"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsLabelWithDate"
+                tools:text="A Plutonian Landscape" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pictureOfTheDayDetailsLabelCopyright"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textColorDiscreet"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsTitle"
+                android:text="@string/copyright" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pictureOfTheDayDetailsCopyrightAuthor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/textColorDiscreet"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsLabelCopyright"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pictureOfTheDayDetailsLabelCopyright"
+                app:layout_constraintTop_toTopOf="@+id/pictureOfTheDayDetailsLabelCopyright"
+                tools:text="Russell Croman" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pictureOfTheDayDetailsExplanation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:textColor="@color/textColorDiscreet"
+                android:lineSpacingExtra="4dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsLabelCopyright"
+                tools:text="@string/sample_text_picture_of_the_day_explanation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+

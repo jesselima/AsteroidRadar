@@ -14,6 +14,8 @@
     <dimen name="cardElevation_high">8dp</dimen>
     <dimen name="icon_size">40dp</dimen>
     <dimen name="elevation_default">5dp</dimen>
+    <dimen name="elevation_high">10dp</dimen>
+    <dimen name="elevation_extra_high">20dp</dimen>
     <dimen name="space_small">4dp</dimen>
     <dimen name="space_medium">8dp</dimen>
     <dimen name="space_large">12dp</dimen>
@@ -21,4 +23,9 @@
     <dimen name="collapsing_tool_bar_height">400dp</dimen>
     <dimen name="loading_progress_bar_height_default">15dp</dimen>
     <dimen name="icon_size_large">60dp</dimen>
+    <dimen name="text_balon_default_width">160dp</dimen>
+    <dimen name="text_balon_default_height">60dp</dimen>
+    <dimen name="space_padding_small">4dp</dimen>
+    <dimen name="space_padding_medium">8dp</dimen>
+    <dimen name="space_padding_large">12dp</dimen>
 </resources>
