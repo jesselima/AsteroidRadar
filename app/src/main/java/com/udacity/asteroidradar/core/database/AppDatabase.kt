@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.udacity.asteroidradar.features.detail.data.datasource.local.AsteroidDetailsDao
-import com.udacity.asteroidradar.features.main.data.datasource.local.dao.AsteroidsDao
-import com.udacity.asteroidradar.features.main.data.datasource.local.dao.PictureOfTheDayDao
-import com.udacity.asteroidradar.features.main.domain.entities.AsteroidsFeedItem
-import com.udacity.asteroidradar.features.main.domain.entities.PictureOfDay
+import com.udacity.asteroidradar.features.asteroiddetail.data.datasource.local.AsteroidDetailsDao
+import com.udacity.asteroidradar.features.mainscreen.data.datasource.local.dao.AsteroidsDao
+import com.udacity.asteroidradar.features.mainscreen.data.datasource.local.dao.PictureOfTheDayDao
+import com.udacity.asteroidradar.features.mainscreen.domain.entities.AsteroidsFeedItem
+import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 
 @Database(
     entities = [

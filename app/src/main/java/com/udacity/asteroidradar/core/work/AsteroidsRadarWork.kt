@@ -3,8 +3,8 @@ package com.udacity.asteroidradar.core.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.udacity.asteroidradar.features.main.domain.reposirory.AsteroidsFeedRepository
-import com.udacity.asteroidradar.features.main.domain.reposirory.PictureOfTheDayRepository
+import com.udacity.asteroidradar.features.mainscreen.domain.reposirory.AsteroidsFeedRepository
+import com.udacity.asteroidradar.features.mainscreen.domain.reposirory.PictureOfTheDayRepository
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.HttpException
