@@ -9,7 +9,9 @@ import androidx.fragment.app.DialogFragment
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
 import com.udacity.asteroidradar.core.extensions.inflateFragment
+import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.whenNotNull
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_full_screen.*
 import java.lang.Exception
@@ -41,31 +43,42 @@ class PictureOfTheDayFullScreenFragmentDialog : DialogFragment() {
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		setupListeners()
 		requireDialog().window?.setWindowAnimations(R.style.DialogAnimation)
+		setupListeners()
+		showViews()
 
 		val pictureOfTheDayName= arguments?.getString(ARG_PICTURE_OF_THE_DAY_NAME) ?: EMPTY
+		val pictureOfTheDayUrl = arguments?.getString(ARG_PICTURE_OF_THE_DAY_URL)
+
 		fullScreenPictureOfTheDayName.text = pictureOfTheDayName
 		fullScreenPictureImageView.contentDescription = activity?.getString(R.string.message_picture_of, pictureOfTheDayName)
-		progressBarFullScreenImage.isVisible = true
 
-		val pictureOfTheDayUrl = arguments?.getString(ARG_PICTURE_OF_THE_DAY_URL)
 		pictureOfTheDayUrl.whenNotNull {
 			Picasso.get()
 				.load(this)
 				.placeholder(R.drawable.backdrop_image_overlay_darker_bottom)
 				.error(R.drawable.ic_astronaut_image_not_found)
-				.into(fullScreenPictureImageView, object : Callback{
+				.into(fullScreenPictureImageView, object : Callback {
 					override fun onSuccess() {
-						progressBarFullScreenImage.isVisible = false
+						hideViews()
 					}
-
 					override fun onError(e: Exception?) {
-						progressBarFullScreenImage.isVisible = false
+						hideViews()
 					}
-
 				})
 		}
+	}
+
+	private fun hideViews() {
+		progressAnimatedFullScreenImage.hideWithFadeOut(fastAnimation = true)
+		fullScreenPictureOfTheDayTextBalonMessage.hideWithFadeOut(fastAnimation = true)
+		fullScreenPictureOfTheDayTextLoadingImageOf.hideWithFadeOut(fastAnimation = true)
+	}
+
+	private fun showViews() {
+		progressAnimatedFullScreenImage.showWithFadeIn()
+		fullScreenPictureOfTheDayTextBalonMessage.showWithFadeIn()
+		fullScreenPictureOfTheDayTextLoadingImageOf.showWithFadeIn()
 	}
 
 	private fun setupListeners() {

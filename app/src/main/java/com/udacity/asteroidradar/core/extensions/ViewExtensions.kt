@@ -29,10 +29,13 @@ fun View.showWithLongFadeIn() {
     )
 }
 
-fun View.hideWithFadeOut() {
-    this.startAnimation(AnimationUtils.loadAnimation(context,
+fun View.hideWithFadeOut(fastAnimation: Boolean = false) {
+    val animation = if(fastAnimation) {
+        R.anim.fade_out_animation_short
+    } else {
         R.anim.fade_out_animation
-    ))
+    }
+    this.startAnimation(AnimationUtils.loadAnimation(context, animation))
     this.visibility = View.GONE
 }
 

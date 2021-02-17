@@ -82,7 +82,14 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
                 it.date.let { date ->
                     with(mainViewPagerLabelWithDate) {
                         showWithFadeIn()
-                        text = getString(R.string.label_picture_of_the_day_format, formatDate(date))
+                        text = when(pictureOfTheDay?.mediaType ?: MediaType.IMAGE) {
+                            MediaType.IMAGE.type -> {
+                                getString(R.string.label_picture_of_the_day_format, formatDate(date))
+                            }
+                            else -> {
+                                getString(R.string.label_video_of_the_day_format, formatDate(date))
+                            }
+                        }
                     }
                 }
 

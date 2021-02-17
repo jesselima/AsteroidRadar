@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.core.extensions.formatNumberToString
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.AsteroidsFeedItem
 import kotlinx.android.synthetic.main.item_list_asteroids.view.*
 
@@ -38,12 +39,12 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 		view.asteroidName.text = asteroid.codename
 
 		view.textAsteroidSpeed.text = view.context.getString(
-			R.string.units_format_kilometers,
-			String.format("%.2f", asteroid.relativeVelocityKilometersPerHour)
+			R.string.unit_kilometers_per_hour_format,
+			formatNumberToString(asteroid.relativeVelocityKilometersPerHour)
 		)
 
 		view.textDistanceFromEarthAu.text = view.context.getString(
-			R.string.units_format_astronomical,
+			R.string.unit_astronomical_format,
 			String.format("%.2f", asteroid.distanceFromEarthAu)
 		)
 

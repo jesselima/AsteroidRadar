@@ -5,6 +5,11 @@
     <dimen name="layout_margin_default">16dp</dimen>
     <dimen name="layout_margin_large">24dp</dimen>
     <dimen name="layout_margin_extra">32dp</dimen>
+    <dimen name="view_padding_small">4dp</dimen>
+    <dimen name="view_padding_medium">8dp</dimen>
+    <dimen name="view_padding_default">16dp</dimen>
+    <dimen name="view_padding_large">24dp</dimen>
+    <dimen name="view_padding_extra">32dp</dimen>
     <dimen name="cardCornerRadius_low">3dp</dimen>
     <dimen name="cardCornerRadius_medium">5dp</dimen>
     <dimen name="cardCornerRadius_high">8dp</dimen>
@@ -21,6 +26,7 @@
     <dimen name="space_large">12dp</dimen>
     <dimen name="space_xlarge">16dp</dimen>
     <dimen name="collapsing_tool_bar_height">400dp</dimen>
+    <dimen name="collapsing_tool_bar_height_small">300dp</dimen>
     <dimen name="loading_progress_bar_height_default">15dp</dimen>
     <dimen name="icon_size_large">60dp</dimen>
     <dimen name="text_balon_default_width">160dp</dimen>
@@ -28,4 +34,16 @@
     <dimen name="space_padding_small">4dp</dimen>
     <dimen name="space_padding_medium">8dp</dimen>
     <dimen name="space_padding_large">12dp</dimen>
+    <dimen name="lottie_default_width">200dp</dimen>
+    <dimen name="lottie_default_height">150dp</dimen>
+    <dimen name="tab_layout_only_dots_height">25dp</dimen>
+    <dimen name="app_bar_layout_height_default">350dp</dimen>
+    <dimen name="space_250">250dp</dimen>
+    <dimen name="space_150">150dp</dimen>
+    <dimen name="space_200">200dp</dimen>
+    <dimen name="text_block_width_large">200dp</dimen>
+    <dimen name="text_block_width_medium">150dp</dimen>
+    <dimen name="text_block_width_small">130dp</dimen>
+    <dimen name="text_block_width_tiny">100dp</dimen>
+    <dimen name="elevation_none">0dp</dimen>
 </resources>

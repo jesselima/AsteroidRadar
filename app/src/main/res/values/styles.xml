@@ -23,6 +23,25 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="LabelTextDiscreteDescription">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/layout_margin_large</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/textColorDiscreet</item>
+    </style>
+
+    <style name="LabelTextValue">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/layout_margin_small</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Theme.App.Dialog.FullScreen"
         parent="Theme.MaterialComponents.Dialog">
         <item name="android:windowIsFloating">false</item>

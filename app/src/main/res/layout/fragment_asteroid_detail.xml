@@ -1,0 +1,297 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.udacity.asteroidradar.features.asteroiddetail.presentation.DetailsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/backgroundColorDark"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/pictureDetailsAppBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/pictureDetailsCollapsingToolbar"
+                android:layout_height="@dimen/collapsing_tool_bar_height_small"
+                android:layout_width="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:contentScrim="@color/transparent"
+                app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:statusBarScrim="?attr/colorPrimaryVariant">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/backIconAsteroidDetailsTopAppBar"
+                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    app:titleTextColor="@color/primaryTextColor"
+                    app:navigationIcon="@drawable/ic_arrow_back"
+                    app:layout_collapseMode="pin"
+                    android:elevation="@dimen/elevation_none" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animatedHazardousState"
+                    android:layout_width="@dimen/lottie_default_width"
+                    android:layout_height="@dimen/lottie_default_height"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:asteroidStatusImage="@{viewModel.asteroidsFeedItem.potentiallyHazardous}"
+                    tools:background="@color/colorStateOn"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/AsteroidDetailsImageViewDarkMask"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/backdrop_image_overlay_darker_bottom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:id="@+id/textIsHazardous"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center|bottom"
+                    app:bindDetailsStatusTitle="@{viewModel.asteroidsFeedItem.isPotentiallyHazardous}"
+                    android:layout_marginBottom="@dimen/layout_margin_large"
+                    tools:text="@string/title_not_potentially_hazardous"
+                    android:textColor="@color/primaryTextColor" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/progressBarHighDefinitionImage"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:theme="@style/AppTheme.PrimaryAccent"
+                    android:indeterminate="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/loading_progress_bar_height_default"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_gravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/asteroidDetailsContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/layout_margin_default">
+
+                <TextView
+                    android:id="@+id/codeName"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_margin_default"
+                    android:gravity="center"
+                    android:textColor="@color/primaryTextColor"
+                    android:textStyle="bold"
+                    android:text="@{viewModel.asteroidsFeedItem.codename}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="85953 (1999 FK21)" />
+
+                <TextView
+                    android:id="@+id/labelCloseApproachDate"
+                    style="@style/LabelTextDiscreteDescription"
+                    android:text="@string/close_approach_data_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/codeName" />
+
+                <TextView
+                    android:id="@+id/closeApproachDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/primaryTextColor"
+                    android:textStyle="bold"
+                    app:formatDate="@{viewModel.asteroidsFeedItem.closeApproachDate}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelCloseApproachDate"
+                    tools:text="2020-02-01" />
+
+                <TextView
+                    android:id="@+id/labelAbsoluteMagnitude"
+                    style="@style/LabelTextDiscreteDescription"
+                    android:layout_width="@dimen/text_block_width_large"
+                    android:text="@string/absolute_magnitude_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/closeApproachDate" />
+
+                <TextView
+                    android:id="@+id/labelEstimatedDiameter"
+                    android:layout_width="@dimen/text_block_width_large"
+                    style="@style/LabelTextDiscreteDescription"
+                    android:text="@string/estimated_diameter_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/closeApproachDate" />
+
+                <TextView
+                    android:id="@+id/absoluteMagnitude"
+                    style="@style/LabelTextValue"
+                    app:astronomicalUnitText="@{viewModel.asteroidsFeedItem.absoluteMagnitude}"
+                    app:layout_constraintEnd_toEndOf="@+id/labelAbsoluteMagnitude"
+                    app:layout_constraintStart_toStartOf="@+id/labelAbsoluteMagnitude"
+                    app:layout_constraintTop_toBottomOf="@+id/labelAbsoluteMagnitude"
+                    tools:text="2.16 au" />
+
+                <TextView
+                    android:id="@+id/estimatedDiameter"
+                    style="@style/LabelTextValue"
+                    app:kilometersUnitText="@{viewModel.asteroidsFeedItem.estimatedDiameter}"
+                    app:layout_constraintEnd_toEndOf="@+id/labelEstimatedDiameter"
+                    app:layout_constraintStart_toEndOf="@+id/labelAbsoluteMagnitude"
+                    app:layout_constraintTop_toBottomOf="@+id/labelAbsoluteMagnitude"
+                    tools:text="0.8 km" />
+
+                <TextView
+                    android:id="@+id/labelRelativeVelocity"
+                    style="@style/LabelTextDiscreteDescription"
+                    android:text="@string/relative_velocity_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/absoluteMagnitude" />
+
+                <TextView
+                    android:id="@+id/relativeVelocityMilesPerHour"
+                    style="@style/LabelTextValue"
+                    android:layout_width="@dimen/text_block_width_small"
+                    app:formatRelativeVelocityMilesPerHour="@{viewModel.asteroidsFeedItem.relativeVelocityMilesPerHour}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelRelativeVelocity"
+                    tools:text="48,336 Mph" />
+
+                <TextView
+                    android:id="@+id/relativeVelocityKilometersPerSecond"
+                    style="@style/LabelTextValue"
+                    android:layout_width="@dimen/text_block_width_tiny"
+                    app:formatRelativeVelocityKilometersPerSecond="@{viewModel.asteroidsFeedItem.relativeVelocityKilometersPerSecond}"
+                    app:layout_constraintEnd_toStartOf="@+id/relativeVelocityKilometersPerHour"
+                    app:layout_constraintStart_toEndOf="@+id/relativeVelocityMilesPerHour"
+                    app:layout_constraintTop_toBottomOf="@+id/labelRelativeVelocity"
+                    tools:text="22 km/s" />
+
+                <TextView
+                    android:id="@+id/relativeVelocityKilometersPerHour"
+                    style="@style/LabelTextValue"
+                    android:layout_width="@dimen/text_block_width_small"
+                    app:formatRelativeVelocityKilometersPerHour="@{viewModel.asteroidsFeedItem.relativeVelocityKilometersPerHour}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelRelativeVelocity"
+                    tools:text="77,971 km/h" />
+
+                <TextView
+                    android:id="@+id/labelDistanceFromEarth"
+                    style="@style/LabelTextDiscreteDescription"
+                    android:text="@string/distance_from_earth_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeVelocityKilometersPerSecond" />
+                
+                <TextView
+                    android:id="@+id/distanceFromEarthAu"
+                    style="@style/LabelTextValue"
+                    android:layout_width="@dimen/text_block_width_tiny"
+                    app:astronomicalUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthAu}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelDistanceFromEarth"
+                    tools:text="0,42 au" />
+
+                <TextView
+                    android:id="@+id/distanceFromEarthMiles"
+                    style="@style/LabelTextValue"
+                    android:layout_width="@dimen/text_block_width_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelDistanceFromEarth"
+                    app:milesUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthMiles}"
+                    tools:text="2.540.554 miles" />
+
+                <TextView
+                    android:id="@+id/distanceFromEarthLunar"
+                    style="@style/LabelTextValue"
+                    android:layout_width="@dimen/text_block_width_tiny"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/distanceFromEarthAu"
+                    app:lunarUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthLunar}"
+                    tools:text="166.83 ld" />
+
+                <TextView
+                    android:id="@+id/distanceFromEarthKm"
+                    style="@style/LabelTextValue"
+                    android:layout_width="@dimen/text_block_width_medium"
+                    app:kilometersUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthKm}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/distanceFromEarthMiles"
+                    tools:text="64.161.387 km" />
+
+                <ImageView
+                    android:id="@+id/iconInfoAboutAstronomicalUnits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_small"
+                    app:layout_constraintBottom_toBottomOf="@+id/distanceFromEarthAu"
+                    app:layout_constraintStart_toEndOf="@+id/distanceFromEarthAu"
+                    app:layout_constraintTop_toTopOf="@+id/distanceFromEarthAu"
+                    app:srcCompat="@drawable/ic_info_grey"
+                    android:contentDescription="@string/content_description_click_to_get_to_know_about_astronomical_units" />
+
+                <ImageView
+                    android:id="@+id/iconInfoAboutLunarUnits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_small"
+                    app:layout_constraintBottom_toBottomOf="@+id/distanceFromEarthLunar"
+                    app:layout_constraintStart_toEndOf="@+id/distanceFromEarthLunar"
+                    app:layout_constraintTop_toTopOf="@+id/distanceFromEarthLunar"
+                    app:srcCompat="@drawable/ic_info_grey"
+                    android:contentDescription="@string/content_description_click_to_get_to_know_about_lunar_units" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonGoToNASAJplWebsite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_margin_large"
+                    android:textColor="@color/colorStateOn"
+                    android:text="@string/see_more_at_nasa_jpl_website"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/distanceFromEarthLunar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

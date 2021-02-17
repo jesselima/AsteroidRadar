@@ -37,6 +37,8 @@ data class AsteroidsFeedItem(
 	val isPotentiallyHazardous: Boolean,
 	@ColumnInfo(name = "date")
 	val date: String,
+	@ColumnInfo(name = "nasa_jpl_url")
+	val nasaJplUrl: String? = null,
 	@ColumnInfo(name = "created_at")
 	var createdAt: String? = null,
 	@ColumnInfo(name = "modified_at")

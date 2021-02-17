@@ -139,7 +139,8 @@ fun AsteroidsFeedResponse.mapToLocalDatabaseModel() : List<AsteroidsFeedItem> {
                     distanceFromEarthMiles = nearEarthObject.closeApproachData?.first()?.missDistance?.miles?.toDouble() ?: 0.0,
                     distanceFromEarthKm = nearEarthObject.closeApproachData?.first()?.missDistance?.kilometers?.toDouble() ?: 0.0,
                     distanceFromEarthLunar = nearEarthObject.closeApproachData?.first()?.missDistance?.lunar?.toDouble() ?: 0.0,
-                    isPotentiallyHazardous = nearEarthObject.isPotentiallyHazardousAsteroid ?: false
+                    isPotentiallyHazardous = nearEarthObject.isPotentiallyHazardousAsteroid ?: false,
+                    nasaJplUrl = nearEarthObject.nasaJplUrl,
                 )
             )
         }

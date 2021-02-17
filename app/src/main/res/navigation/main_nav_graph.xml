@@ -14,7 +14,7 @@
             app:destination="@id/detailFragment"
             app:popUpTo="@id/detailFragment"
             app:enterAnim="@anim/slide_in_right"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="false"/>
         <argument
             android:name="asteroidId"
             app:argType="long"
@@ -25,7 +25,7 @@
         android:id="@+id/detailFragment"
         android:name="com.udacity.asteroidradar.features.asteroiddetail.presentation.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail">
+        tools:layout="@layout/fragment_asteroid_detail">
 
         <argument
             android:name="selectedAsteroidsFeedItem"
@@ -33,6 +33,7 @@
             app:nullable="true"/>
         <action
             android:id="@+id/action_detailFragment_to_mainFragment"
+            app:popUpToInclusive="false"
             app:destination="@id/mainFragment" />
     </fragment>
 
