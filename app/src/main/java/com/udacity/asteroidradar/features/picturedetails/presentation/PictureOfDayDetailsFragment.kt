@@ -107,6 +107,7 @@ class PictureOfDayDetailsFragment : Fragment() {
 		}
 
 		pictureOfTheDay?.let {
+			toggleFavoriteButtonState(it.isFavorite)
 			it.imageUrl.let {
 				progressBarHighDefinitionImage.isVisible = true
 				Picasso.get()
