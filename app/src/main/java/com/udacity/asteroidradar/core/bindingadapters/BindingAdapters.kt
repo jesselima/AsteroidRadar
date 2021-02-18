@@ -13,7 +13,9 @@ import com.udacity.asteroidradar.core.extensions.formatNumberToString
 import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 
-private const val TWO_DECIMALS = 2
+private const val ONE_DECIMALS = "%.1f"
+private const val TWO_DECIMALS = "%.2f"
+private const val THREE_DECIMALS = "%.3f"
 
 @BindingAdapter("statusHazardousStatusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -117,7 +119,16 @@ fun bindAstronomicalUnit(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = context.getString(
         R.string.unit_astronomical_format,
-        String.format("%.2f", number)
+        String.format(TWO_DECIMALS, number)
+    )
+}
+
+@BindingAdapter("absoluteMagnitudeUnitText")
+fun bindAbsoluteMagnitude(textView: TextView, number: Double) {
+    val context = textView.context
+    textView.text = context.getString(
+        R.string.unit_astronomical_format,
+        String.format(ONE_DECIMALS, number)
     )
 }
 
@@ -126,7 +137,7 @@ fun bindLunarUnit(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = context.getString(
         R.string.unit_lunar_format,
-        String.format("%.2f", number)
+        String.format(TWO_DECIMALS, number)
     )
 }
 
@@ -135,7 +146,7 @@ fun bindKilometersUnitTextUnit(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(
         R.string.unit_km_format),
-        formatNumberToString(number = number)
+        String.format(THREE_DECIMALS, number)
     )
 }
 
