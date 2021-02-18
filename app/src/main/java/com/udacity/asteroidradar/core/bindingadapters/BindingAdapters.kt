@@ -79,14 +79,6 @@ fun bindTextFormatDate(textView: TextView, date: String?) {
     }
 }
 
-@BindingAdapter("kmUnitText")
-fun bindTextViewToKmUnit(textView: TextView, number: Double) {
-    textView.text = String.format(
-        textView.context.getString(R.string.unit_km_format),
-        number
-    )
-}
-
 @BindingAdapter("formatRelativeVelocityMilesPerHour")
 fun bindFormatRelativeVelocityMilesPerHour(textView: TextView, number: Double) {
     val context = textView.context
@@ -141,14 +133,25 @@ fun bindLunarUnit(textView: TextView, number: Double) {
     )
 }
 
-@BindingAdapter("kilometersUnitText")
-fun bindKilometersUnitTextUnit(textView: TextView, number: Double) {
+@BindingAdapter("kilometersUnitWithDecimalsText")
+fun bindKilometersUnitWithDecimalsTextUnit(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(
         R.string.unit_km_format),
         String.format(THREE_DECIMALS, number)
     )
 }
+
+
+@BindingAdapter("kilometersUnitText")
+fun bindKilometersUnitTextUnit(textView: TextView, number: Double) {
+    val context = textView.context
+    textView.text = String.format(context.getString(
+        R.string.unit_km_format),
+        formatNumberToString(number = number)
+    )
+}
+
 
 @BindingAdapter("milesUnitText")
 fun bindMilesTextUnit(textView: TextView, number: Double) {
@@ -157,15 +160,4 @@ fun bindMilesTextUnit(textView: TextView, number: Double) {
         R.string.unit_miles_format),
         formatNumberToString(number = number)
     )
-}
-
-@BindingAdapter("imageUrl")
-fun imageUrl(imageView: ImageView, url: String?) {
-    url?.let {
-        Picasso.get()
-            .load(it)
-            .placeholder(R.drawable.place_holder_no_image)
-            .error(R.drawable.ic_astronaut_image_not_found)
-            .into(imageView);
-    }
 }

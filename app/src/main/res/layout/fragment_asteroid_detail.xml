@@ -170,7 +170,7 @@
                 <TextView
                     android:id="@+id/estimatedDiameter"
                     style="@style/LabelTextValue"
-                    app:kilometersUnitText="@{viewModel.asteroidsFeedItem.estimatedDiameter}"
+                    app:kilometersUnitWithDecimalsText="@{viewModel.asteroidsFeedItem.estimatedDiameter}"
                     app:layout_constraintEnd_toEndOf="@+id/labelEstimatedDiameter"
                     app:layout_constraintStart_toEndOf="@+id/labelAbsoluteMagnitude"
                     app:layout_constraintTop_toBottomOf="@+id/labelAbsoluteMagnitude"
