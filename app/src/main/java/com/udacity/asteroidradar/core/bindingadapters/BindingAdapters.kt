@@ -77,12 +77,6 @@ fun bindTextFormatDate(textView: TextView, date: String?) {
     }
 }
 
-@BindingAdapter("astronomicalUnitText")
-fun bindTextViewToAstronomicalUnit(textView: TextView, number: Double) {
-    val context = textView.context
-    textView.text = String.format(context.getString(R.string.unit_absolute_magnitude), number)
-}
-
 @BindingAdapter("kmUnitText")
 fun bindTextViewToKmUnit(textView: TextView, number: Double) {
     textView.text = String.format(
@@ -121,18 +115,18 @@ fun bindFormatRelativeVelocityKilometersPerSecond(textView: TextView, number: Do
 @BindingAdapter("astronomicalUnitText")
 fun bindAstronomicalUnit(textView: TextView, number: Double) {
     val context = textView.context
-    textView.text = String.format(context.getString(
-        R.string.unit_astronomical_format),
-        formatNumberToString(number = number, decimals = TWO_DECIMALS)
+    textView.text = context.getString(
+        R.string.unit_astronomical_format,
+        String.format("%.2f", number)
     )
 }
 
-@BindingAdapter("astronomicalUnitText")
+@BindingAdapter("lunarUnitText")
 fun bindLunarUnit(textView: TextView, number: Double) {
     val context = textView.context
-    textView.text = String.format(context.getString(
-        R.string.unit_astronomical_format),
-        formatNumberToString(number = number, decimals = TWO_DECIMALS)
+    textView.text = context.getString(
+        R.string.unit_lunar_format,
+        String.format("%.2f", number)
     )
 }
 
@@ -150,15 +144,6 @@ fun bindMilesTextUnit(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(
         R.string.unit_miles_format),
-        formatNumberToString(number = number)
-    )
-}
-
-@BindingAdapter("lunarUnitText")
-fun bindLunarTextUnit(textView: TextView, number: Double) {
-    val context = textView.context
-    textView.text = String.format(context.getString(
-        R.string.unit_lunar_format),
         formatNumberToString(number = number)
     )
 }

@@ -74,8 +74,8 @@
 
                 <ImageView
                     android:id="@+id/pictureOfTheDayDetailsToggleFavorite"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
+                    android:layout_width="@dimen/icon_size_default"
+                    android:layout_height="@dimen/icon_size_default"
                     android:layout_gravity="bottom|start"
                     android:layout_marginEnd="@dimen/space_small"
                     android:contentDescription="@string/label_load_high_definition_image"
@@ -87,8 +87,8 @@
 
                 <ImageView
                     android:id="@+id/pictureOfTheDayDetailsToggleHighDefinition"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
+                    android:layout_width="@dimen/icon_size_default"
+                    android:layout_height="@dimen/icon_size_default"
                     android:layout_gravity="bottom|start"
                     android:layout_marginEnd="@dimen/space_small"
                     android:contentDescription="@string/label_load_high_definition_image"
@@ -100,8 +100,8 @@
 
                 <ImageView
                     android:id="@+id/pictureOfTheDayDetailsOpenFullScreenDialog"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
+                    android:layout_width="@dimen/icon_size_default"
+                    android:layout_height="@dimen/icon_size_default"
                     android:layout_gravity="end|bottom"
                     android:layout_marginEnd="@dimen/layout_margin_default"
                     android:layout_marginBottom="36dp"

@@ -20,10 +20,11 @@
 
     <!-- UNIT STRING FORMATS -->
     <string name="unit_absolute_magnitude">%s</string>
-    <string name="unit_astronomical_format">%s au</string>
-    <string name="unit_lunar_format">%s ld</string>
-    <string name="unit_km_format">%s km</string>
-    <string name="unit_miles_format">%s miles</string>
+    <string name="unit_astronomical_format">au\n%s</string>
+    <string name="unit_astronomical_format_label_suffix">%s au</string>
+    <string name="unit_lunar_format">ld\n%s</string>
+    <string name="unit_km_format">km\n%s</string>
+    <string name="unit_miles_format">miles\n%s</string>
     <string name="unit_kilometers_per_second_format">%s km/s</string>
     <string name="unit_kilometers_per_hour_format">%s km/h</string>
     <string name="unit_miles_hour_format">%s Mph</string>

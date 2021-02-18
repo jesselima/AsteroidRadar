@@ -44,7 +44,7 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 		)
 
 		view.textDistanceFromEarthAu.text = view.context.getString(
-			R.string.unit_astronomical_format,
+			R.string.unit_astronomical_format_label_suffix,
 			String.format("%.2f", asteroid.distanceFromEarthAu)
 		)
 

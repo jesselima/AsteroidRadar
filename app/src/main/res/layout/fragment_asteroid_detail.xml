@@ -124,6 +124,7 @@
                 <TextView
                     android:id="@+id/labelCloseApproachDate"
                     style="@style/LabelTextDiscreteDescription"
+                    android:layout_marginTop="@dimen/layout_margin_medium"
                     android:text="@string/close_approach_data_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -222,11 +223,11 @@
                 <TextView
                     android:id="@+id/distanceFromEarthAu"
                     style="@style/LabelTextValue"
-                    android:layout_width="@dimen/text_block_width_tiny"
+                    android:layout_width="@dimen/text_block_width_small"
                     app:astronomicalUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthAu}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/labelDistanceFromEarth"
-                    tools:text="0,42 au" />
+                    tools:text="au\n0,42" />
 
                 <TextView
                     android:id="@+id/distanceFromEarthMiles"
@@ -235,16 +236,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/labelDistanceFromEarth"
                     app:milesUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthMiles}"
-                    tools:text="2.540.554 miles" />
+                    tools:text=" miles\n2.540.554" />
 
                 <TextView
                     android:id="@+id/distanceFromEarthLunar"
                     style="@style/LabelTextValue"
-                    android:layout_width="@dimen/text_block_width_tiny"
+                    android:layout_width="@dimen/text_block_width_small"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/distanceFromEarthAu"
                     app:lunarUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthLunar}"
-                    tools:text="166.83 ld" />
+                    tools:text="ld\n166.83" />
 
                 <TextView
                     android:id="@+id/distanceFromEarthKm"
@@ -253,12 +254,12 @@
                     app:kilometersUnitText="@{viewModel.asteroidsFeedItem.distanceFromEarthKm}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/distanceFromEarthMiles"
-                    tools:text="64.161.387 km" />
+                    tools:text="km\n64.161.387" />
 
                 <ImageView
                     android:id="@+id/iconInfoAboutAstronomicalUnits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/icon_size_default"
+                    android:layout_height="@dimen/icon_size_default"
                     android:layout_marginStart="@dimen/layout_margin_small"
                     app:layout_constraintBottom_toBottomOf="@+id/distanceFromEarthAu"
                     app:layout_constraintStart_toEndOf="@+id/distanceFromEarthAu"
@@ -268,8 +269,8 @@
 
                 <ImageView
                     android:id="@+id/iconInfoAboutLunarUnits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/icon_size_default"
+                    android:layout_height="@dimen/icon_size_default"
                     android:layout_marginStart="@dimen/layout_margin_small"
                     app:layout_constraintBottom_toBottomOf="@+id/distanceFromEarthLunar"
                     app:layout_constraintStart_toEndOf="@+id/distanceFromEarthLunar"
