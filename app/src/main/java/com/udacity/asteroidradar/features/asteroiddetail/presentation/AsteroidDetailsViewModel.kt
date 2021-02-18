@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class DetailsViewModel(
+class AsteroidDetailsViewModel(
 	private val asteroidDetailsLocalUseCase: AsteroidDetailsLocalUseCase,
 ) : ViewModel() {
 

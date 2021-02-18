@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.youtube.player.YouTubeStandalonePlayer
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -27,30 +29,33 @@ import com.udacity.asteroidradar.features.mainscreen.presentation.MediaType
 import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.*
 import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.view.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by jesselima on 25/01/21.
  * This is a part of the project Asteroid Radar.
  */
 
+private const val ARG_PICTURE_OF_THE_DAY_DATA = "pictureOfTheDay"
+
 private const val YOUTUBE_VIDEO_THUMBNAIL_BASE_URL = "https://img.youtube.com/vi/"
 private const val YOUTUBE_VIDEO_THUMBNAIL_PREFIX_AND_FORMAT = "/hqdefault.jpg"
 private const val NASA_VIDEO_URL_PATH_EMBED = "/embed/"
 private const val URL_QUERY_DIVIDER = "?"
 private const val EMPTY = ""
+private const val NO_UPDATE_RESULT = 0
+private const val ARG_HIGH_DEFINITION_IMAGE_URL = "highDefinitionImageUrl"
+private const val ARG_PICTURE_OF_THE_DAY_TITLE = "pictureOfTheDayTitle"
 
-class PictureOfDayDetailsDialogFragment : DialogFragment() {
+class PictureOfDayDetailsFragment : Fragment() {
+
+	private val viewModel by viewModel<PictureOfTheDayViewModel>()
 
 	private var pictureOfTheDay: PictureOfDay? = null
 	private var mediaType: String = MediaType.IMAGE.type
 	private var videoId: String? = ""
 
 	private val connectionChecker: ConnectionChecker by inject()
-
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setStyle(STYLE_NORMAL, R.style.Theme_App_Dialog_FullScreen)
-	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -67,8 +72,7 @@ class PictureOfDayDetailsDialogFragment : DialogFragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		setupListeners()
-
-		requireDialog().window?.setWindowAnimations(R.style.DialogAnimation)
+		setupObservers()
 
 		pictureDetailsCollapsingToolbar.apply {
 			setExpandedTitleTextAppearance(R.style.ExpandedAppBar)
@@ -76,8 +80,19 @@ class PictureOfDayDetailsDialogFragment : DialogFragment() {
 		}
 
 		pictureOfTheDay = arguments?.getParcelable(ARG_PICTURE_OF_THE_DAY_DATA)
+		viewModel.setPictureOfTheDay(pictureOfTheDay)
+
 		mediaType = pictureOfTheDay?.mediaType ?: MediaType.IMAGE.type
-		videoId = pictureOfTheDay?.imageUrl?.substringAfterLast(NASA_VIDEO_URL_PATH_EMBED)?.substringBefore(URL_QUERY_DIVIDER)
+
+		videoId = pictureOfTheDay?.imageUrl
+			?.substringAfterLast(NASA_VIDEO_URL_PATH_EMBED)
+			?.substringBefore(URL_QUERY_DIVIDER)
+
+		updateViewState(view)
+	}
+
+	private fun updateViewState(view: View) {
+
 		pictureOfTheDayDetailsOpenFullScreenDialog.isVisible = mediaType == MediaType.IMAGE.type
 		pictureOfTheDayDetailsOpenFullScreenDialog.isVisible = mediaType == MediaType.IMAGE.type
 		pictureOfTheDayDetailsPlayVideo.isVisible = mediaType == MediaType.VIDEO.type
@@ -143,25 +158,53 @@ class PictureOfDayDetailsDialogFragment : DialogFragment() {
 		}
 	}
 
+	private fun setupObservers() {
+		viewModel.pictureOfTheDay.observe(viewLifecycleOwner, { pictureOfTheDayState ->
+			pictureOfTheDay = pictureOfTheDayState
+			toggleFavoriteButtonState(pictureOfTheDayState?.isFavorite ?: false)
+		})
+		viewModel.saveState.observe(viewLifecycleOwner, { hasSavedWithSuccess ->
+			val isFavorite = pictureOfTheDay?.isFavorite ?: false
+			hasSavedWithSuccess.whenNotNull {
+				if (isFavorite) {
+					showAppToast(getString(R.string.saved), ToastType.SUCCESS)
+				} else {
+					showAppToast(getString(R.string.removed), ToastType.INFO)
+				}
+			}
+		})
+	}
+
+	private fun toggleFavoriteButtonState(isFavorite: Boolean) {
+		if (isFavorite) {
+			pictureOfTheDayDetailsToggleFavorite.setIconColorState(R.color.colorStateOn)
+		} else {
+			pictureOfTheDayDetailsToggleFavorite.setIconColorState(R.color.colorStateOff)
+		}
+	}
+
 	private fun setupListeners() {
 		pictureOfTheDayDetailsOpenFullScreenDialog.setOnClickListener {
 			pictureOfTheDay?.highDefinitionImageUrl?.let { highDefinitionImageUrl ->
-				val pictureOfTheDayName = pictureOfTheDay?.title
-				PictureOfTheDayFullScreenFragmentDialog.newInstance(pictureOfDayName = pictureOfTheDayName, pictureOfDayUrl = highDefinitionImageUrl).show(
-					childFragmentManager, PictureOfDayDetailsDialogFragment::class.java.simpleName
+				findNavController().navigate(
+					R.id.navigateDetailsToPictureOfTheDayFullScreen,
+					bundleOf(
+						ARG_HIGH_DEFINITION_IMAGE_URL to highDefinitionImageUrl,
+						ARG_PICTURE_OF_THE_DAY_TITLE to pictureOfTheDay?.title
+					)
 				)
 			}
 		}
 
 		pictureOfTheDayDetailsToggleFavorite.setOnClickListener {
-			// TODO update the picture as favorite.
-			showAppToast("To be implemented!", ToastType.INFO)
-			pictureOfTheDayDetailsToggleFavorite.setIconColorState(R.color.colorStateOn)
+			pictureOfTheDay?.let {
+				viewModel.toggleFavoritePictureState(pictureOfDay = it.copy(isFavorite = it.isFavorite.not()))
+			}
 		}
 
 		backIconAsteroidDetailsTopAppBar.setNavigationOnClickListener {
 			pictureOfTheDayDetailsToggleHighDefinition.setIconColorState(R.color.colorStateOff)
-			dismiss()
+			activity?.onBackPressed()
 		}
 
 		pictureOfTheDayDetailsToggleHighDefinition.setOnClickListener {
@@ -228,17 +271,5 @@ class PictureOfDayDetailsDialogFragment : DialogFragment() {
 			true						/* light box Mode */
 		)
 		context?.startActivity(intent)
-	}
-
-	companion object {
-		private const val ARG_PICTURE_OF_THE_DAY_DATA = "picture_of_the_day"
-		@JvmStatic
-		fun newInstance(pictureOfDay: PictureOfDay?): PictureOfDayDetailsDialogFragment {
-			return PictureOfDayDetailsDialogFragment().apply {
-				arguments = Bundle().apply {
-					putParcelable(ARG_PICTURE_OF_THE_DAY_DATA, pictureOfDay)
-				}
-			}
-		}
 	}
 }

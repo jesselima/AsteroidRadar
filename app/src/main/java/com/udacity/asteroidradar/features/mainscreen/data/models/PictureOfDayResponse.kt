@@ -34,6 +34,7 @@ fun PictureOfDayResponse.mapToLocalDatabaseModel() : PictureOfDay {
 		highDefinitionImageUrl = this.highDefinitionImageUrl ?: "",
 		date = this.date ?: "",
 		explanation = this.explanation ?: "",
-		copyright = this.copyright
+		copyright = this.copyright,
+		isFavorite = false
 	)
 }

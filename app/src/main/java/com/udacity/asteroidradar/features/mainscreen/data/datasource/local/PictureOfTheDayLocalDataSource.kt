@@ -7,4 +7,5 @@ interface PictureOfTheDayLocalDataSource {
 	suspend fun getLocalPictureOfTheDay(date: String): PictureOfDay
 	suspend fun getLocalPictureOfTheLastSevenDays(startDate: String, endDate: String): List<PictureOfDay>
 	suspend fun savePictureOfTheDayToLocalDatabase(pictureOfDay: PictureOfDay)
+	suspend fun toggleFavoritePictureState(pictureOfDay: PictureOfDay) : Int
 }

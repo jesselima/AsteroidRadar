@@ -25,6 +25,8 @@ data class PictureOfDay(
 	val explanation: String = "",
 	@ColumnInfo(name = "copyright")
 	val copyright: String? = null,
+	@ColumnInfo(name = "is_favorite")
+	var isFavorite: Boolean = false,
 	@ColumnInfo(name = "created_at")
 	var createdAt: String? = null,
 	@ColumnInfo(name = "modified_at")

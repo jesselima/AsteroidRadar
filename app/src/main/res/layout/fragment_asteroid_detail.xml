@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.udacity.asteroidradar.features.asteroiddetail.presentation.DetailsViewModel" />
+            type="com.udacity.asteroidradar.features.asteroiddetail.presentation.AsteroidDetailsViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -111,7 +111,7 @@
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/layout_margin_default"
+                    android:layout_marginTop="@dimen/layout_margin_small"
                     android:gravity="center"
                     android:textColor="@color/primaryTextColor"
                     android:textStyle="bold"

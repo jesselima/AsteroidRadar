@@ -31,4 +31,8 @@ class PictureOfTheDayLocalDataSourceImpl(
         pictureOfDay.modifiedAt = getCurrentDate()
         pictureOfTheDayDao.insert(pictureOfDay)
     }
+
+    override suspend fun toggleFavoritePictureState(pictureOfDay: PictureOfDay): Int {
+        return pictureOfTheDayDao.update(pictureOfDay)
+    }
 }

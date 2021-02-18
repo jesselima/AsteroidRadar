@@ -11,4 +11,5 @@ interface PictureOfTheDayUseCase {
 	suspend fun getRemotePictureOfTheDayByDate(date: String)
 	suspend fun getLocalPictureOfTheDayByDate(date: String) : PictureOfDay
 	suspend fun getLocalPictureOfTheDayLastSevenDays() : List<PictureOfDay>
+	suspend fun toggleFavoritePictureState(pictureOfDay: PictureOfDay) : Int
 }

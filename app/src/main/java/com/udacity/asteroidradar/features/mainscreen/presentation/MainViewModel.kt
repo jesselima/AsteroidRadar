@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.core.connectionchecker.ConnectionChecker
-import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.AsteroidsFeedUseCase
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.PictureOfTheDayUseCase
@@ -50,7 +49,8 @@ class MainViewModel(
 					} else {
 						/**
 						 * This delay function is here to improve visual experience with lottie
-						 * loading animation. This avoid the blink loading whe query local data
+						 * loading animation. This avoid the loading animation to blink when query
+						 * for local data.
 						 */
 						delay(1000)
 						getLocalAsteroidsFeed()
@@ -59,7 +59,8 @@ class MainViewModel(
 				} else {
 					/**
 					 * This delay function is here to improve visual experience with lottie
-					 * loading animation. This avoid the blink loading whe query local data
+					 * loading animation. This avoid the loading animation to blink when query
+					 * for local data.
 					 */
 					delay(1000)
 					getLocalAsteroidsFeed()
@@ -96,15 +97,6 @@ class MainViewModel(
 			getLocalAsteroidsFeed()
 			getLocalPictureOfTheLastSevenDays()
 			sharedPrefStorage.saveValue(key = HAS_LAUNCH_APP_PREVIOUSLY, value = true)
-		}
-	}
-
-	private fun getTodayPictureOfTheDayByDate(date: String = getCurrentDate()) {
-		viewModelScope.launch {
-			val data = withContext(Dispatchers.IO) {
-				pictureOfTheDayUseCase.getLocalPictureOfTheDayByDate(date = date)
-			}
-			_picturesState.value = PicturesState(pictureByDate = data)
 		}
 	}
 

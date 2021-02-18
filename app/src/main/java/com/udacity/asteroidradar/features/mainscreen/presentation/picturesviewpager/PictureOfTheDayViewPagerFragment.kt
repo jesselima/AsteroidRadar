@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
@@ -15,7 +17,6 @@ import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.mainscreen.presentation.MediaType
-import com.udacity.asteroidradar.features.picturedetails.presentation.PictureOfDayDetailsDialogFragment
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
 import java.lang.Exception
 
@@ -122,8 +123,9 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
     }
 
     private fun openPictureDetails() {
-        PictureOfDayDetailsDialogFragment.newInstance(pictureOfDay = pictureOfTheDay).show(
-            childFragmentManager, PictureOfDayDetailsDialogFragment::class.java.simpleName
+        findNavController().navigate(
+            R.id.navigateToPictureOfDayDetailsFragment,
+            bundleOf(ARG_PICTURE_OF_THE_DAY_DATA to pictureOfTheDay)
         )
     }
 
@@ -132,7 +134,7 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
          * The fragment argument representing the a PictureOfTheDay for this
          * fragment.
          */
-        private const val ARG_PICTURE_OF_THE_DAY_DATA = "picture_of_the_day"
+        private const val ARG_PICTURE_OF_THE_DAY_DATA = "pictureOfTheDay"
         /**
          * Returns a new instance of this fragment for the given page in the ViewPager.
          */

@@ -75,4 +75,8 @@ class PictureOfTheDayRepositoryImpl(
 			endDate = getCurrentDate()
 		)
 	}
+
+	override suspend fun toggleFavoritePictureState(pictureOfDay: PictureOfDay): Int {
+		return pictureOfTheDayLocalDataSource.toggleFavoritePictureState(pictureOfDay)
+	}
 }

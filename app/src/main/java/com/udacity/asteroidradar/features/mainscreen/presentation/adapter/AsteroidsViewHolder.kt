@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_list_asteroids.view.*
  * This is a part of the project Asteroid Radar.
  */
 
-private const val ASTEROID_ID = "ASTEROID_ID"
+private const val ASTEROID_ID = "asteroidId"
 
 
 class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {

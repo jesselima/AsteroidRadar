@@ -15,11 +15,10 @@ import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.databinding.FragmentAsteroidDetailBinding
 import kotlinx.android.synthetic.main.fragment_asteroid_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
-class DetailFragment : Fragment() {
+class AsteroidDetailFragment : Fragment() {
 
-    private val viewModel by viewModel<DetailsViewModel>()
+    private val viewModel by viewModel<AsteroidDetailsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +41,11 @@ class DetailFragment : Fragment() {
         binding.backIconAsteroidDetailsTopAppBar.setOnClickListener {
             findNavController().navigate(R.id.mainFragment)
         }
+
+        binding.backIconAsteroidDetailsTopAppBar.setOnClickListener {
+            activity?.onBackPressed()
+        }
+
         binding.buttonGoToNASAJplWebsite.setOnClickListener {
             startActivity(
                 Intent(
@@ -54,15 +58,12 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
         asteroidDetailsContent.showWithLongFadeIn()
         arguments?.let {
-            val asteroidId = it.getLong("ASTEROID_ID")
-            Timber.d("ASTEROID_ID: $asteroidId")
+            val asteroidId = it.getLong("asteroidId")
             viewModel.getLocalAsteroidById(id = asteroidId)
         }
     }

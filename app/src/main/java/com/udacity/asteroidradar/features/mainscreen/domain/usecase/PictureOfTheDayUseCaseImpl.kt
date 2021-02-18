@@ -19,6 +19,10 @@ class PictureOfTheDayUseCaseImpl(
 		return repository.getLocalPictureOfTheLastSevenDays()
 	}
 
+	override suspend fun toggleFavoritePictureState(pictureOfDay: PictureOfDay): Int {
+		return repository.toggleFavoritePictureState(pictureOfDay)
+	}
+
 	override suspend fun getLocalPictureOfTheDayByDate(date: String) : PictureOfDay {
 		return repository.getLocalPictureOfTheDayByDate(date = date)
 	}

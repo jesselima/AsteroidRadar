@@ -49,8 +49,8 @@
     <string name="label_picture_of_the_day_format_details">Picture of the day from %s</string>
     <string name="picture_of_the_day_dummy_name">719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1</string>
     <string name="label_asteroids">Asteroids</string>
-    <string name="image_not_loaded_warning">Ooops! The image could not be loaded.</string>
-    <string name="message_no_asteroids_found">Ooops! The universe looks a bit empty.</string>
+    <string name="image_not_loaded_warning">Ooops!\nThe image could\nnot be loaded.</string>
+    <string name="message_no_asteroids_found">Ooops!\nThe universe looks\na bit empty.</string>
     <string name="message_no_pictures_found">Ooops! No images found.</string>
     <string name="message_searching_asteroids_for_you">Searching some \nasteroids for you…</string>
     <string name="message_loading_high_definition_image">Wait… \nI\'m going into\nspace to get a\nbetter shot…</string>
@@ -86,5 +86,7 @@
     <string name="see_more_at_nasa_jpl_website">See more at NASA JPL website</string>
     <string name="content_description_click_to_get_to_know_about_lunar_units">Click to get to know about lunar units</string>
     <string name="content_description_click_to_get_to_know_about_astronomical_units">Click to get to know about astronomical units</string>
+    <string name="saved">Saved!</string>
+    <string name="removed">Removed!</string>
 
 </resources>

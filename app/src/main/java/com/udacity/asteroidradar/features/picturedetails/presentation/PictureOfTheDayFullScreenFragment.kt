@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
@@ -14,20 +13,17 @@ import com.udacity.asteroidradar.core.extensions.inflateFragment
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.whenNotNull
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_full_screen.*
-import java.lang.Exception
 
 /**
  * Created by jesselima on 13/02/21.
  * This is a part of the project Asteroid Radar.
  */
 
+private const val ARG_HIGH_DEFINITION_IMAGE_URL = "highDefinitionImageUrl"
+private const val ARG_PICTURE_OF_THE_DAY_TITLE = "pictureOfTheDayTitle"
 private const val EMPTY = ""
 
-class PictureOfTheDayFullScreenFragmentDialog : DialogFragment() {
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setStyle(STYLE_NORMAL, R.style.Theme_App_Dialog_FullScreen)
-	}
+class PictureOfTheDayFullScreenFragment : Fragment() {
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -43,17 +39,19 @@ class PictureOfTheDayFullScreenFragmentDialog : DialogFragment() {
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		requireDialog().window?.setWindowAnimations(R.style.DialogAnimation)
 		setupListeners()
 		showViews()
 
-		val pictureOfTheDayName= arguments?.getString(ARG_PICTURE_OF_THE_DAY_NAME) ?: EMPTY
-		val pictureOfTheDayUrl = arguments?.getString(ARG_PICTURE_OF_THE_DAY_URL)
+		val highDefinitionImageUrl = arguments?.getString(ARG_HIGH_DEFINITION_IMAGE_URL)
+		val pictureOfTheDayTitle = arguments?.getString(ARG_PICTURE_OF_THE_DAY_TITLE)
 
-		fullScreenPictureOfTheDayName.text = pictureOfTheDayName
-		fullScreenPictureImageView.contentDescription = activity?.getString(R.string.message_picture_of, pictureOfTheDayName)
+		fullScreenPictureOfTheDayName.text = pictureOfTheDayTitle ?: EMPTY
+		fullScreenPictureImageView.contentDescription = activity?.getString(
+			R.string.message_picture_of,
+			pictureOfTheDayTitle ?: EMPTY
+		)
 
-		pictureOfTheDayUrl.whenNotNull {
+		highDefinitionImageUrl.whenNotNull {
 			Picasso.get()
 				.load(this)
 				.placeholder(R.drawable.backdrop_image_overlay_darker_bottom)
@@ -83,21 +81,7 @@ class PictureOfTheDayFullScreenFragmentDialog : DialogFragment() {
 
 	private fun setupListeners() {
 		pictureOfTheDayIconExitFullScreen.setOnClickListener {
-			dismiss()
-		}
-	}
-
-	companion object {
-		private const val ARG_PICTURE_OF_THE_DAY_NAME = "picture_of_the_day_name"
-		private const val ARG_PICTURE_OF_THE_DAY_URL = "picture_of_the_day_url"
-		@JvmStatic
-		fun newInstance(pictureOfDayName: String?, pictureOfDayUrl: String): PictureOfTheDayFullScreenFragmentDialog {
-			return PictureOfTheDayFullScreenFragmentDialog().apply {
-				arguments = Bundle().apply {
-					putString(ARG_PICTURE_OF_THE_DAY_NAME, pictureOfDayName)
-					putString(ARG_PICTURE_OF_THE_DAY_URL, pictureOfDayUrl)
-				}
-			}
+			activity?.onBackPressed()
 		}
 	}
 }
