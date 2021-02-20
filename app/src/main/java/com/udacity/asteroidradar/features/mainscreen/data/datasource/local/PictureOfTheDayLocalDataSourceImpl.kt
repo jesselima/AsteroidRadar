@@ -26,7 +26,11 @@ class PictureOfTheDayLocalDataSourceImpl(
         )
     }
 
-    override suspend fun savePictureOfTheDayToLocalDatabase(pictureOfDay: PictureOfDay) {
+	override suspend fun getAllLocalFavoritesPicturesOfTheDay(): List<PictureOfDay> {
+		return pictureOfTheDayDao.getAllLocalFavoritesPicturesOfTheDay()
+	}
+
+	override suspend fun savePictureOfTheDayToLocalDatabase(pictureOfDay: PictureOfDay) {
         pictureOfDay.createdAt = getCurrentDate()
         pictureOfDay.modifiedAt = getCurrentDate()
         pictureOfTheDayDao.insert(pictureOfDay)

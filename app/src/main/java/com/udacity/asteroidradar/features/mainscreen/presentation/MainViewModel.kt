@@ -70,12 +70,27 @@ class MainViewModel(
 		}
 	}
 
-	private fun getLocalPictureOfTheLastSevenDays() {
+	fun getLocalPictureOfTheLastSevenDays() {
 		viewModelScope.launch {
 			val data = withContext(Dispatchers.IO) {
 				pictureOfTheDayUseCase.getLocalPictureOfTheDayLastSevenDays()
 			}
-			_picturesState.value = PicturesState(picturesResult = data, isLoadingPictures = false)
+			if (data.isNotEmpty()) {
+				_picturesState.value = PicturesState(picturesResult = emptyList(), isLoadingPictures = false)
+				_picturesState.value = PicturesState(picturesResult = data)
+			}
+		}
+	}
+
+	fun getAllLocalFavoritesPicturesOfTheDay() {
+		viewModelScope.launch {
+			val data = withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.getAllLocalFavoritesPicturesOfTheDay()
+			}
+			if (data.isNotEmpty()) {
+				_picturesState.value = PicturesState(picturesResult = emptyList(), isLoadingPictures = false)
+				_picturesState.value = PicturesState(picturesResult = data)
+			}
 		}
 	}
 
@@ -97,6 +112,36 @@ class MainViewModel(
 			getLocalAsteroidsFeed()
 			getLocalPictureOfTheLastSevenDays()
 			sharedPrefStorage.saveValue(key = HAS_LAUNCH_APP_PREVIOUSLY, value = true)
+		}
+	}
+
+	fun sortAsteroidsBySpeed() {
+		asteroidsState.value?.let { state ->
+			_asteroidsState.value = asteroidsState.value?.copy(
+				asteroidsResult = state.asteroidsResult.sortedByDescending {
+					it.relativeVelocityKilometersPerHour
+				}
+			)
+		}
+	}
+
+	fun sortAsteroidsByDistance() {
+		asteroidsState.value?.let { state ->
+			_asteroidsState.value = asteroidsState.value?.copy(
+				asteroidsResult = state.asteroidsResult.sortedByDescending {
+					it.distanceFromEarthAu
+				}
+			)
+		}
+	}
+
+	fun sortAsteroidsByDate() {
+		asteroidsState.value?.let { state ->
+			_asteroidsState.value = asteroidsState.value?.copy(
+				asteroidsResult = state.asteroidsResult.sortedByDescending {
+					it.date
+				}
+			)
 		}
 	}
 

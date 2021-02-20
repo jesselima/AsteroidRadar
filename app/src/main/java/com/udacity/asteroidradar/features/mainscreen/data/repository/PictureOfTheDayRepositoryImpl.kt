@@ -76,6 +76,10 @@ class PictureOfTheDayRepositoryImpl(
 		)
 	}
 
+	override suspend fun getAllLocalFavoritesPicturesOfTheDay(): List<PictureOfDay> {
+		return pictureOfTheDayLocalDataSource.getAllLocalFavoritesPicturesOfTheDay()
+	}
+
 	override suspend fun toggleFavoritePictureState(pictureOfDay: PictureOfDay): Int {
 		return pictureOfTheDayLocalDataSource.toggleFavoritePictureState(pictureOfDay)
 	}

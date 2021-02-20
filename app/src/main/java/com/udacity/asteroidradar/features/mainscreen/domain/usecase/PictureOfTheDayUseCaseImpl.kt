@@ -27,6 +27,10 @@ class PictureOfTheDayUseCaseImpl(
 		return repository.getLocalPictureOfTheDayByDate(date = date)
 	}
 
+	override suspend fun getAllLocalFavoritesPicturesOfTheDay(): List<PictureOfDay> {
+		return repository.getAllLocalFavoritesPicturesOfTheDay()
+	}
+
 	override suspend fun getRemotePictureOfTheDayByDate(date: String) {
 		return repository.getRemotePictureOfTheDayByDate(date = date)
 	}

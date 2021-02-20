@@ -10,15 +10,11 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.udacity.asteroidradar.R
-import com.udacity.asteroidradar.core.extensions.AppBarState
-import com.udacity.asteroidradar.core.extensions.AppBarStateChangeListener
 import com.udacity.asteroidradar.core.extensions.getPagTransformer
 import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
-import com.udacity.asteroidradar.core.extensions.showDialog
-import com.udacity.asteroidradar.core.extensions.showDialogWithActions
+import com.udacity.asteroidradar.core.extensions.showAppToast
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
@@ -28,9 +24,6 @@ import com.udacity.asteroidradar.features.mainscreen.presentation.adapter.Astero
 import com.udacity.asteroidradar.features.mainscreen.presentation.picturesviewpager.PictureOfTheDayPagerAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
-
-private const val EMPTY = ""
 
 class MainFragment : Fragment() {
 
@@ -56,20 +49,52 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
-        picturesViewPagerAdapter = PictureOfTheDayPagerAdapter(fragmentActivity = requireActivity())
+        setupListeners()
+        setupAsteroidsAdapter()
         setupPictureOfTheDayPagerAdapter()
+    }
 
+    private fun setupAsteroidsAdapter() {
         asteroidRecyclerView.adapter = asteroidsAdapter
+    }
+    private fun setupPictureOfTheDayPagerAdapter() {
+        picturesViewPagerAdapter = PictureOfTheDayPagerAdapter(fragmentActivity = requireActivity())
+        pictureOfTheDayViewPager.adapter = picturesViewPagerAdapter
+        pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        pictureOfTheDayViewPager.setPageTransformer(getPagTransformer())
+        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager) { _, _ -> }.attach()
+    }
 
-        mainAppBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
-            override fun onStateChanged(appBarLayout: AppBarLayout?, appBarState: AppBarState) {
-                if(appBarState == AppBarState.COLLAPSED) {
-                    mainCollapsingToolbarLayout.title = getString(R.string.label_asteroids)
-                } else {
-                    mainCollapsingToolbarLayout.title = EMPTY
+    private fun setupListeners() {
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.bottom_bar_favorites_gallery -> {
+                    showAppToast("To be implemented ") // TODO - To be implemented
+                    true
                 }
+                R.id.bottom_bar_sort_by_distance -> {
+                    viewModel.sortAsteroidsByDistance()
+                    true
+                }
+                R.id.bottom_bar_sort_by_speed -> {
+                    viewModel.sortAsteroidsBySpeed()
+                    true
+                }
+                R.id.bottom_bar_sort_by_date -> {
+                    viewModel.sortAsteroidsByDate()
+                    true
+                }
+                R.id.bottom_bar_show_only_favorites_pictures -> {
+                    viewModel.getAllLocalFavoritesPicturesOfTheDay()
+                    true
+                }
+                R.id.bottom_bar_show_all_pictures -> {
+                    viewModel.getLocalPictureOfTheLastSevenDays()
+                    true
+                }
+                else -> false
             }
-        })
+        }
     }
 
     private fun setupObservers() {
@@ -127,30 +152,6 @@ class MainFragment : Fragment() {
         asteroidsAdapter.submitList(asteroidsData = asteroidsResult)
     }
 
-    private fun handleError(message: String, action: (() -> Unit)? = null) {
-        mainAnimateNoAsteroidsFound.isVisible = true
-        action?.invoke()
-        context?.let {
-            showDialog(
-                context= it,
-                title = it.getString(R.string.message_oops),
-                message = message,
-                positiveButtonAction = { Timber.d("-->> Error button clicked!") }
-            )
-        }
-    }
-
-    private fun setupPictureOfTheDayPagerAdapter() {
-        pictureOfTheDayViewPager.adapter = picturesViewPagerAdapter
-        pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        pictureOfTheDayViewPager.setPageTransformer(getPagTransformer())
-        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager) { _, _ -> }.attach()
-    }
-
-    private fun saveMetricsInfoPreferences(shouldShowAgain: Boolean) {
-        viewModel.saveShouldShowMetricsInfoDialog(shouldShowAgain = shouldShowAgain)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -158,22 +159,5 @@ class MainFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
-    }
-
-    private fun validateInfoDialogMetricsPreferences() {
-        val shouldShowAgain = viewModel.getShouldShowMetricsInfoDialog()
-        if (shouldShowAgain) {
-            context?.let {
-                showDialogWithActions(
-                    context = it,
-                    title = getString(R.string.tell_more_astronomical_units_title),
-                    message = getString(R.string.tell_more_astronomical_units),
-                    positiveButtonText = getString(R.string.remember_me_later),
-                    positiveButtonAction = { saveMetricsInfoPreferences(shouldShowAgain = true) },
-                    negativeButtonText = getString(R.string.label_ok_got_it),
-                    negativeButtonAction =  { saveMetricsInfoPreferences(shouldShowAgain = false) },
-                )
-            }
-        }
     }
 }

@@ -7,13 +7,15 @@ import kotlin.math.abs
  * Created by jesselima on 21/01/21.
  * This is a part of the project Asteroid Radar.
  */
+private const val VERTICAL_OFFSET_FOR_EXPANDED = 0
+
 abstract class AppBarStateChangeListener: AppBarLayout.OnOffsetChangedListener {
 
 	private var currentAppBarState: AppBarState? = AppBarState.IDLE
 
 	override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
 		when {
-			verticalOffset == 0 -> {
+			verticalOffset == VERTICAL_OFFSET_FOR_EXPANDED -> {
 				setCurrentStateAndNotify(appBarLayout = appBarLayout, appBarState = AppBarState.EXPANDED)
 			}
 			abs(verticalOffset) >= appBarLayout.totalScrollRange -> {
