@@ -92,19 +92,8 @@ class PictureOfDayDetailsFragment : Fragment() {
 	}
 
 	private fun updateViewState(view: View) {
-
-		pictureOfTheDayDetailsOpenFullScreenDialog.isVisible = mediaType == MediaType.IMAGE.type
-		pictureOfTheDayDetailsOpenFullScreenDialog.isVisible = mediaType == MediaType.IMAGE.type
-		pictureOfTheDayDetailsPlayVideo.isVisible = mediaType == MediaType.VIDEO.type
-
-		val url = when (mediaType) {
-			MediaType.IMAGE.type -> {
-				pictureOfTheDay?.imageUrl
-			}
-			else -> {
-				"$YOUTUBE_VIDEO_THUMBNAIL_BASE_URL$videoId$YOUTUBE_VIDEO_THUMBNAIL_PREFIX_AND_FORMAT"
-			}
-		}
+		setupIconsVisibility(mediaType)
+		val url = setUrlAccordinglyToMediaType(mediaType)
 
 		pictureOfTheDay?.let {
 			toggleFavoriteButtonState(it.isFavorite)
@@ -157,6 +146,21 @@ class PictureOfDayDetailsFragment : Fragment() {
 				}
 			}
 		}
+	}
+
+	private fun setUrlAccordinglyToMediaType(mediaType: String): String {
+		return when (mediaType) {
+			MediaType.IMAGE.type -> pictureOfTheDay?.imageUrl ?: EMPTY
+			else -> {
+				"$YOUTUBE_VIDEO_THUMBNAIL_BASE_URL$videoId$YOUTUBE_VIDEO_THUMBNAIL_PREFIX_AND_FORMAT"
+			}
+		}
+	}
+
+	private fun setupIconsVisibility(mediaType: String) {
+		pictureOfTheDayDetailsOpenFullScreenDialog.isVisible = mediaType == MediaType.IMAGE.type
+		pictureOfTheDayDetailsOpenFullScreenDialog.isVisible = mediaType == MediaType.IMAGE.type
+		pictureOfTheDayDetailsPlayVideo.isVisible = mediaType == MediaType.VIDEO.type
 	}
 
 	private fun setupObservers() {
