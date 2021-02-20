@@ -16,6 +16,7 @@ class AsteroidsAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 	fun submitList(asteroidsData: List<AsteroidsFeedItem>) {
+		asteroids = emptyList()
 		asteroids = asteroidsData
 		notifyDataSetChanged()
 	}

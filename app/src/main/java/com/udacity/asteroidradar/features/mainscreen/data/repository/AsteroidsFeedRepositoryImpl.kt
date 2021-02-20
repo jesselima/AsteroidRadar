@@ -21,7 +21,6 @@ class AsteroidsFeedRepositoryImpl(
 		asteroidsFeedRemoteDataSource.getRemoteAsteroidsFeed()
 			.flow(
 				{	asteroidsFeedResponse ->
-
 						asteroidsFeedResponse?.let {
 							asteroidsFeedLocalDataSource.saveFeedToLocalDatabase(
 								asteroidsFeed = it.mapToLocalDatabaseModel()
