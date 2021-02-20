@@ -89,5 +89,11 @@
     <string name="content_description_click_to_get_to_know_about_astronomical_units">Click to get to know about astronomical units</string>
     <string name="saved">Saved!</string>
     <string name="removed">Removed!</string>
+    <string name="app_bar_sort_by_speed">Sort asteroids by speed</string>
+    <string name="app_bar_sort_by_distance">Sort asteroids by distance</string>
+    <string name="app_bar_sort_by_date">Sort asteroids by date</string>
+    <string name="app_bar_show_only_favorites_pictures">Show favorites pictures</string>
+    <string name="app_bar_show_all_pictures">Show all pictures</string>
+    <string name="app_bar_main_item_gallery">Gallery of favorites pictures of the day</string>
 
 </resources>

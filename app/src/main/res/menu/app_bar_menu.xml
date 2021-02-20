@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottom_bar_favorites_gallery"
+        android:icon="@drawable/ic_gallery_view"
+        android:title="@string/label_favorites"
+        android:contentDescription="@string/label_favorites"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/bottom_bar_sort_by_distance"
+        android:title="@string/app_bar_sort_by_distance"
+        android:contentDescription="@string/app_bar_sort_by_distance"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/bottom_bar_sort_by_speed"
+        android:title="@string/app_bar_sort_by_speed"
+        android:contentDescription="@string/app_bar_sort_by_speed"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/bottom_bar_sort_by_date"
+        android:title="@string/app_bar_sort_by_date"
+        android:contentDescription="@string/app_bar_sort_by_date"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/bottom_bar_show_only_favorites_pictures"
+        android:title="@string/app_bar_show_only_favorites_pictures"
+        android:contentDescription="@string/app_bar_show_only_favorites_pictures"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/bottom_bar_show_all_pictures"
+        android:title="@string/app_bar_show_all_pictures"
+        android:contentDescription="@string/app_bar_sort_by_date"
+        app:showAsAction="never"
+        />
+
+
+
+</menu>
