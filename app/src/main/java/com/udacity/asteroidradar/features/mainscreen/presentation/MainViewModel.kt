@@ -13,8 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private const val HAS_LAUNCH_APP_PREVIOUSLY = "HAS_LAUNCH_APP_PREVIOUSLY"
-private const val SHOULD_SHOW_METRICS_INFO = "HAS_SEEN_METRICS_INFO"
+private const val HAS_RETRIEVED_DATA_PREVIOUSLY = "HAS_RETRIEVED_DATA_PREVIOUSLY"
 
 class MainViewModel(
 	private val asteroidsFeedUseCase: AsteroidsFeedUseCase,
@@ -40,12 +39,14 @@ class MainViewModel(
 		_asteroidsState.value = AsteroidsState(isLoadingAsteroids = true)
 
 		viewModelScope.launch {
-
 			withContext(Dispatchers.IO) {
-				val hasLaunchTheAppPreviously = sharedPrefStorage.getBooleanValue(key = HAS_LAUNCH_APP_PREVIOUSLY)
-				if (hasLaunchTheAppPreviously.not()) {
+				val hasRetrievedDataPreviously = sharedPrefStorage.getBooleanValue(
+					key = HAS_RETRIEVED_DATA_PREVIOUSLY
+				)
+				if (hasRetrievedDataPreviously.not()) {
 					if (isConnected) {
-						requestRemoteData()
+						requestRemoteAsteroidsData()
+						requestRemotePicturesData()
 					} else {
 						/**
 						 * This delay function is here to improve visual experience with lottie
@@ -76,7 +77,7 @@ class MainViewModel(
 				pictureOfTheDayUseCase.getLocalPictureOfTheDayLastSevenDays()
 			}
 			if (data.isNotEmpty()) {
-				_picturesState.value = PicturesState(picturesResult = emptyList(), isLoadingPictures = false)
+				_picturesState.value = null
 				_picturesState.value = PicturesState(picturesResult = data)
 			}
 		}
@@ -88,7 +89,7 @@ class MainViewModel(
 				pictureOfTheDayUseCase.getAllLocalFavoritesPicturesOfTheDay()
 			}
 			if (data.isNotEmpty()) {
-				_picturesState.value = PicturesState(picturesResult = emptyList(), isLoadingPictures = false)
+				_picturesState.value = null
 				_picturesState.value = PicturesState(picturesResult = data)
 			}
 		}
@@ -103,15 +104,24 @@ class MainViewModel(
 		}
 	}
 
-	private suspend fun requestRemoteData() {
+	fun requestRemoteAsteroidsData() {
 		viewModelScope.launch {
+			_asteroidsState.value = AsteroidsState(isLoadingAsteroids = true)
 			withContext(Dispatchers.IO) {
 				asteroidsFeedUseCase.getRemoteFeed()
-				pictureOfTheDayUseCase.getRemotePictureOfTheLastSevenDays()
 			}
 			getLocalAsteroidsFeed()
+			sharedPrefStorage.saveValue(key = HAS_RETRIEVED_DATA_PREVIOUSLY, value = true)
+		}
+	}
+
+	private suspend fun requestRemotePicturesData() {
+		viewModelScope.launch {
+			withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.getRemotePictureOfTheLastSevenDays()
+			}
 			getLocalPictureOfTheLastSevenDays()
-			sharedPrefStorage.saveValue(key = HAS_LAUNCH_APP_PREVIOUSLY, value = true)
+			sharedPrefStorage.saveValue(key = HAS_RETRIEVED_DATA_PREVIOUSLY, value = true)
 		}
 	}
 
@@ -143,13 +153,5 @@ class MainViewModel(
 				}
 			)
 		}
-	}
-
-	fun getShouldShowMetricsInfoDialog() : Boolean {
-		return sharedPrefStorage.getBooleanValue(key = SHOULD_SHOW_METRICS_INFO)
-	}
-
-	fun saveShouldShowMetricsInfoDialog(shouldShowAgain: Boolean) {
-		sharedPrefStorage.saveValue(key = SHOULD_SHOW_METRICS_INFO, value = shouldShowAgain)
 	}
 }

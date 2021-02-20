@@ -105,6 +105,17 @@
             app:lottie_rawRes="@raw/astronaut_not_found"
             tools:visibility="visible" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonGoIntoSpaceAndTryAgain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_marginTop="@dimen/space_500"
+            android:textColor="@color/colorStateOn"
+            android:layout_gravity="center"
+            android:text="@string/go_into_space_and_try_again"/>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/mainTextBalonMessage"
             android:layout_width="wrap_content"

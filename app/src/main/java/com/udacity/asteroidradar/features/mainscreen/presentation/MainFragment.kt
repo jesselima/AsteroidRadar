@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.core.extensions.ToastType
 import com.udacity.asteroidradar.core.extensions.getPagTransformer
 import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
 import com.udacity.asteroidradar.core.extensions.showAppToast
@@ -69,7 +70,7 @@ class MainFragment : Fragment() {
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bottom_bar_favorites_gallery -> {
-                    showAppToast("To be implemented ") // TODO - To be implemented
+                    showAppToast("To be implemented ", ToastType.WARNING) // TODO - To be implemented
                     true
                 }
                 R.id.bottom_bar_sort_by_distance -> {
@@ -95,6 +96,9 @@ class MainFragment : Fragment() {
                 else -> false
             }
         }
+        buttonGoIntoSpaceAndTryAgain.setOnClickListener {
+            viewModel.requestRemoteAsteroidsData()
+        }
     }
 
     private fun setupObservers() {
@@ -102,28 +106,30 @@ class MainFragment : Fragment() {
             state.renderViewState()
         })
         viewModel.picturesState.observe(viewLifecycleOwner, { state ->
-            state.renderViewState()
+            state?.renderViewState()
         })
     }
 
     private fun PicturesState.renderViewState() {
-        if(isLoadingPictures) {
-            mainTextLoadingImages.isVisible = true
-            mainTextLoadingImages.text = getString(R.string.loading_pictures_of_10_last_days)
-        }
-        else if (isLoadingPictures.not() && picturesResult.isEmpty()) {
-            mainTextLoadingImages.showWithLongFadeIn()
-            mainTextLoadingImages.text = getString(R.string.message_no_pictures_found)
-        } else {
-            mainTextLoadingImages.hideWithFadeOut()
-            mainTextLoadingImages.isVisible = picturesResult.isEmpty()
-            handlePicturesSuccess(picturesResult)
-        }
+            if(isLoadingPictures) {
+                mainTextLoadingImages.isVisible = true
+                mainTextLoadingImages.text = getString(R.string.loading_pictures_of_10_last_days)
+            }
+            else if (isLoadingPictures.not() && picturesResult.isEmpty()) {
+                mainTextLoadingImages.showWithLongFadeIn()
+                mainTextLoadingImages.text = getString(R.string.message_no_pictures_found)
+            } else {
+                mainTextLoadingImages.hideWithFadeOut()
+                mainTextLoadingImages.isVisible = picturesResult.isEmpty()
+                handlePicturesSuccess(picturesResult)
+            }
     }
 
     private fun AsteroidsState.renderViewState() {
         if(isLoadingAsteroids) {
             mainAnimateLoadingAsteroids.isVisible = true
+            mainAnimateNoAsteroidsFound.isVisible = false
+            buttonGoIntoSpaceAndTryAgain.isVisible = false
             mainAnimateLoadingAsteroids.showWithFadeIn()
             mainTextBalonMessage.showWithLongFadeIn()
             mainTextBalonMessage.text = getString(R.string.message_searching_asteroids_for_you)
@@ -136,9 +142,12 @@ class MainFragment : Fragment() {
             mainTextBalonMessage.text = getString(R.string.message_no_asteroids_found)
             mainAnimateNoAsteroidsFound.isVisible = true
             mainAnimateNoAsteroidsFound.showWithLongFadeIn()
+            buttonGoIntoSpaceAndTryAgain.isVisible = true
+            buttonGoIntoSpaceAndTryAgain.showWithLongFadeIn()
         } else if (asteroidsResult.isNotEmpty()) {
             mainAnimateLoadingAsteroids.isVisible = false
             mainAnimateNoAsteroidsFound.isVisible = false
+            buttonGoIntoSpaceAndTryAgain.isVisible = false
             mainTextBalonMessage.isVisible = false
             handleAsteroidsSuccess(asteroidsResult)
         }
@@ -150,14 +159,5 @@ class MainFragment : Fragment() {
 
     private fun handleAsteroidsSuccess(asteroidsResult: List<AsteroidsFeedItem>) {
         asteroidsAdapter.submitList(asteroidsData = asteroidsResult)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return true
     }
 }
