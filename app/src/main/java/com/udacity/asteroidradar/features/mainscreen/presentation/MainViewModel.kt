@@ -157,7 +157,7 @@ class MainViewModel(
 				pictureOfTheDayUseCase.getAllLocalFavoritesPicturesOfTheDay()
 			}
 			if (data.isNotEmpty()) _picturesState.value = null
-			_picturesState.value = picturesState.value?.copy(picturesResult = data)
+			_picturesState.value = PicturesState(picturesResult = data)
 		}
 	}
 
