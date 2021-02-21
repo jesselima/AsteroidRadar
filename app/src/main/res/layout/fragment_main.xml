@@ -81,6 +81,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/mainAnimateLoadingAsteroids"
             android:layout_width="@dimen/lottie_default_width"
@@ -97,6 +106,7 @@
             android:id="@+id/mainAnimateNoAsteroidsFound"
             android:layout_width="@dimen/lottie_default_width"
             android:layout_height="@dimen/lottie_default_height"
+            android:layout_marginEnd="@dimen/layout_margin_default"
             android:layout_gravity="center|end"
             android:layout_marginTop="@dimen/space_250"
             android:visibility="gone"
@@ -120,8 +130,8 @@
             android:id="@+id/mainTextBalonMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:layout_marginStart="@dimen/layout_margin_default"
+            android:layout_marginTop="@dimen/space_100"
+            android:layout_marginStart="@dimen/layout_margin_extra"
             android:layout_gravity="start|center"
             android:gravity="center"
             android:background="@drawable/ic_text_ballon_left"

@@ -31,29 +31,15 @@
                 android:layout_height="@dimen/collapsing_tool_bar_height"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:accessibilityLiveRegion="polite"
                 tools:src="@drawable/ic_astronaut_image_not_found" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/pictureOfTheDayDetailsTextBalonImageNotLoaded"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@drawable/ic_text_ballon"
-                android:padding="@dimen/space_padding_medium"
-                android:gravity="center"
-                android:layout_gravity="center_vertical"
+                style="@style/TextBalonLeft"
                 android:text="@string/image_not_loaded_warning"
-                android:textColor="@color/textColorDiscreet"
-                android:textSize="14sp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsImageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.36"
                 tools:visibility="visible" />
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -104,7 +90,7 @@
                     android:layout_height="@dimen/icon_size_default"
                     android:layout_gravity="end|bottom"
                     android:layout_marginEnd="@dimen/layout_margin_default"
-                    android:layout_marginBottom="36dp"
+                    android:layout_marginBottom="@dimen/layout_margin_for_collapsing_bar_icon"
                     android:contentDescription="@string/label_show_image_in_full_screen"
                     android:elevation="@dimen/elevation_default"
                     android:src="@drawable/ic_fullscreen_enter"
@@ -177,11 +163,12 @@
                 android:textColor="@color/textColorDiscreet"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:lineSpacingExtra="@dimen/line_space_for_titles"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayDetailsLabelWithDate"
-                tools:text="A Plutonian Landscape" />
+                tools:text="A Plutonian Landscape A Plutonian Landscape A Plutonian Landscape" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/pictureOfTheDayDetailsLabelCopyright"

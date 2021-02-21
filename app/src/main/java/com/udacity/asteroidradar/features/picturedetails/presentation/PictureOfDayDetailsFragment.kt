@@ -26,6 +26,7 @@ import com.udacity.asteroidradar.core.extensions.whenNotNull
 import com.udacity.asteroidradar.core.extensions.whenNull
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.mainscreen.presentation.MediaType
+import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
 import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.*
 import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.view.*
 import org.koin.android.ext.android.inject
@@ -114,9 +115,16 @@ class PictureOfDayDetailsFragment : Fragment() {
 			}
 
 			it.date.let { date ->
-				with(view.pictureOfTheDayDetailsLabelWithDate) {
+				with(pictureOfTheDayDetailsLabelWithDate) {
 					showWithFadeIn()
-					text = getString(R.string.label_picture_of_the_day_format_details, formatDate(date))
+					text = when(pictureOfTheDay?.mediaType ?: MediaType.IMAGE) {
+						MediaType.IMAGE.type -> {
+							getString(R.string.label_picture_of_the_day_format, formatDate(date))
+						}
+						else -> {
+							getString(R.string.label_video_of_the_day_format, formatDate(date))
+						}
+					}
 				}
 			}
 
