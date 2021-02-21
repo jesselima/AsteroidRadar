@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/galleryFavoritePictureImageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_250"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/sample_image_of_the_day_hd"
+        android:contentDescription="@string/favorite_picture"/>
+
+    <ImageView
+        android:id="@+id/galleryHighDefinitionImageViewDarkBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_250"
+        android:scaleType="centerCrop"
+        android:background="@drawable/backdrop_image_overlay_darker_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/galleryPictureOfDayTile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="@dimen/layout_margin_default"
+        android:layout_marginStart="@dimen/layout_margin_medium"
+        android:layout_marginEnd="@dimen/layout_margin_medium"
+        android:layout_marginBottom="@dimen/layout_margin_large"
+        android:accessibilityLiveRegion="polite"
+        android:gravity="center"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/galleryFavoritePictureImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Spiral Galaxy NGC1350" />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/loadingImageGalleryItem"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/loading_progress_bar_height_default"
+        android:indeterminate="true"
+        android:theme="@style/AppTheme.PrimaryAccent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/galleryFavoritePictureImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

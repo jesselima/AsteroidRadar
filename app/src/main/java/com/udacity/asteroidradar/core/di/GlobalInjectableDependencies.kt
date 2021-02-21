@@ -6,6 +6,7 @@ import com.udacity.asteroidradar.core.sharedprefs.di.SharedPrefModule
 import com.udacity.asteroidradar.features.asteroiddetail.di.AsteroidDetailsModule
 import com.udacity.asteroidradar.features.mainscreen.di.AsteroidsModule
 import com.udacity.asteroidradar.features.picturedetails.di.PictureOfTheDayDetails
+import com.udacity.asteroidradar.features.picturesfavoritesgallery.di.PicturesGalleryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -27,6 +28,7 @@ internal class GlobalInjectableDependencies(
                     SharedPrefModule.loadModuleDependency(),
                     AsteroidDetailsModule.loadModuleDependency(),
                     PictureOfTheDayDetails.loadModuleDependency(),
+                    PicturesGalleryModule.loadModuleDependency(),
                 )
             )
         }

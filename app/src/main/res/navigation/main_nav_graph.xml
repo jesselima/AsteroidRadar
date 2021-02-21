@@ -31,6 +31,13 @@
                 app:argType="com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay"
                 app:nullable="false"/>
         </action>
+        <action
+            android:id="@+id/navigateToPicturesGalleryFragment"
+            app:destination="@id/picturesGalleryFragment"
+            app:popUpTo="@id/picturesGalleryFragment"
+            app:enterAnim="@anim/fade_in_animation"
+            app:popUpToInclusive="false">
+        </action>
     </fragment>
 
     <fragment
@@ -68,5 +75,11 @@
         android:name="com.udacity.asteroidradar.features.picturedetails.presentation.PictureOfTheDayFullScreenFragment"
         android:label="PictureOfTheDayFullScreenFragment" >
     </fragment>
+
+    <fragment
+        android:id="@+id/picturesGalleryFragment"
+        android:name="com.udacity.asteroidradar.features.picturesfavoritesgallery.PicturesGalleryFragment"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_picture_gallery"/>
 
 </navigation>

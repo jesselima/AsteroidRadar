@@ -37,13 +37,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 
 private const val ARG_PICTURE_OF_THE_DAY_DATA = "pictureOfTheDay"
-
 private const val YOUTUBE_VIDEO_THUMBNAIL_BASE_URL = "https://img.youtube.com/vi/"
 private const val YOUTUBE_VIDEO_THUMBNAIL_PREFIX_AND_FORMAT = "/hqdefault.jpg"
 private const val NASA_VIDEO_URL_PATH_EMBED = "/embed/"
 private const val URL_QUERY_DIVIDER = "?"
 private const val EMPTY = ""
-private const val NO_UPDATE_RESULT = 0
 private const val ARG_HIGH_DEFINITION_IMAGE_URL = "highDefinitionImageUrl"
 private const val ARG_PICTURE_OF_THE_DAY_TITLE = "pictureOfTheDayTitle"
 
@@ -108,12 +106,11 @@ class PictureOfDayDetailsFragment : Fragment() {
 							progressBarHighDefinitionImage.isVisible = false
 							pictureOfTheDayDetailsTextBalonImageNotLoaded.isVisible = false
 						}
-
 						override fun onError(e: Exception?) {
 							progressBarHighDefinitionImage.isVisible = false
 							view.pictureOfTheDayDetailsTextBalonImageNotLoaded.isVisible = true
 						}
-					})
+				})
 			}
 
 			it.date.let { date ->

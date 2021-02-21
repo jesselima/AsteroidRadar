@@ -90,7 +90,11 @@ enum class AnimationType {
     FADE_OUT
 }
 
-fun Fragment.showAppToast(text: String = "", type: ToastType = ToastType.SUCCESS) {
+fun Fragment.showAppToast(
+    text: String = "",
+    type: ToastType = ToastType.SUCCESS,
+    toastDuration: Int = Toast.LENGTH_SHORT
+) {
 
     val inflater = layoutInflater
 
@@ -111,7 +115,7 @@ fun Fragment.showAppToast(text: String = "", type: ToastType = ToastType.SUCCESS
 
     with(Toast(this.context)) {
         setGravity(Gravity.BOTTOM, 0, 100)
-        duration = Toast.LENGTH_LONG
+        duration = toastDuration
         view = layout
         show()
     }

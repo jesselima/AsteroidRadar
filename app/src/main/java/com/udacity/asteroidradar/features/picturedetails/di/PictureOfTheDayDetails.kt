@@ -9,15 +9,12 @@ import org.koin.dsl.module
  * This is a part of the project Asteroid Radar.
  */
 object PictureOfTheDayDetails {
-
 	private val pictureOfTheDayDetailsModule = module {
-
 		viewModel {
 			PictureOfTheDayViewModel(
 				pictureOfTheDayUseCase = get(),
 			)
 		}
 	}
-
 	fun loadModuleDependency() = pictureOfTheDayDetailsModule
 }

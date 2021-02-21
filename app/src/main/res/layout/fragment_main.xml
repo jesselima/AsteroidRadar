@@ -47,7 +47,7 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/pictureOfTheDayViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/app_bar_layout_height_default"
+                    android:layout_height="@dimen/collapsing_app_bar_height_default"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

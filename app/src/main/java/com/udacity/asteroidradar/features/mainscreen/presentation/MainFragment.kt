@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.udacity.asteroidradar.R
@@ -68,7 +69,7 @@ class MainFragment : Fragment() {
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bottom_bar_favorites_gallery -> {
-                    showAppToast("To be implemented", ToastType.WARNING) // TODO - To be implemented
+                    findNavController().navigate(R.id.navigateToPicturesGalleryFragment)
                     true
                 }
                 R.id.app_bar_sort_by_distance -> {

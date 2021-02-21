@@ -5,8 +5,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 
-private const val FIRST_POSITION = 0
-
 class PictureOfTheDayPagerAdapter(
     private var picturesOfTheDay: MutableList<PictureOfDay> = arrayListOf(),
     fragmentActivity: FragmentActivity
@@ -22,11 +20,6 @@ class PictureOfTheDayPagerAdapter(
 
     fun submitList(listOfPicturesOfTheDays: List<PictureOfDay>) {
         picturesOfTheDay = listOfPicturesOfTheDays.toMutableList()
-        notifyDataSetChanged()
-    }
-
-    fun addToList(pictureByDate: PictureOfDay) {
-        picturesOfTheDay.add(FIRST_POSITION, pictureByDate)
         notifyDataSetChanged()
     }
 }
