@@ -71,7 +71,7 @@
     <string name="image_closet_approach_to_earth">Image Closet approach to earth</string>
     <string name="image_asteroid_speed">Image asteroid speed</string>
     <string name="image_information">Image Information</string>
-    <string name="loading_pictures_of_10_last_days">Loading pictures of 10 last days…</string>
+    <string name="loading_pictures">Loading pictures…</string>
     <string name="message_only_youtube_supported">App supports YouTube videos only or could not load the video.</string>
     <string name="label_favorites">Favorites</string>
     <string name="label_more">More</string>

@@ -3,7 +3,7 @@ package com.udacity.asteroidradar.core.extensions
 import androidx.viewpager2.widget.ViewPager2
 import kotlin.math.abs
 
-fun getPagTransformer() : ViewPager2.PageTransformer {
+fun getPageTransformer() : ViewPager2.PageTransformer {
     return ViewPager2.PageTransformer { page, position ->
         val absPos = abs(position)
         page.apply {

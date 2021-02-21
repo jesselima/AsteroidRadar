@@ -11,8 +11,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.udacity.asteroidradar.R
-import kotlinx.android.synthetic.main.custom_toast.*
-import kotlinx.android.synthetic.main.custom_toast.view.*
+import kotlinx.android.synthetic.main.layout_custom_toast.*
+import kotlinx.android.synthetic.main.layout_custom_toast.view.*
 
 fun Fragment.showDialogWithActions(
     context: Context,
@@ -90,25 +90,23 @@ enum class AnimationType {
     FADE_OUT
 }
 
-
 fun Fragment.showAppToast(text: String = "", type: ToastType = ToastType.SUCCESS) {
 
     val inflater = layoutInflater
 
     val layout: ViewGroup = inflater.inflate(
-        R.layout.custom_toast,
+        R.layout.layout_custom_toast,
         customToastContainer,
         false
     ) as ViewGroup
-
-    val imageView: ImageView = layout.findViewById(R.id.toastImage)
     layout.customText.text = text
 
+    val toastIcon: ImageView = layout.findViewById(R.id.toastImage)
     when(type) {
-        ToastType.SUCCESS ->  imageView.setImageResource(R.drawable.ic_success)
-        ToastType.INFO ->     imageView.setImageResource(R.drawable.ic_info)
-        ToastType.WARNING ->  imageView.setImageResource(R.drawable.ic_warning)
-        ToastType.ERROR ->    imageView.setImageResource(R.drawable.ic_error)
+        ToastType.SUCCESS ->  toastIcon.setImageResource(R.drawable.ic_success)
+        ToastType.INFO ->     toastIcon.setImageResource(R.drawable.ic_info)
+        ToastType.WARNING ->  toastIcon.setImageResource(R.drawable.ic_warning)
+        ToastType.ERROR ->    toastIcon.setImageResource(R.drawable.ic_error)
     }
 
     with(Toast(this.context)) {

@@ -22,7 +22,10 @@
         </action>
         <action
             android:id="@+id/navigateToPictureOfDayDetailsFragment"
-            app:destination="@id/pictureOfDayDetailsFragment">
+            app:destination="@id/pictureOfDayDetailsFragment"
+            app:popUpTo="@id/pictureOfDayDetailsFragment"
+            app:enterAnim="@anim/fade_in_animation"
+            app:popUpToInclusive="false">
             <argument
                 android:name="pictureOfDay"
                 app:argType="com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay"

@@ -23,7 +23,7 @@ class AsteroidsAdapter(
 
 	override fun onCreateViewHolder(rootViewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-		return rootViewGroup.inflate(R.layout.item_list_asteroids).run {
+		return rootViewGroup.inflate(R.layout.layout_item_list_asteroids).run {
 			showListItemWithFadeIn()
 			AsteroidsViewHolder(this)
 		}

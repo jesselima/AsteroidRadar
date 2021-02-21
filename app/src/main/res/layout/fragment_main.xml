@@ -76,7 +76,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pictureOfTheDayViewPager"
-                    tools:listitem="@layout/item_list_asteroids" />
+                    tools:listitem="@layout/layout_item_list_asteroids" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             tools:visibility="visible"
-            android:layout_marginTop="@dimen/space_500"
+            android:layout_marginTop="@dimen/space_600"
             android:textColor="@color/colorStateOn"
             android:layout_gravity="center"
             android:text="@string/go_into_space_and_try_again"/>
@@ -142,7 +142,7 @@
             android:elevation="@dimen/elevation_default"
             tools:visibility="visible"
             android:textColor="@color/primaryTextColor"
-            tools:text="@string/loading_pictures_of_10_last_days"/>
+            tools:text="@string/loading_pictures"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

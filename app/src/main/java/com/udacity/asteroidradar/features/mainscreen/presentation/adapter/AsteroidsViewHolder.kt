@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.formatNumberToString
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.AsteroidsFeedItem
-import kotlinx.android.synthetic.main.item_list_asteroids.view.*
+import kotlinx.android.synthetic.main.layout_item_list_asteroids.view.*
 
 /**
  * Created by jesselima on 17/01/21.
@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.item_list_asteroids.view.*
  */
 
 private const val ASTEROID_ID = "asteroidId"
-
 
 class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
