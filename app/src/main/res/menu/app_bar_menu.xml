@@ -11,6 +11,13 @@
         />
 
     <item
+        android:id="@+id/bottom_bar_show_today_asteroids"
+        android:title="@string/app_bar_show__today_asteroids"
+        android:contentDescription="@string/app_bar_show__today_asteroids"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/bottom_bar_sort_by_distance"
         android:title="@string/app_bar_sort_by_distance"
         android:contentDescription="@string/app_bar_sort_by_distance"
@@ -44,7 +51,5 @@
         android:contentDescription="@string/app_bar_sort_by_date"
         app:showAsAction="never"
         />
-
-
 
 </menu>

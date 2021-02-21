@@ -104,6 +104,16 @@ class MainViewModel(
 		}
 	}
 
+	fun getTodayAsteroids() {
+		viewModelScope.launch {
+			_asteroidsState.value = AsteroidsState(isLoadingAsteroids = true)
+			val data = withContext(Dispatchers.IO) {
+				asteroidsFeedUseCase.getLocalFeed()
+			}
+			_asteroidsState.value = AsteroidsState(asteroidsResult = data, isLoadingAsteroids = false)
+		}
+	}
+
 	fun requestRemoteAsteroidsData() {
 		viewModelScope.launch {
 			_asteroidsState.value = AsteroidsState(isLoadingAsteroids = true)

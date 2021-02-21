@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Asteroid Radar</string>
 
-    <string name="next_week_asteroids">View week asteroids</string>
-    <string name="today_asteroids">View today asteroids</string>
-    <string name="saved_asteroids">View saved asteroids</string>
     <string name="close_approach_data_title">Close approach date</string>
     <string name="absolute_magnitude_title">Absolute magnitude</string>
     <string name="estimated_diameter_title">Estimated diameter</string>
@@ -95,6 +92,7 @@
     <string name="app_bar_show_only_favorites_pictures">Show favorites pictures</string>
     <string name="app_bar_show_all_pictures">Show all pictures</string>
     <string name="app_bar_main_item_gallery">Gallery of favorites pictures of the day</string>
+    <string name="app_bar_show__today_asteroids">Show today asteroids</string>
     <string name="go_into_space_and_try_again">Go into space and try again</string>
 
 </resources>

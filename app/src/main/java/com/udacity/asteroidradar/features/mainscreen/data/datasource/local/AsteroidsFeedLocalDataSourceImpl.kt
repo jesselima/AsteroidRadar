@@ -16,6 +16,10 @@ class AsteroidsFeedLocalDataSourceImpl(
         return asteroidDao.getAllAsteroids()
     }
 
+    override suspend fun getTodayAsteroids(): List<AsteroidsFeedItem> {
+        return asteroidDao.getTodayAsteroids(date = getCurrentDate())
+    }
+
     override suspend fun saveFeedToLocalDatabase(asteroidsFeed: List<AsteroidsFeedItem>) {
         asteroidDao.deleteOldAsteroids(currentDate = getCurrentDate())
         asteroidsFeed.forEach {

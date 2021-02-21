@@ -9,4 +9,5 @@ import com.udacity.asteroidradar.features.mainscreen.domain.entities.AsteroidsFe
 interface AsteroidsFeedUseCase {
 	suspend fun getRemoteFeed()
 	suspend fun getLocalFeed() : List<AsteroidsFeedItem>
+	suspend fun getTodayAsteroids() : List<AsteroidsFeedItem>
 }

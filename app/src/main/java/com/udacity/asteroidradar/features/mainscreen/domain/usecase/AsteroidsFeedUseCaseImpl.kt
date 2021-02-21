@@ -18,4 +18,8 @@ class AsteroidsFeedUseCaseImpl(
 	override suspend fun getLocalFeed(): List<AsteroidsFeedItem> {
 		return repository.getLocalFeed()
 	}
+
+	override suspend fun getTodayAsteroids(): List<AsteroidsFeedItem> {
+		return repository.getTodayAsteroids()
+	}
 }

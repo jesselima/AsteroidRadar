@@ -36,4 +36,8 @@ class AsteroidsFeedRepositoryImpl(
 	override suspend fun getLocalFeed(): List<AsteroidsFeedItem> {
 		return asteroidsFeedLocalDataSource.getLocalAsteroidsFeed()
 	}
+
+	override suspend fun getTodayAsteroids(): List<AsteroidsFeedItem> {
+		return asteroidsFeedLocalDataSource.getTodayAsteroids()
+	}
 }

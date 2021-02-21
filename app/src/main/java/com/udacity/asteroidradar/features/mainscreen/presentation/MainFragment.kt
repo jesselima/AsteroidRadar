@@ -93,6 +93,10 @@ class MainFragment : Fragment() {
                     viewModel.getLocalPictureOfTheLastSevenDays()
                     true
                 }
+                R.id.bottom_bar_show_today_asteroids -> {
+                    viewModel.getTodayAsteroids()
+                    true
+                }
                 else -> false
             }
         }
