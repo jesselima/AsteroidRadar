@@ -92,7 +92,8 @@
     <string name="app_bar_show_only_favorites_pictures">Show favorites pictures</string>
     <string name="app_bar_show_all_pictures">Show all pictures</string>
     <string name="app_bar_main_item_gallery">Gallery of favorites pictures of the day</string>
-    <string name="app_bar_show__today_asteroids">Show today asteroids</string>
+    <string name="app_bar_show_today_asteroids">Show today asteroids</string>
+    <string name="app_bar_show_week_asteroids">Show week asteroids</string>
     <string name="go_into_space_and_try_again">Go into space and try again</string>
 
 </resources>

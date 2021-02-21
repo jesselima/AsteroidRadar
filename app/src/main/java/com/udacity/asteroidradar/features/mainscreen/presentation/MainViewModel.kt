@@ -105,9 +105,7 @@ class MainViewModel(
 				key = HAS_RETRIEVED_REMOTE_PICTURES_DATA_PREVIOUSLY,
 				value = data.isNotEmpty()
 			)
-			if (data.isNotEmpty()) {
-				_picturesState.value = null
-			}
+			if (data.isNotEmpty()) _picturesState.value = null
 			_picturesState.value = PicturesState(
 				picturesResult = data,
 				isLoadingPictures = false
@@ -115,7 +113,7 @@ class MainViewModel(
 		}
 	}
 
-	private fun getLocalAsteroidsFeed() {
+	fun getLocalAsteroidsFeed() {
 		viewModelScope.launch {
 			val data = withContext(Dispatchers.IO) {
 				asteroidsFeedUseCase.getLocalFeed()
@@ -158,10 +156,8 @@ class MainViewModel(
 			val data = withContext(Dispatchers.IO) {
 				pictureOfTheDayUseCase.getAllLocalFavoritesPicturesOfTheDay()
 			}
-			if (data.isNotEmpty()) {
-				_picturesState.value = null
-				_picturesState.value = picturesState.value?.copy(picturesResult = data)
-			}
+			if (data.isNotEmpty()) _picturesState.value = null
+			_picturesState.value = picturesState.value?.copy(picturesResult = data)
 		}
 	}
 
@@ -169,12 +165,10 @@ class MainViewModel(
 		viewModelScope.launch {
 			_asteroidsState.value = asteroidsState.value?.copy(isLoadingAsteroids = true)
 			val data = withContext(Dispatchers.IO) {
-				asteroidsFeedUseCase.getLocalFeed()
+				asteroidsFeedUseCase.getTodayAsteroids()
 			}
-			_asteroidsState.value = asteroidsState.value?.copy(
-				asteroidsResult = data,
-				isLoadingAsteroids = false
-			)
+			if (data.isNotEmpty()) _asteroidsState.value = null
+			_asteroidsState.value = AsteroidsState(asteroidsResult = data)
 		}
 	}
 

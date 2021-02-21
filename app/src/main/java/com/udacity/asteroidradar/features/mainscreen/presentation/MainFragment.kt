@@ -71,30 +71,34 @@ class MainFragment : Fragment() {
                     showAppToast("To be implemented", ToastType.WARNING) // TODO - To be implemented
                     true
                 }
-                R.id.bottom_bar_sort_by_distance -> {
+                R.id.app_bar_sort_by_distance -> {
                     viewModel.sortAsteroidsByDistance()
                     true
                 }
-                R.id.bottom_bar_sort_by_speed -> {
+                R.id.app_bar_sort_by_speed -> {
                     viewModel.sortAsteroidsBySpeed()
                     true
                 }
-                R.id.bottom_bar_sort_by_date -> {
+                R.id.app_bar_sort_by_date -> {
                     viewModel.sortAsteroidsByDate()
                     true
                 }
-                R.id.bottom_bar_show_only_favorites_pictures -> {
+                R.id.app_bar_show_only_favorites_pictures -> {
                     viewModel.getAllLocalFavoritesPicturesOfTheDay()
                     true
                 }
-                R.id.bottom_bar_show_all_pictures -> {
+                R.id.app_bar_show_all_pictures -> {
                     viewModel.getLocalPictureOfTheLastSevenDays()
                     true
                 }
-                R.id.bottom_bar_show_today_asteroids -> {
+                R.id.app_bar_show_today_asteroids -> {
                     viewModel.getTodayAsteroids()
                     true
                 }
+				R.id.app_bar_show_week_asteroids -> {
+					viewModel.getLocalAsteroidsFeed()
+					true
+				}
                 else -> false
             }
         }

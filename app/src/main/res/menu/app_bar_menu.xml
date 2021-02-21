@@ -11,42 +11,49 @@
         />
 
     <item
-        android:id="@+id/bottom_bar_show_today_asteroids"
-        android:title="@string/app_bar_show__today_asteroids"
-        android:contentDescription="@string/app_bar_show__today_asteroids"
+        android:id="@+id/app_bar_show_today_asteroids"
+        android:title="@string/app_bar_show_today_asteroids"
+        android:contentDescription="@string/app_bar_show_today_asteroids"
         app:showAsAction="never"
         />
 
     <item
-        android:id="@+id/bottom_bar_sort_by_distance"
+        android:id="@+id/app_bar_show_week_asteroids"
+        android:title="@string/app_bar_show_week_asteroids"
+        android:contentDescription="@string/app_bar_show_week_asteroids"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/app_bar_sort_by_distance"
         android:title="@string/app_bar_sort_by_distance"
         android:contentDescription="@string/app_bar_sort_by_distance"
         app:showAsAction="never"
         />
 
     <item
-        android:id="@+id/bottom_bar_sort_by_speed"
+        android:id="@+id/app_bar_sort_by_speed"
         android:title="@string/app_bar_sort_by_speed"
         android:contentDescription="@string/app_bar_sort_by_speed"
         app:showAsAction="never"
         />
 
     <item
-        android:id="@+id/bottom_bar_sort_by_date"
+        android:id="@+id/app_bar_sort_by_date"
         android:title="@string/app_bar_sort_by_date"
         android:contentDescription="@string/app_bar_sort_by_date"
         app:showAsAction="never"
         />
 
     <item
-        android:id="@+id/bottom_bar_show_only_favorites_pictures"
+        android:id="@+id/app_bar_show_only_favorites_pictures"
         android:title="@string/app_bar_show_only_favorites_pictures"
         android:contentDescription="@string/app_bar_show_only_favorites_pictures"
         app:showAsAction="never"
         />
 
     <item
-        android:id="@+id/bottom_bar_show_all_pictures"
+        android:id="@+id/app_bar_show_all_pictures"
         android:title="@string/app_bar_show_all_pictures"
         android:contentDescription="@string/app_bar_sort_by_date"
         app:showAsAction="never"
