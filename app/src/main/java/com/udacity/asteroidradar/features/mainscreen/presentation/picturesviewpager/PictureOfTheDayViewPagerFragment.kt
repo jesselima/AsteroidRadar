@@ -16,6 +16,7 @@ import com.udacity.asteroidradar.core.extensions.formatDate
 import com.udacity.asteroidradar.core.extensions.inflateFragment
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
+import com.udacity.asteroidradar.core.extensions.whenNotNull
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.mainscreen.presentation.MediaType
 import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
@@ -71,12 +72,12 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
                         .error(R.drawable.ic_astronaut_image_not_found)
                         .into(mainViewPagerCollapsingToolbarImageView, object : Callback {
                             override fun onSuccess() {
-                                loadingPagerImageItemProgressBar.isVisible = false
-                                mainViewPagerTextBalonImageNotLoaded.isVisible = false
+                                loadingPagerImageItemProgressBar.whenNotNull { isVisible = false }
+                                mainViewPagerTextBalonImageNotLoaded.whenNotNull { isVisible = false }
                             }
                             override fun onError(e: Exception?) {
-                                loadingPagerImageItemProgressBar.isVisible = false
-                                mainViewPagerTextBalonImageNotLoaded.isVisible = true
+                                loadingPagerImageItemProgressBar.whenNotNull { isVisible = false }
+                                mainViewPagerTextBalonImageNotLoaded.whenNotNull { isVisible = true }
                             }
                         })
                 }
