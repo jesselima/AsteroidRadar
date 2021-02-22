@@ -1,14 +1,16 @@
 package com.udacity.asteroidradar.features.mainscreen.presentation.picturesviewpager
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 
 class PictureOfTheDayPagerAdapter(
     private var picturesOfTheDay: MutableList<PictureOfDay> = arrayListOf(),
-    fragmentActivity: FragmentActivity
-) : FragmentStateAdapter(fragmentActivity) {
+    fragmentManager: FragmentManager,
+    lifecycle: Lifecycle
+) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int = picturesOfTheDay.size
 

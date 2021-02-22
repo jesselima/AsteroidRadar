@@ -58,7 +58,10 @@ class MainFragment : Fragment() {
     }
 
     private fun setupPictureOfTheDayPagerAdapter() {
-        picturesViewPagerAdapter = PictureOfTheDayPagerAdapter(fragmentActivity = requireActivity())
+        picturesViewPagerAdapter = PictureOfTheDayPagerAdapter(
+            fragmentManager = childFragmentManager,
+            lifecycle = viewLifecycleOwner.lifecycle
+        )
         pictureOfTheDayViewPager.adapter = picturesViewPagerAdapter
         pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pictureOfTheDayViewPager.setPageTransformer(getPageTransformer())
