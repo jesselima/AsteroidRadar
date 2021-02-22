@@ -26,7 +26,7 @@ class PictureOfTheDayViewModel(
 	fun toggleFavoritePictureState(pictureOfDay: PictureOfDay) {
 		viewModelScope.launch {
 			val result = withContext(Dispatchers.IO) {
-				pictureOfTheDayUseCase.toggleFavoritePictureState(pictureOfDay)
+				pictureOfTheDayUseCase.updateFavoritePictureState(pictureOfDay)
 			}
 
 			val data = withContext(Dispatchers.IO) {

@@ -69,6 +69,10 @@ class PictureOfTheDayRepositoryImpl(
 		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDay(date = date)
 	}
 
+	override suspend fun getLocalPictureOfTheDayById(id: Long): PictureOfDay {
+		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDayById(id = id)
+	}
+
 	override suspend fun getLocalPictureOfTheLastSevenDays(): List<PictureOfDay> {
 		return  pictureOfTheDayLocalDataSource.getLocalPictureOfTheLastSevenDays(
 			startDate = getDateForDaysBehind(),
@@ -80,7 +84,15 @@ class PictureOfTheDayRepositoryImpl(
 		return pictureOfTheDayLocalDataSource.getAllLocalFavoritesPicturesOfTheDay()
 	}
 
-	override suspend fun toggleFavoritePictureState(pictureOfDay: PictureOfDay): Int {
-		return pictureOfTheDayLocalDataSource.toggleFavoritePictureState(pictureOfDay)
+	override suspend fun updateFavoritePictureState(pictureOfDay: PictureOfDay): Int {
+		return pictureOfTheDayLocalDataSource.updateFavoritePictureState(pictureOfDay)
+	}
+
+	override suspend fun deleteAllPictures(): Int {
+		return pictureOfTheDayLocalDataSource.deleteAllPictures()
+	}
+
+	override suspend fun deleteFavoritesOnly(): Int {
+		return pictureOfTheDayLocalDataSource.deleteFavoritesOnly()
 	}
 }
