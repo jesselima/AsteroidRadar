@@ -26,7 +26,6 @@ import com.udacity.asteroidradar.core.extensions.whenNotNull
 import com.udacity.asteroidradar.core.extensions.whenNull
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.mainscreen.presentation.MediaType
-import kotlinx.android.synthetic.main.fragment_picture_of_the_day_pager_layout.*
 import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.*
 import kotlinx.android.synthetic.main.fragment_picure_of_the_day_details.view.*
 import org.koin.android.ext.android.inject
@@ -79,7 +78,9 @@ class PictureOfDayDetailsFragment : Fragment() {
 		}
 
 		pictureOfTheDay = arguments?.getParcelable(ARG_PICTURE_OF_THE_DAY_DATA)
-		viewModel.setPictureOfTheDay(pictureOfTheDay)
+		pictureOfTheDay?.id?.let { pictureId ->
+			viewModel.getUpdatedFavoriteStateFromDataBase(pictureId = pictureId)
+		}
 
 		mediaType = pictureOfTheDay?.mediaType ?: MediaType.IMAGE.type
 
@@ -95,7 +96,6 @@ class PictureOfDayDetailsFragment : Fragment() {
 		val url = setUrlAccordinglyToMediaType(mediaType)
 
 		pictureOfTheDay?.let {
-			toggleFavoriteButtonState(it.isFavorite)
 			it.imageUrl.let {
 				progressBarHighDefinitionImage.isVisible = true
 				Picasso.get()
@@ -171,17 +171,16 @@ class PictureOfDayDetailsFragment : Fragment() {
 	private fun setupObservers() {
 		viewModel.pictureOfTheDay.observe(viewLifecycleOwner, { pictureOfTheDayState ->
 			pictureOfTheDay = pictureOfTheDayState
-			toggleFavoriteButtonState(pictureOfTheDayState?.isFavorite ?: false)
 		})
-		viewModel.saveState.observe(viewLifecycleOwner, { hasSavedWithSuccess ->
-			val isFavorite = pictureOfTheDay?.isFavorite ?: false
-			hasSavedWithSuccess.whenNotNull {
-				if (isFavorite) {
-					showAppToast(getString(R.string.saved), ToastType.SUCCESS)
-				} else {
-					showAppToast(getString(R.string.removed), ToastType.INFO)
-				}
+		viewModel.saveState.observe(viewLifecycleOwner, { saveState ->
+			when(saveState) {
+				SaveState.SAVED -> showAppToast(getString(R.string.saved), ToastType.SUCCESS)
+				SaveState.REMOVED -> showAppToast(getString(R.string.removed), ToastType.INFO)
 			}
+		})
+		viewModel.pictureFavoriteState.observe(viewLifecycleOwner, { isFavorite ->
+			pictureOfTheDay?.isFavorite = isFavorite
+			toggleFavoriteButtonState(isFavorite = isFavorite)
 		})
 	}
 
@@ -207,8 +206,8 @@ class PictureOfDayDetailsFragment : Fragment() {
 		}
 
 		pictureOfTheDayDetailsToggleFavorite.setOnClickListener {
-			pictureOfTheDay?.let {
-				viewModel.toggleFavoritePictureState(pictureOfDay = it.copy(isFavorite = it.isFavorite.not()))
+			pictureOfTheDay?.let { pictureOfTheDayData ->
+				viewModel.toggleFavoritePictureState(pictureOfTheDayData)
 			}
 		}
 
