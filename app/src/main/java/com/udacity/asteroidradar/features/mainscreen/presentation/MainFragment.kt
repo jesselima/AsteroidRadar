@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.ToastType
@@ -71,6 +72,21 @@ class MainFragment : Fragment() {
         pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pictureOfTheDayViewPager.setPageTransformer(getPageTransformer())
         TabLayoutMediator(tabLayout, pictureOfTheDayViewPager) { _, _ -> }.attach()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val position = tabLayout.selectedTabPosition
+        if (position > 0) {
+            viewModel.setCurrentPageAdapterPosition(position)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.pictureOfTheDayViewPagerCurrentItem.observe(viewLifecycleOwner, {
+            pictureOfTheDayViewPager.currentItem = it
+        })
     }
 
     private fun setupListeners() {
@@ -158,6 +174,7 @@ class MainFragment : Fragment() {
                 )
             }
         })
+
     }
 
     private fun PicturesState.renderViewState() {

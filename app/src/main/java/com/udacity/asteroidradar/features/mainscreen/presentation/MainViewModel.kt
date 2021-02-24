@@ -9,6 +9,7 @@ import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.AsteroidsFeedUseCase
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.PictureOfTheDayUseCase
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,6 +35,9 @@ class MainViewModel(
 
 	private val _affectedDataItems = MutableLiveData<Int?>()
 	val affectedDataItems: LiveData<Int?> = _affectedDataItems
+
+	private val _pictureOfTheDayViewPagerCurrentItem = MutableLiveData<Int>()
+	val pictureOfTheDayViewPagerCurrentItem: LiveData<Int> = _pictureOfTheDayViewPagerCurrentItem
 
 	init {
 		val isConnected = connectionChecker.isConnected()
@@ -259,6 +263,10 @@ class MainViewModel(
 			_affectedDataItems.value = updatedRows
 			_affectedDataItems.value = null
 		}
+	}
+
+	fun setCurrentPageAdapterPosition(position: Int) {
+		_pictureOfTheDayViewPagerCurrentItem.value = position
 	}
 
 }
