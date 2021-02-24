@@ -11,6 +11,7 @@ import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.core.di.GlobalInjectableDependencies
 import com.udacity.asteroidradar.core.work.AsteroidsRadarWork
+import com.udacity.asteroidradar.core.work.PicturesOfTheDayRadarWork
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -68,6 +69,13 @@ class AsteroidRadarApplication : Application() {
                 ExistingPeriodicWorkPolicy.KEEP,
                 repeatingWorkedRequest
             )
+
+            WorkManager.getInstance().enqueueUniquePeriodicWork(
+                PicturesOfTheDayRadarWork::class.java.simpleName,
+                ExistingPeriodicWorkPolicy.KEEP,
+                repeatingWorkedRequest
+            )
+
         }
     }
 }
