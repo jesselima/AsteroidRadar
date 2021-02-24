@@ -173,9 +173,11 @@ class PictureOfDayDetailsFragment : Fragment() {
 			pictureOfTheDay = pictureOfTheDayState
 		})
 		viewModel.saveState.observe(viewLifecycleOwner, { saveState ->
-			when(saveState) {
-				SaveState.SAVED -> showAppToast(getString(R.string.saved), ToastType.SUCCESS)
-				SaveState.REMOVED -> showAppToast(getString(R.string.removed), ToastType.INFO)
+			saveState.whenNotNull {
+				when(this) {
+					SaveState.SAVED -> showAppToast(getString(R.string.saved), ToastType.SUCCESS)
+					SaveState.REMOVED -> showAppToast(getString(R.string.removed), ToastType.INFO)
+				}
 			}
 		})
 		viewModel.pictureFavoriteState.observe(viewLifecycleOwner, { isFavorite ->

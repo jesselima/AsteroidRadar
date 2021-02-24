@@ -41,6 +41,7 @@ class PictureOfTheDayViewModel(
 				} else {
 					SaveState.SAVED
 				}
+				_saveState.value = null
 			}
 		}
 	}
