@@ -41,4 +41,54 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/layout_item_list_picture_gallery" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/noFavoritesFoundEmptySpaceBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_empty_space_portrait"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animatedNoFavoritesPicturesFound"
+            android:layout_width="@dimen/lottie_default_width"
+            android:layout_height="@dimen/lottie_default_height"
+            android:layout_gravity="center|end"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/astronaut_loading_in_space"
+            tools:background="@color/colorStateOn"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/animatedNoFavoritesTextBalonMessage"
+            android:layout_width="@dimen/space_200"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:background="@drawable/ic_text_ballon_right"
+            android:gravity="center"
+            android:padding="@dimen/view_padding_default"
+            android:text="@string/message_no_favorite_pictures_found_try_to_add_some"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="14sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/animatedNoFavoritesPicturesFound"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.36"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

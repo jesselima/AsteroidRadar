@@ -96,8 +96,25 @@
     <string name="app_bar_show_week_asteroids">Show week asteroids</string>
     <string name="go_into_space_and_try_again">Go into space and try again</string>
     <string name="label_favorites_pictures_of_the_day">Favorite pictures</string>
-    <string name="no_favorite_pictures_found_try_to_add_some">Oops!\nNo favorite pictures found.\nTry to add some first.</string>
+    <string name="message_no_favorite_pictures_found_try_to_add_some">Oops! No favorite\npictures found.\nTry to add some first.</string>
     <string name="favorite_picture">Favorite picture</string>
     <string name="message_this_image_could_not_be_loaded">This image could not be loaded</string>
+    <string name="deleted_items_format">Items deleted!</string>
+    <string name="app_bar_delete_favorite_pictures">Delete favorite pictures only</string>
+    <string name="app_bar_delete_not_favorite_pictures">Delete not favorite pictures</string>
+    <string name="app_bar_delete_all_pictures">Delete all pictures (keep today)</string>
+    <string name="app_bar_delete_zone">DELETE ZONE</string>
+    <string name="app_bar_reset_favorites_pictures">Reset favorite pictures</string>
+    <string name="message_attention">Attention!</string>
+    <string name="message_warning_reset_favorites_pictures">This action will remove the favorite status You have made before.\nThis action can not be undone.</string>
+    <string name="message_warning_delete_favorite_pictures">This action will delete all favorite (only) pictures from the local cache.\nThis action can not be undone.</string>
+    <string name="message_warning_delete_not_favorite_pictures">This action will delete all pictures not set as favorite from the local cache.\nThis action can not be undone.</string>
+    <string name="message_warning_delete_all_pictures">This action will delete all favorite pictures from the local cache. Only the today\'s picture will remain.\nThis action can not be undone.</string>
+
+    <plurals name="number_of_items_delete">
+        <item quantity="one">%d item modified!</item>
+        <item quantity="few">%d items modified!</item>
+        <item quantity="other">%d items modified!</item>
+    </plurals>
 
 </resources>
