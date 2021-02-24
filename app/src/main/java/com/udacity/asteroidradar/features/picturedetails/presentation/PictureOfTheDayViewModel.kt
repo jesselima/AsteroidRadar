@@ -50,7 +50,7 @@ class PictureOfTheDayViewModel(
 			val favoriteState = withContext(Dispatchers.IO) {
 				pictureOfTheDayUseCase.getLocalPictureOfTheDayById(id = pictureId)
 			}
-			_pictureFavoriteState.value = favoriteState.isFavorite
+			_pictureFavoriteState.value = favoriteState?.isFavorite
 		}
 	}
 }

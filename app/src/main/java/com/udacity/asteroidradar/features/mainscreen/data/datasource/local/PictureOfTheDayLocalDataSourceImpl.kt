@@ -12,11 +12,11 @@ class PictureOfTheDayLocalDataSourceImpl(
 
     private val pictureOfTheDayDao = AppDatabase.getDatabase(application).pictureOfTheDayDao()
 
-    override suspend fun getLocalPictureOfTheDay(date: String): PictureOfDay {
+    override suspend fun getLocalPictureOfTheDay(date: String): PictureOfDay? {
         return pictureOfTheDayDao.getLocalPictureOfTheDay(date = date)
     }
 
-	override suspend fun getLocalPictureOfTheDayById(id: Long): PictureOfDay {
+	override suspend fun getLocalPictureOfTheDayById(id: Long): PictureOfDay? {
 		return pictureOfTheDayDao.getLocalPictureOfTheDayById(id = id)
 	}
 
@@ -50,5 +50,17 @@ class PictureOfTheDayLocalDataSourceImpl(
 
 	override suspend fun deleteFavoritesOnly(): Int {
 		return pictureOfTheDayDao.deleteFavoritesOnly()
+	}
+
+	override suspend fun deleteNotFavoritesOnly(): Int {
+		return pictureOfTheDayDao.deleteNotFavoritesOnly()
+	}
+
+	override suspend fun resetFavorites(): Int {
+		return pictureOfTheDayDao.resetFavorites()
+	}
+
+	override suspend fun deletePictureOfTheDayByDate(date: String): Int {
+		return pictureOfTheDayDao.deletePictureOfTheDayByDate(date = date)
 	}
 }

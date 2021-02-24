@@ -55,8 +55,40 @@
     <item
         android:id="@+id/app_bar_show_all_pictures"
         android:title="@string/app_bar_show_all_pictures"
-        android:contentDescription="@string/app_bar_sort_by_date"
+        android:contentDescription="@string/app_bar_show_all_pictures"
         app:showAsAction="never"
         />
 
+    <item
+        android:id="@+id/app_bar_reset_favorites_pictures"
+        android:title="@string/app_bar_reset_favorites_pictures"
+        android:contentDescription="@string/app_bar_reset_favorites_pictures"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/delete_submenu"
+        android:title="@string/app_bar_delete_zone"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/app_bar_delete_favorite_pictures"
+                android:title="@string/app_bar_delete_favorite_pictures"
+                android:contentDescription="@string/app_bar_delete_favorite_pictures"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/app_bar_delete_not_favorites_pictures"
+                android:title="@string/app_bar_delete_not_favorite_pictures"
+                android:contentDescription="@string/app_bar_delete_not_favorite_pictures"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/app_bar_delete_all_pictures"
+                android:title="@string/app_bar_delete_all_pictures"
+                android:contentDescription="@string/app_bar_delete_all_pictures"
+                app:showAsAction="never"
+                />
+        </menu>
+    </item>
 </menu>

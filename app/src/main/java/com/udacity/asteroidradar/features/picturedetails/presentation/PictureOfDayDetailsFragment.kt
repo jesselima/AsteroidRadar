@@ -179,8 +179,10 @@ class PictureOfDayDetailsFragment : Fragment() {
 			}
 		})
 		viewModel.pictureFavoriteState.observe(viewLifecycleOwner, { isFavorite ->
-			pictureOfTheDay?.isFavorite = isFavorite
-			toggleFavoriteButtonState(isFavorite = isFavorite)
+			isFavorite.whenNotNull {
+				pictureOfTheDay?.isFavorite = this
+				toggleFavoriteButtonState(isFavorite = this)
+			}
 		})
 	}
 

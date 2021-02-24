@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,8 +15,10 @@ import com.udacity.asteroidradar.core.extensions.ToastType
 import com.udacity.asteroidradar.core.extensions.getPageTransformer
 import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
 import com.udacity.asteroidradar.core.extensions.showAppToast
+import com.udacity.asteroidradar.core.extensions.showDialog
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
 import com.udacity.asteroidradar.core.extensions.showWithLongFadeIn
+import com.udacity.asteroidradar.core.extensions.whenNotNull
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.AsteroidsFeedItem
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
@@ -23,6 +26,8 @@ import com.udacity.asteroidradar.features.mainscreen.presentation.adapter.Astero
 import com.udacity.asteroidradar.features.mainscreen.presentation.picturesviewpager.PictureOfTheDayPagerAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+private const val NO_DELETED_RESULT = 0
 
 class MainFragment : Fragment() {
 
@@ -75,6 +80,15 @@ class MainFragment : Fragment() {
                     findNavController().navigate(R.id.navigateToPicturesGalleryFragment)
                     true
                 }
+                // Filter Actions
+                R.id.app_bar_show_today_asteroids -> {
+                    viewModel.getTodayAsteroids()
+                    true
+                }
+                R.id.app_bar_show_week_asteroids -> {
+                    viewModel.getLocalAsteroidsFeed()
+                    true
+                }
                 R.id.app_bar_sort_by_distance -> {
                     viewModel.sortAsteroidsByDistance()
                     true
@@ -87,6 +101,7 @@ class MainFragment : Fragment() {
                     viewModel.sortAsteroidsByDate()
                     true
                 }
+                // Sort Pictures
                 R.id.app_bar_show_only_favorites_pictures -> {
                     viewModel.getAllLocalFavoritesPicturesOfTheDay()
                     true
@@ -95,14 +110,28 @@ class MainFragment : Fragment() {
                     viewModel.getLocalPictureOfTheLastSevenDays()
                     true
                 }
-                R.id.app_bar_show_today_asteroids -> {
-                    viewModel.getTodayAsteroids()
+                // Reset Actions
+                R.id.app_bar_reset_favorites_pictures -> {
+                    showDeleteWarning(R.string.message_warning_reset_favorites_pictures)
+                    { viewModel.resetFavorites() }
                     true
                 }
-				R.id.app_bar_show_week_asteroids -> {
-					viewModel.getLocalAsteroidsFeed()
-					true
-				}
+                // Delete Actions
+                R.id.app_bar_delete_favorite_pictures -> {
+                    showDeleteWarning(R.string.message_warning_delete_favorite_pictures)
+                    { viewModel.deleteFavoritesOnly() }
+                    true
+                }
+                R.id.app_bar_delete_not_favorites_pictures -> {
+                    showDeleteWarning(R.string.message_warning_delete_not_favorite_pictures)
+                    { viewModel.deleteNotFavoritesOnly() }
+                    true
+                }
+                R.id.app_bar_delete_all_pictures -> {
+                    showDeleteWarning(R.string.message_warning_delete_all_pictures)
+                    { viewModel.deleteAllPictures() }
+                    true
+                }
                 else -> false
             }
         }
@@ -117,6 +146,17 @@ class MainFragment : Fragment() {
         })
         viewModel.picturesState.observe(viewLifecycleOwner, { state ->
             state?.renderViewState()
+        })
+        viewModel.affectedDataItems.observe(viewLifecycleOwner, { deletedItems ->
+            deletedItems.whenNotNull {
+                if (this > NO_DELETED_RESULT) showAppToast(
+                    resources.getQuantityString(
+                        R.plurals.number_of_items_delete,
+                        this,
+                        this),
+                    ToastType.INFO
+                )
+            }
         })
     }
 
@@ -168,5 +208,16 @@ class MainFragment : Fragment() {
 
     private fun handleAsteroidsSuccess(asteroidsResult: List<AsteroidsFeedItem>) {
         asteroidsAdapter.submitList(asteroidsData = asteroidsResult)
+    }
+
+    private fun showDeleteWarning(@StringRes stringResMessage: Int, action: () -> Unit) {
+        context?.let {
+            showDialog(
+                context = it,
+                title = getString(R.string.message_attention),
+                message = getString(stringResMessage),
+                positiveButtonAction = action
+            )
+        }
     }
 }

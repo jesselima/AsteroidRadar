@@ -9,11 +9,14 @@ import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDa
 interface PictureOfTheDayUseCase {
 	suspend fun getRemotePictureOfTheLastSevenDays()
 	suspend fun getRemotePictureOfTheDayByDate(date: String)
-	suspend fun getLocalPictureOfTheDayByDate(date: String) : PictureOfDay
-	suspend fun getLocalPictureOfTheDayById(id: Long) : PictureOfDay
+	suspend fun getLocalPictureOfTheDayByDate(date: String) : PictureOfDay?
+	suspend fun getLocalPictureOfTheDayById(id: Long) : PictureOfDay?
 	suspend fun getLocalPictureOfTheDayLastSevenDays() : List<PictureOfDay>
 	suspend fun getAllLocalFavoritesPicturesOfTheDay() : List<PictureOfDay>
 	suspend fun updateFavoritePictureState(pictureOfDay: PictureOfDay) : Int
 	suspend fun deleteAllPictures() : Int
 	suspend fun deleteFavoritesOnly() : Int
+	suspend fun deleteNotFavoritesOnly() : Int
+	suspend fun resetFavorites() : Int
+	suspend fun deletePictureOfTheDayByDate(date: String) : Int
 }

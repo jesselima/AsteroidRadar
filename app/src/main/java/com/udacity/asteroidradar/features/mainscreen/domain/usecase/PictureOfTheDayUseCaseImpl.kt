@@ -23,11 +23,11 @@ class PictureOfTheDayUseCaseImpl(
 		return repository.updateFavoritePictureState(pictureOfDay)
 	}
 
-	override suspend fun getLocalPictureOfTheDayByDate(date: String) : PictureOfDay {
+	override suspend fun getLocalPictureOfTheDayByDate(date: String) : PictureOfDay? {
 		return repository.getLocalPictureOfTheDayByDate(date = date)
 	}
 
-	override suspend fun getLocalPictureOfTheDayById(id: Long): PictureOfDay {
+	override suspend fun getLocalPictureOfTheDayById(id: Long): PictureOfDay? {
 		return repository.getLocalPictureOfTheDayById(id = id)
 	}
 
@@ -45,6 +45,18 @@ class PictureOfTheDayUseCaseImpl(
 
 	override suspend fun deleteFavoritesOnly(): Int {
 		return repository.deleteFavoritesOnly()
+	}
+
+	override suspend fun deleteNotFavoritesOnly(): Int {
+		return repository.deleteNotFavoritesOnly()
+	}
+
+	override suspend fun resetFavorites(): Int {
+		return repository.resetFavorites()
+	}
+
+	override suspend fun deletePictureOfTheDayByDate(date: String): Int {
+		return repository.deletePictureOfTheDayByDate(date = date)
 	}
 
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.core.connectionchecker.ConnectionChecker
+import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.AsteroidsFeedUseCase
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.PictureOfTheDayUseCase
@@ -13,8 +14,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private const val HAS_RETRIEVED_REMOTE_ASTEROIDS_DATA_PREVIOUSLY = "HAS_RETRIEVED_REMOTE_ASTEROIDS_DATA_PREVIOUSLY"
-private const val HAS_RETRIEVED_REMOTE_PICTURES_DATA_PREVIOUSLY = "HAS_RETRIEVED_REMOTE_PICTURES_DATA_PREVIOUSLY"
+private const val HAS_RETRIEVED_REMOTE_ASTEROIDS_DATA_PREVIOUSLY =
+	"HAS_RETRIEVED_REMOTE_ASTEROIDS_DATA_PREVIOUSLY"
+private const val HAS_RETRIEVED_REMOTE_PICTURES_DATA_PREVIOUSLY =
+	"HAS_RETRIEVED_REMOTE_PICTURES_DATA_PREVIOUSLY"
 
 class MainViewModel(
 	private val asteroidsFeedUseCase: AsteroidsFeedUseCase,
@@ -28,6 +31,9 @@ class MainViewModel(
 
 	private val _picturesState = MutableLiveData<PicturesState>()
 	val picturesState: LiveData<PicturesState> = _picturesState
+
+	private val _affectedDataItems = MutableLiveData<Int?>()
+	val affectedDataItems: LiveData<Int?> = _affectedDataItems
 
 	init {
 		val isConnected = connectionChecker.isConnected()
@@ -201,4 +207,58 @@ class MainViewModel(
 			)
 		}
 	}
+
+	fun deleteAllPictures() {
+		viewModelScope.launch {
+			val deleteRows = withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.deleteAllPictures()
+			}
+			_affectedDataItems.value = deleteRows
+			_affectedDataItems.value = null
+			updateLocalTodayPictureOfTheDayWithRemoteData()
+		}
+	}
+
+	fun deleteFavoritesOnly() {
+		viewModelScope.launch {
+			val deletedFavorites = withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.deleteFavoritesOnly()
+			}
+			_affectedDataItems.value = deletedFavorites
+			getLocalPictureOfTheLastSevenDays()
+		}
+	}
+
+	fun deleteNotFavoritesOnly() {
+		viewModelScope.launch {
+			val deletedRows = withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.deleteNotFavoritesOnly()
+			}
+			_affectedDataItems.value = deletedRows
+			_affectedDataItems.value = null
+			getLocalPictureOfTheLastSevenDays()
+		}
+	}
+
+	private fun updateLocalTodayPictureOfTheDayWithRemoteData(date: String = getCurrentDate()) {
+		viewModelScope.launch {
+			withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.getRemotePictureOfTheDayByDate(date)
+
+			}
+			_picturesState.value = null
+			getLocalPictureOfTheLastSevenDays()
+		}
+	}
+
+	fun resetFavorites() {
+		viewModelScope.launch {
+			val updatedRows = withContext(Dispatchers.IO) {
+				pictureOfTheDayUseCase.resetFavorites()
+			}
+			_affectedDataItems.value = updatedRows
+			_affectedDataItems.value = null
+		}
+	}
+
 }

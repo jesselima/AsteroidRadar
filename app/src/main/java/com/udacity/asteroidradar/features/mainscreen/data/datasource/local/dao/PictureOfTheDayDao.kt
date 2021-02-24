@@ -11,10 +11,10 @@ import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDa
 interface PictureOfTheDayDao {
 
     @Query("SELECT * FROM picture_of_the_day WHERE id = :id")
-    fun getLocalPictureOfTheDayById(id: Long): PictureOfDay
+    fun getLocalPictureOfTheDayById(id: Long): PictureOfDay?
 
     @Query("SELECT * FROM picture_of_the_day WHERE date = :date")
-    fun getLocalPictureOfTheDay(date: String): PictureOfDay
+    fun getLocalPictureOfTheDay(date: String): PictureOfDay?
 
     @Query("SELECT * FROM picture_of_the_day WHERE date >= :startDate AND date <= :endDate ORDER BY date DESC LIMIT 10")
     fun getLocalPictureOfTheDayLastSevenDays(startDate: String, endDate: String): List<PictureOfDay>
@@ -33,6 +33,12 @@ interface PictureOfTheDayDao {
 
     @Query("DELETE FROM picture_of_the_day WHERE is_favorite = 1")
     fun deleteFavoritesOnly() : Int
+
+    @Query("DELETE FROM picture_of_the_day WHERE is_favorite = 0")
+    fun deleteNotFavoritesOnly() : Int
+
+    @Query("UPDATE picture_of_the_day SET is_favorite = 0 WHERE is_favorite = 1")
+    fun resetFavorites() : Int
 
     @Query("DELETE FROM picture_of_the_day WHERE date = :date")
     fun deletePictureOfTheDayByDate(date: String) : Int

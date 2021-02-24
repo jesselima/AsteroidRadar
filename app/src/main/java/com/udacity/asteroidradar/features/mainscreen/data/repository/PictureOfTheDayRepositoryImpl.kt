@@ -38,8 +38,12 @@ class PictureOfTheDayRepositoryImpl(
 	override suspend fun getRemotePictureOfTheDayByDate(date: String) {
 		pictureOfTheDayRemoteDataSource.getRemotePictureOfTheDayByDate(date = date)
 			.flow(
-				{
-					it?.mapToLocalDatabaseModel() ?: PictureOfDay()
+				{	pictureOfTheDayResponse ->
+						pictureOfTheDayResponse?.let {
+							pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(
+								it.mapToLocalDatabaseModel()
+							)
+						}
 				},
 				{
 					ResultEither.Failure(it)
@@ -65,11 +69,11 @@ class PictureOfTheDayRepositoryImpl(
 		)
 	}
 
-	override suspend fun getLocalPictureOfTheDayByDate(date: String): PictureOfDay {
+	override suspend fun getLocalPictureOfTheDayByDate(date: String): PictureOfDay? {
 		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDay(date = date)
 	}
 
-	override suspend fun getLocalPictureOfTheDayById(id: Long): PictureOfDay {
+	override suspend fun getLocalPictureOfTheDayById(id: Long): PictureOfDay? {
 		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDayById(id = id)
 	}
 
@@ -94,5 +98,17 @@ class PictureOfTheDayRepositoryImpl(
 
 	override suspend fun deleteFavoritesOnly(): Int {
 		return pictureOfTheDayLocalDataSource.deleteFavoritesOnly()
+	}
+
+	override suspend fun deleteNotFavoritesOnly(): Int {
+		return pictureOfTheDayLocalDataSource.deleteNotFavoritesOnly()
+	}
+
+	override suspend fun resetFavorites(): Int {
+		return pictureOfTheDayLocalDataSource.resetFavorites()
+	}
+
+	override suspend fun deletePictureOfTheDayByDate(date: String): Int {
+		return pictureOfTheDayLocalDataSource.deletePictureOfTheDayByDate(date = date)
 	}
 }
