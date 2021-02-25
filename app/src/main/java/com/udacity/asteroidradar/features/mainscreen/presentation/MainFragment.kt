@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val NO_DELETED_RESULT = 0
+private const val FIRST_TAB_POSITION = 0
 
 class MainFragment : Fragment() {
 
@@ -77,7 +78,7 @@ class MainFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         val position = tabLayout.selectedTabPosition
-        if (position > 0) {
+        if (position > FIRST_TAB_POSITION) {
             viewModel.setCurrentPageAdapterPosition(position)
         }
     }
