@@ -64,6 +64,17 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
             }
 
             pictureOfTheDay?.let {
+                with(mainViewPagerCollapsingToolbarImageView) {
+                    contentDescription = when(pictureOfTheDay?.mediaType ?: MediaType.IMAGE) {
+                        MediaType.IMAGE.type -> {
+                            getString(R.string.label_picture_of_the_day_format, it.title)
+                        }
+                        else -> {
+                            getString(R.string.label_video_of_the_day_format, it.title)
+                        }
+                    }
+                }
+
                 it.imageUrl.let {
                     loadingPagerImageItemProgressBar.isVisible = true
                     Picasso.get()
