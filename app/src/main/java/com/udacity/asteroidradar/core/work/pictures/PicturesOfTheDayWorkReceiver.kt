@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.core.work
+package com.udacity.asteroidradar.core.work.pictures
 
 import android.content.Context
 import androidx.work.CoroutineWorker
@@ -7,13 +7,12 @@ import com.udacity.asteroidradar.features.mainscreen.domain.reposirory.PictureOf
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.HttpException
-import timber.log.Timber
 
 /**
  * Created by jesselima on 10/01/21.
  * This is a part of the project Asteroid Radar.
  */
-class PicturesOfTheDayRadarWork(
+class PicturesOfTheDayWorkReceiver(
 	appContext: Context,
 	params: WorkerParameters,
 ) : CoroutineWorker(appContext, params), KoinComponent {
@@ -21,13 +20,10 @@ class PicturesOfTheDayRadarWork(
 	private val pictureOfTheDayRepository: PictureOfTheDayRepository by inject()
 
 	override suspend fun doWork(): Result {
-		Timber.d("PicturesOfTheDayRadarWork - Starting work...")
 		return try {
-			pictureOfTheDayRepository.getRemotePictureOfTheDay()
-			Timber.d("PicturesOfTheDayRadarWork - Work Success!")
+			pictureOfTheDayRepository.getRemotePictureOfTheLastSevenDays()
 			Result.success()
 		} catch (exception: HttpException) {
-			Timber.d("PicturesOfTheDayRadarWork - Work Failure!!! It will retry soon")
 			Result.retry()
 		}
 	}
