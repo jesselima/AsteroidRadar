@@ -83,13 +83,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.pictureOfTheDayViewPagerCurrentItem.observe(viewLifecycleOwner, {
-            pictureOfTheDayViewPager.currentItem = it
-        })
-    }
-
     private fun setupListeners() {
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -175,7 +168,9 @@ class MainFragment : Fragment() {
                 )
             }
         })
-
+        viewModel.pictureOfTheDayViewPagerCurrentItem.observe(viewLifecycleOwner, {
+            pictureOfTheDayViewPager.currentItem = it
+        })
     }
 
     private fun PicturesState.renderViewState() {
