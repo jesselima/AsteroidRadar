@@ -55,8 +55,9 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 				ContextCompat.getColor(view.context, R.color.secondaryColor)
 			)
 			view.imageIsPotentiallyHazardous.setImageResource(R.drawable.ic_emoji_angry)
-			view.imageIsPotentiallyHazardous.contentDescription = view.context.getString(
-				R.string.image_is_potentially_hazardous
+			view.imageIsPotentiallyHazardous.contentDescription = String.format(
+				view.context.getString(R.string.image_is_potentially_hazardous),
+				asteroid.codename
 			)
 		} else {
 			view.textDistanceFromEarthAu.setTextColor(
@@ -66,8 +67,9 @@ class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), V
 				ContextCompat.getColor(view.context, R.color.primaryTextColor)
 			)
 			view.imageIsPotentiallyHazardous.setImageResource(R.drawable.ic_emoji_friendly)
-			view.imageIsPotentiallyHazardous.contentDescription = view.context.getString(
-				R.string.image_not_potentially_hazardous
+			view.imageIsPotentiallyHazardous.contentDescription = String.format(
+				view.context.getString(R.string.image_not_potentially_hazardous),
+				asteroid.codename
 			)
 		}
 	}

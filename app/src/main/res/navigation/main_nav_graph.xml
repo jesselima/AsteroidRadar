@@ -23,9 +23,7 @@
         <action
             android:id="@+id/navigateToPictureOfDayDetailsFragment"
             app:destination="@id/pictureOfDayDetailsFragment"
-            app:popUpTo="@id/pictureOfDayDetailsFragment"
-            app:enterAnim="@anim/fade_in_animation"
-            app:popUpToInclusive="false">
+            app:enterAnim="@anim/fade_in_animation">
             <argument
                 android:name="pictureOfDay"
                 app:argType="com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay"
@@ -72,7 +70,7 @@
 
     <fragment
         android:id="@+id/pictureOfTheDayFullScreenFragment"
-        android:name="com.udacity.asteroidradar.features.picturedetails.presentation.PictureOfTheDayFullScreenFragment"
+        android:name="com.udacity.asteroidradar.features.picturefullscreen.PictureOfTheDayFullScreenFragment"
         android:label="PictureOfTheDayFullScreenFragment" >
     </fragment>
 

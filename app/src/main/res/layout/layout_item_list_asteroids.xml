@@ -39,7 +39,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageIsPotentiallyHazardous"
             app:srcCompat="@drawable/ic_globe"
-            android:contentDescription="@string/image_closet_approach_to_earth" />
+            android:contentDescription="@string/image_closest_approach_to_earth" />
 
         <ImageView
             android:id="@+id/imageView2"

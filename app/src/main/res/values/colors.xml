@@ -7,20 +7,13 @@
     <color name="primaryTextColor">#FFFFFF</color>
 
     <color name="secondaryColor">#e57373</color>
-    <color name="secondaryLightColor">#ffa4a2</color>
     <color name="secondaryDarkColor">#af4448</color>
     <color name="secondaryTextColor">#000000</color>
 
     <color name="textColorDiscreet">#A2A2A2</color>
-    <color name="backgroundColorDiscreet">#A2A2A2</color>
     <color name="backgroundColorDark">#000000</color>
     <color name="colorStateOn">#FF8282</color>
     <color name="colorStateOff">#C2C2C2</color>
     <color name="transparent">#00FFFFFF</color>
-    <color name="iconDefault">#E5E5E5</color>
 
-    <color name="colorPrimary">#010613</color>
-    <color name="colorPrimaryDark">#010613</color>
-
-    <color name="white">#FFFFFF</color>
 </resources>

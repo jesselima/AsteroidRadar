@@ -9,7 +9,6 @@ import com.udacity.asteroidradar.core.extensions.getCurrentDate
 import com.udacity.asteroidradar.core.sharedprefs.SharedPrefStorage
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.AsteroidsFeedUseCase
 import com.udacity.asteroidradar.features.mainscreen.domain.usecase.PictureOfTheDayUseCase
-import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -35,6 +34,9 @@ class MainViewModel(
 
 	private val _affectedDataItems = MutableLiveData<Int?>()
 	val affectedDataItems: LiveData<Int?> = _affectedDataItems
+
+	private val _filterHasResultState = MutableLiveData<Boolean>()
+	val filterHasResultState: LiveData<Boolean> = _filterHasResultState
 
 	private val _pictureOfTheDayViewPagerCurrentItem = MutableLiveData<Int>()
 	val pictureOfTheDayViewPagerCurrentItem: LiveData<Int> = _pictureOfTheDayViewPagerCurrentItem
@@ -117,8 +119,8 @@ class MainViewModel(
 			)
 			if (data.isNotEmpty()) _picturesState.value = null
 			_picturesState.value = PicturesState(
-				picturesResult = data,
-				isLoadingPictures = false
+				isLoadingPictures = false,
+				picturesResult = data
 			)
 		}
 	}
@@ -168,6 +170,7 @@ class MainViewModel(
 			}
 			if (data.isNotEmpty()) _picturesState.value = null
 			_picturesState.value = PicturesState(picturesResult = data)
+			_filterHasResultState.value = data.isNotEmpty()
 		}
 	}
 

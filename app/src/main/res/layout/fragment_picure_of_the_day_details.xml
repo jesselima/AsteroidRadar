@@ -59,6 +59,17 @@
                 android:layout_marginBottom="@dimen/loading_progress_bar_height_default">
 
                 <ImageView
+                    android:id="@+id/pictureDetailsImageViewBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/backdrop_image_overlay_darker_bottom_narrower"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
                     android:id="@+id/pictureOfTheDayDetailsToggleFavorite"
                     android:layout_width="@dimen/icon_size_default"
                     android:layout_height="@dimen/icon_size_default"
@@ -79,7 +90,7 @@
                     android:layout_marginEnd="@dimen/space_small"
                     android:contentDescription="@string/label_load_high_definition_image"
                     android:elevation="@dimen/elevation_default"
-                    android:src="@drawable/ic_high_definition_is_off"
+                    android:src="@drawable/ic_high_definition"
                     app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsOpenFullScreenDialog"
                     app:layout_constraintEnd_toStartOf="@+id/pictureOfTheDayDetailsOpenFullScreenDialog"
                     app:layout_constraintTop_toTopOf="@+id/pictureOfTheDayDetailsOpenFullScreenDialog" />

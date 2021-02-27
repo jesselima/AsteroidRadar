@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/picture_of_the_day_dummy_name" />
+        tools:text="719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1" />
 
     <ImageView
         android:id="@+id/mainViewPagerToggleFullScreenView"

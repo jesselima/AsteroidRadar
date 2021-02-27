@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.features.picturedetails.presentation
+package com.udacity.asteroidradar.features.picturefullscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -64,7 +64,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayViewPager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:tabBackground="@drawable/dot_tab_selector"
+                    app:tabBackground="@drawable/tab_dot_selector"
                     app:tabGravity="center"
                     app:tabIndicatorHeight="0dp" />
 

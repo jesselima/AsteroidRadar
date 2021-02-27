@@ -5,5 +5,5 @@
         android:drawable="@drawable/ic_dot_selected_planet"
         android:state_selected="true"/>
 
-    <item android:drawable="@drawable/dot_default"/>
+    <item android:drawable="@drawable/tab_dot_default"/>
 </selector>

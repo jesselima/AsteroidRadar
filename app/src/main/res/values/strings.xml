@@ -6,48 +6,30 @@
     <string name="estimated_diameter_title">Estimated diameter</string>
     <string name="relative_velocity_title">Relative velocity</string>
     <string name="distance_from_earth_title">Distance from earth</string>
-
-    <string name="image_of_the_day">Image of the Day</string>
-    <string name="astronomica_unit_explanation">The astronomical unit (au) is a unit of length, roughly the distance from Earth to the Sun and equal to about 150 million kilometres (93 million miles)</string>
-    <string name="astronomical_unit_explanation_button">Astronomical unit definition</string>
-    <string name="potentially_hazardous_asteroid_image">Potentially hazardous asteroidsFeedItem image</string>
-    <string name="not_hazardous_asteroid_image">Not hazardous asteroidsFeedItem image</string>
-    <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">This is NASA\'s picture of day, showing nothing yet</string>
-    <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
-
-    <!-- UNIT STRING FORMATS -->
-    <string name="unit_absolute_magnitude">%s</string>
-    <string name="unit_astronomical_format">au\n%s</string>
-    <string name="unit_astronomical_format_label_suffix">%s au</string>
-    <string name="unit_lunar_format">ld\n%s</string>
-    <string name="unit_km_format">km\n%s</string>
+    <string name="unit_astronomical_format" translatable="false">au\n%s</string>
+    <string name="unit_astronomical_format_label_suffix" translatable="false">%s au</string>
+    <string name="unit_lunar_format" translatable="false">ld\n%s</string>
+    <string name="unit_km_format" translatable="false">km\n%s</string>
     <string name="unit_miles_format">miles\n%s</string>
-    <string name="unit_kilometers_per_second_format">%s km/s</string>
-    <string name="unit_kilometers_per_hour_format">%s km/h</string>
-    <string name="unit_miles_hour_format">%s Mph</string>
-
-    <string name="label_ok">OK</string>
+    <string name="unit_kilometers_per_second_format" translatable="false">%s km/s</string>
+    <string name="unit_kilometers_per_hour_format" translatable="false">%s km/h</string>
+    <string name="unit_miles_hour_format" translatable="false">%s Mph</string>
     <string name="label_cancel">Cancel</string>
     <string name="attention">Attention</string>
     <string name="something_went_wrong">Something went wrong</string>
-
-    <string name="tell_more_astronomical_units_title">What does astronomical really units means?</string>
+    <string name="tell_more_astronomical_units_title">What does astronomical (au) really units means?</string>
     <string name="tell_more_astronomical_units">The astronomical unit (symbol: au, or AU) is a unit of length, roughly the distance from Earth to the Sun and equal to about 150 million kilometres (93 million miles) or ~8 light minutes. The actual distance varies by about 3% as Earth orbits the Sun, from a maximum (aphelion) to a minimum (perihelion) and back again once each year. The au was originally conceived as the average of Earth\'s aphelion and perihelion; however, since 2012 it has been defined as exactly 149,597,870,700 m. \n\nSource: \nhttps://en.wikipedia.org/wiki/Astronomical_unit</string>
-
-    <string name="tell_more_lunar_units_title">What does lunar units really means?</string>
-    <string name="tell_more_lunar_units">Lunar distance (LD), also called Earth–Moon distance, Earth–Moon characteristic distance, or distance to the Moon, is a unit of measure in astronomy. It is the average distance from the center of Earth to the center of the Moon. More technically, it is the mean semi-major axis of the geocentric lunar orbit. It may also refer to the time-averaged distance between the centers of the Earth and the Moon, or less commonly, the instantaneous Earth–Moon distance. The lunar distance is approximately 400,000 km, which is a quarter of a million miles or 1.28 light-seconds. This is roughly Earth\'s circumference times ten, its diameter times thirty or 1/389 of Earth\'s distance to the Sun (the astronomical unit).\n\nSource: https://en.wikipedia.org/wiki/Lunar_distance_(astronomy)</string>
-
-    <string name="image_is_potentially_hazardous">Image is potentially hazardous</string>
-    <string name="image_not_potentially_hazardous">Image not potentially hazardous</string>
+    <string name="tell_more_lunar_units_title">What does lunar units (ld) really means?</string>
+    <string name="tell_more_lunar_units">Lunar distance (LD), also called Earth–Moon distance, Earth–Moon characteristic distance, or distance to the Moon, is a unit of measure in astronomy. It is the average distance from the center of Earth to the center of the Moon. More technically, it is the mean semi-major axis of the geocentric lunar orbit. It may also refer to the time-averaged distance between the centers of the Earth and the Moon, or less commonly, the instantaneous Earth–Moon distance. The lunar distance is approximately 400,000 km, which is a quarter of a million miles or 1.28 light-seconds. This is roughly Earth\'s circumference times ten, its diameter times thirty or 1/389 of Earth\'s distance to the Sun (the astronomical unit).\n\nSource: \nhttps://en.wikipedia.org/wiki/Lunar_distance_(astronomy)</string>
+    <string name="image_is_potentially_hazardous">The asteroid %s is hazardous</string>
+    <string name="image_not_potentially_hazardous">The asteroid %s is not hazardous</string>
     <string name="title_is_potentially_hazardous">Potentially hazardous</string>
     <string name="title_not_potentially_hazardous">Not potentially hazardous</string>
     <string name="label_picture_of_the_day">Picture of the day</string>
     <string name="label_picture_of_the_day_format">Picture of the day - %s</string>
     <string name="label_video_of_the_day_format">Video of the day - %s</string>
     <string name="label_picture_of_the_day_format_details">Picture of the day from %s</string>
-    <string name="picture_of_the_day_dummy_name">719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1</string>
-    <string name="label_asteroids">Asteroids</string>
-    <string name="image_not_loaded_warning">Ooops!\nThe image could\nnot be loaded.</string>
+    <string name="image_not_loaded_warning">Ooops! The image could not be loaded.</string>
     <string name="message_no_asteroids_found">Ooops!\nThe universe looks\na bit empty.</string>
     <string name="message_no_pictures_found">Ooops! No images found.</string>
     <string name="message_searching_asteroids_for_you">Searching some \nasteroids for you…</string>
@@ -55,29 +37,26 @@
     <string name="label_show_image_in_full_screen">View image in fullscreen</string>
     <string name="label_show_image_details">Show picture details</string>
 
-    <string name="sample_text_picture_of_the_day_explanation">This shadowy landscape of majestic mountains and icy plains stretches toward the horizon on a small, distant world. It was captured from a range of about 18,000 kilometers when New Horizons looked back toward Pluto, 15 minutes after the spacecraft\'s closest approach on July 14, 2015. The dramatic, low-angle, near-twilight scene follows rugged mountains formally known as Norgay Montes from foreground left, and Hillary Montes along the horizon, giving way to smooth Sputnik Planum at right. Layers of Pluto\'s tenuous atmosphere are also revealed in the backlit view. With a strangely familiar appearance, the frigid terrain likely includes ices of nitrogen and carbon monoxide with water-ice mountains rising up to 3,500 meters (11,000 feet). That\'s comparable in height to the majestic mountains of planet Earth. The Plutonian landscape is 380 kilometers (230 miles) across.</string>
-    <string name="copyright">Copyright:</string>
+    <string name="sample_text_picture_of_the_day_explanation" translatable="false">This shadowy landscape of majestic mountains and icy plains stretches toward the horizon on a small, distant world. It was captured from a range of about 18,000 kilometers when New Horizons looked back toward Pluto, 15 minutes after the spacecraft\'s closest approach on July 14, 2015. The dramatic, low-angle, near-twilight scene follows rugged mountains formally known as Norgay Montes from foreground left, and Hillary Montes along the horizon, giving way to smooth Sputnik Planum at right. Layers of Pluto\'s tenuous atmosphere are also revealed in the backlit view. With a strangely familiar appearance, the frigid terrain likely includes ices of nitrogen and carbon monoxide with water-ice mountains rising up to 3,500 meters (11,000 feet). That\'s comparable in height to the majestic mountains of planet Earth. The Plutonian landscape is 380 kilometers (230 miles) across.</string>
+    <string name="copyright" translatable="false">Copyright:</string>
     <string name="picture_of_the_day">Picture of the day</string>
     <string name="message_check_connection">Are you connected?</string>
     <string name="message_check_connection_before_to_play_video">Oops! Internet connection is required to play the video.\n\nAre you connected?</string>
-    <string name="message_oops">Ooops!</string>
-    <string name="message_something_went_wrong">Something went wrong!</string>
     <string name="label_load_high_definition_image">Load high definition image</string>
     <string name="hd_image_loaded">High Definition image loaded.</string>
     <string name="hd_image_not_loaded">High Definition image could not be loaded.</string>
-    <string name="info">Info</string>
-    <string name="remember_me_later">Remember me later</string>
+    <string name="label_success">Success</string>
+    <string name="label_information">Information</string>
+    <string name="label_warning">Warning</string>
+    <string name="label_error">Error</string>
     <string name="label_ok_got_it">OK, got it!</string>
-    <string name="image_closet_approach_to_earth">Image Closet approach to earth</string>
+    <string name="image_closest_approach_to_earth">Image closest approach to earth</string>
     <string name="image_asteroid_speed">Image asteroid speed</string>
-    <string name="image_information">Image Information</string>
     <string name="loading_pictures">Loading pictures…</string>
-    <string name="message_only_youtube_supported">App supports YouTube videos only or could not load the video.</string>
     <string name="label_favorites">Favorites</string>
-    <string name="label_more">More</string>
+    <string name="label_favorites_pictures_gallery">Favorites pictures gallery</string>
     <string name="message_picture_of">Picture name %s</string>
     <string name="label_close">Close</string>
-    <string name="label_add_picture_to_favorites">Add picture to favorites</string>
     <string name="message_not_valid_video_id_or_url">Oops! Invalid video id or url.</string>
     <string name="content_description_asteroid_status_hazardous">This asteroid is potentially hazardous</string>
     <string name="content_description_asteroid_status_not_hazardous">This asteroid is not potentially hazardous</string>
@@ -86,30 +65,31 @@
     <string name="content_description_click_to_get_to_know_about_astronomical_units">Click to get to know about astronomical units</string>
     <string name="saved">Saved!</string>
     <string name="removed">Removed!</string>
-    <string name="app_bar_sort_by_speed">Sort asteroids by speed</string>
-    <string name="app_bar_sort_by_distance">Sort asteroids by distance</string>
-    <string name="app_bar_sort_by_date">Sort asteroids by date</string>
-    <string name="app_bar_show_only_favorites_pictures">Show favorites pictures</string>
+    <string name="app_bar_sort_by_speed">Sort by speed</string>
+    <string name="app_bar_sort_by_distance">Sort by distance</string>
+    <string name="app_bar_sort_by_date">Sort by date</string>
+    <string name="app_bar_show_only_favorites_pictures">Show favorites</string>
     <string name="app_bar_show_all_pictures">Show all pictures</string>
-    <string name="app_bar_main_item_gallery">Gallery of favorites pictures of the day</string>
-    <string name="app_bar_show_today_asteroids">Show today asteroids</string>
-    <string name="app_bar_show_week_asteroids">Show week asteroids</string>
+    <string name="app_bar_show_today_asteroids">Show today only</string>
+    <string name="app_bar_show_week_asteroids">Show week</string>
+    <string name="app_bar_delete_favorite_pictures">Delete favorite only</string>
+    <string name="app_bar_delete_not_favorite_pictures">Delete not favorite</string>
+    <string name="app_bar_delete_all_pictures">Delete all (keep today)</string>
+    <string name="app_bar_delete_zone">DELETE IMAGES</string>
+    <string name="app_bar_reset_favorites_pictures">Reset favorite all status</string>
+    <string name="app_bar_label_asteroids_filters">ASTEROID FILTERS</string>
+    <string name="app_bar_label_images_filters">IMAGE FILTERS</string>
     <string name="go_into_space_and_try_again">Go into space and try again</string>
     <string name="label_favorites_pictures_of_the_day">Favorite pictures</string>
     <string name="message_no_favorite_pictures_found_try_to_add_some">Oops! No favorite\npictures found.\nTry to add some first.</string>
     <string name="favorite_picture">Favorite picture</string>
     <string name="message_this_image_could_not_be_loaded">This image could not be loaded</string>
-    <string name="deleted_items_format">Items deleted!</string>
-    <string name="app_bar_delete_favorite_pictures">Delete favorite pictures only</string>
-    <string name="app_bar_delete_not_favorite_pictures">Delete not favorite pictures</string>
-    <string name="app_bar_delete_all_pictures">Delete all pictures (keep today)</string>
-    <string name="app_bar_delete_zone">DELETE ZONE</string>
-    <string name="app_bar_reset_favorites_pictures">Reset favorite pictures</string>
     <string name="message_attention">Attention!</string>
-    <string name="message_warning_reset_favorites_pictures">This action will remove the favorite status You have made before.\nThis action can not be undone.</string>
-    <string name="message_warning_delete_favorite_pictures">This action will delete all favorite (only) pictures from the local cache.\nThis action can not be undone.</string>
+    <string name="message_warning_reset_favorites_pictures">This action will remove the favorite images status You have made before. This action can not be undone.</string>
+    <string name="message_warning_delete_favorite_pictures">This action will delete all favorite (only) pictures from the local cache. This action can not be undone.</string>
     <string name="message_warning_delete_not_favorite_pictures">This action will delete all pictures not set as favorite from the local cache.\nThis action can not be undone.</string>
     <string name="message_warning_delete_all_pictures">This action will delete all favorite pictures from the local cache. Only the today\'s picture will remain.\nThis action can not be undone.</string>
+
 
     <plurals name="number_of_items_delete">
         <item quantity="one">%d item modified!</item>

@@ -103,14 +103,28 @@ fun Fragment.showAppToast(
         customToastContainer,
         false
     ) as ViewGroup
+
     layout.customText.text = text
 
     val toastIcon: ImageView = layout.findViewById(R.id.toastImage)
+
     when(type) {
-        ToastType.SUCCESS ->  toastIcon.setImageResource(R.drawable.ic_success)
-        ToastType.INFO ->     toastIcon.setImageResource(R.drawable.ic_info)
-        ToastType.WARNING ->  toastIcon.setImageResource(R.drawable.ic_warning)
-        ToastType.ERROR ->    toastIcon.setImageResource(R.drawable.ic_error)
+        ToastType.ERROR ->  {
+            toastIcon.setImageResource(R.drawable.ic_error)
+            toastIcon.contentDescription = toastIcon.context.getString(R.string.label_error)
+        }
+        ToastType.INFO ->     {
+            toastIcon.setImageResource(R.drawable.ic_info)
+            toastIcon.contentDescription = toastIcon.context.getString(R.string.label_information)
+        }
+        ToastType.WARNING ->  {
+            toastIcon.setImageResource(R.drawable.ic_warning)
+            toastIcon.contentDescription = toastIcon.context.getString(R.string.label_warning)
+        }
+        else -> {
+            toastIcon.setImageResource(R.drawable.ic_success)
+            toastIcon.contentDescription = toastIcon.context.getString(R.string.label_success)
+        }
     }
 
     with(Toast(this.context)) {

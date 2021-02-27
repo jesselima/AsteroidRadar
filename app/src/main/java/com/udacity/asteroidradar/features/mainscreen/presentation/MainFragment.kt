@@ -72,15 +72,15 @@ class MainFragment : Fragment() {
         pictureOfTheDayViewPager.adapter = picturesViewPagerAdapter
         pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pictureOfTheDayViewPager.setPageTransformer(getPageTransformer())
-        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager) { _, _ -> }.attach()
-    }
+        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager){_, _ -> }.attach()
 
-    override fun onPause() {
-        super.onPause()
-        val position = tabLayout.selectedTabPosition
-        if (position > FIRST_TAB_POSITION) {
-            viewModel.setCurrentPageAdapterPosition(position)
-        }
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewModel.setCurrentPageAdapterPosition(tab?.position ?: FIRST_TAB_POSITION)
+            }
+            override fun onTabReselected(tab: TabLayout.Tab?) { }
+            override fun onTabUnselected(tab: TabLayout.Tab?) { }
+        })
     }
 
     private fun setupListeners() {
@@ -170,6 +170,17 @@ class MainFragment : Fragment() {
         })
         viewModel.pictureOfTheDayViewPagerCurrentItem.observe(viewLifecycleOwner, {
             pictureOfTheDayViewPager.currentItem = it
+        })
+        viewModel.filterHasResultState.observe(viewLifecycleOwner, { filterHasResult ->
+            if (filterHasResult.not()) {
+                mainTextLoadingImages.isVisible = false
+                context?.let {
+                    showAppToast(
+                        it.getString(R.string.message_no_favorite_pictures_found_try_to_add_some),
+                        ToastType.INFO
+                    )
+                }
+            }
         })
     }
 
