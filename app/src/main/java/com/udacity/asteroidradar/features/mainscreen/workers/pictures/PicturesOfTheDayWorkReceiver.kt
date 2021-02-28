@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.core.work.pictures
+package com.udacity.asteroidradar.features.mainscreen.workers.pictures
 
 import android.content.Context
 import androidx.work.CoroutineWorker

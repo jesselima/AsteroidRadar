@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.core.work.asteroids
+package com.udacity.asteroidradar.features.mainscreen.workers.asteroids
 
 import android.content.Context
 import androidx.work.CoroutineWorker

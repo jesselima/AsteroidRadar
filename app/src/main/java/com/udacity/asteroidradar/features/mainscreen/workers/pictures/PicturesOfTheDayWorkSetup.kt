@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.core.work.pictures
+package com.udacity.asteroidradar.features.mainscreen.workers.pictures
 
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -26,6 +26,7 @@ class PicturesOfTheDayWorkerSetup {
 			val constraints = Constraints.Builder()
 				.setRequiredNetworkType(NetworkType.CONNECTED)
 				.setRequiresBatteryNotLow(true)
+				.setRequiresCharging(true)
 				.build()
 
 			val picturesPeriodicWorkRequest = PeriodicWorkRequestBuilder<PicturesOfTheDayWorkReceiver>(

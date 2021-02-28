@@ -4,8 +4,8 @@ import android.app.Application
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.core.di.GlobalInjectableDependencies
-import com.udacity.asteroidradar.core.work.asteroids.AsteroidsWorkSetup
-import com.udacity.asteroidradar.core.work.pictures.PicturesOfTheDayWorkerSetup
+import com.udacity.asteroidradar.features.mainscreen.workers.asteroids.AsteroidsWorkSetup
+import com.udacity.asteroidradar.features.mainscreen.workers.pictures.PicturesOfTheDayWorkerSetup
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

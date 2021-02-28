@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.core.work.asteroids
+package com.udacity.asteroidradar.features.mainscreen.workers.asteroids
 
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -26,6 +26,7 @@ class AsteroidsWorkSetup {
 			val constraints = Constraints.Builder()
 				.setRequiredNetworkType(NetworkType.CONNECTED)
 				.setRequiresBatteryNotLow(true)
+				.setRequiresCharging(true)
 				.build()
 
 			val asteroidsPeriodicWorkRequest = PeriodicWorkRequestBuilder<AsteroidsWorkReceiver>(
