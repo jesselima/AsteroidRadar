@@ -22,7 +22,7 @@
     <string name="label_picture_of_the_day_format">Imagem do dia - %s</string>
     <string name="label_video_of_the_day_format">Vídeo do dia - %s</string>
     <string name="label_picture_of_the_day_format_details">Picture of the day from %s</string>
-    <string name="image_not_loaded_warning">Ooops! A imagem não pode ser carregada.</string>
+    <string name="image_not_loaded_warning">Ooops! A imagem não\npode ser carregada.</string>
     <string name="message_no_asteroids_found">Ooops!\nO universo parece\num pouco vazio.</string>
     <string name="message_no_pictures_found">Ooops! Nenhuma imagem encontrada.</string>
     <string name="message_searching_asteroids_for_you">Pesquisando alguns\nasteróides pra você…</string>

@@ -86,7 +86,6 @@ class CopyrightFragment : Fragment() {
 				authorName = "Ronak Laungani",
 				link = "https://lottiefiles.com/46054-animated-smilie-emoji"
 			),
-
 			Copyright(
 				imageResId = R.drawable.ic_emoji_angry,
 				sourceName = "Freepik",
@@ -135,7 +134,6 @@ class CopyrightFragment : Fragment() {
 				authorName = "brgfx",
 				link = "https://www.freepik.com/free-vector/comet_1551510.htm"
 			),
-
 		)
 	}
 }

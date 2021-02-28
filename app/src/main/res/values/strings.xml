@@ -29,7 +29,7 @@
     <string name="label_picture_of_the_day_format">Picture of the day - %s</string>
     <string name="label_video_of_the_day_format">Video of the day - %s</string>
     <string name="label_picture_of_the_day_format_details">Picture of the day from %s</string>
-    <string name="image_not_loaded_warning">Ooops! The image could not be loaded.</string>
+    <string name="image_not_loaded_warning">Ooops! The image could\nnot be loaded.</string>
     <string name="message_no_asteroids_found">Ooops!\nThe universe looks\na bit empty.</string>
     <string name="message_no_pictures_found">Ooops! No images found.</string>
     <string name="message_searching_asteroids_for_you">Searching some \nasteroids for you…</string>

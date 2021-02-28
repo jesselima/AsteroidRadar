@@ -61,9 +61,9 @@
         android:layout_marginBottom="@dimen/layout_margin_medium"
         android:textColor="@color/primaryTextColor"
         android:textSize="14sp"
+        android:lineSpacingExtra="@dimen/line_space_for_titles"
         app:layout_constraintBottom_toTopOf="@+id/mainViewPagerLabelWithDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/mainViewPagerToggleFullScreenView"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="719 Albert (A911 TB)1 719 Albert (A911 TB)1 719 Albert (A911 TB)1" />
 
@@ -73,10 +73,26 @@
         android:layout_height="@dimen/icon_size_default"
         android:layout_marginEnd="@dimen/layout_margin_default"
         android:contentDescription="@string/label_show_image_details"
-        android:elevation="10dp"
+        android:elevation="@dimen/elevation_default"
         android:src="@drawable/ic_info_grey"
-        app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerLabelWithDate"
+        app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerTitle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mainViewPagerTitle" />
+
+    <ImageView
+        android:id="@+id/mainViewPagerIsPictureFavorite"
+        android:layout_width="@dimen/icon_size_tiny"
+        android:layout_height="@dimen/icon_size_tiny"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="@dimen/layout_margin_medium"
+        android:layout_marginEnd="@dimen/layout_margin_default"
+        android:contentDescription="@string/label_add_image_to_favorites"
+        android:elevation="@dimen/elevation_default"
+        android:src="@drawable/ic_favorite_on"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/mainViewPagerLabelWithDate"
+        app:layout_constraintStart_toEndOf="@+id/mainViewPagerLabelWithDate"
         app:layout_constraintTop_toTopOf="@+id/mainViewPagerLabelWithDate" />
 
     <androidx.core.widget.ContentLoadingProgressBar

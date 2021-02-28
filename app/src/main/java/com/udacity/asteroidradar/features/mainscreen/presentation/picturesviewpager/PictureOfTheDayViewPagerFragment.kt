@@ -50,6 +50,7 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
         loadingPagerImageItemProgressBar.isVisible = true
 
         pictureOfTheDay = arguments?.getParcelable(ARG_PICTURE_OF_THE_DAY_DATA)
+        val isFavorite = pictureOfTheDay?.isFavorite ?: false
 
         if (pictureOfTheDay == null) {
             loadingPagerImageItemProgressBar.isVisible = false
@@ -64,6 +65,7 @@ class PictureOfTheDayViewPagerFragment : Fragment() {
             }
 
             pictureOfTheDay?.let {
+                mainViewPagerIsPictureFavorite.isVisible = isFavorite
                 with(mainViewPagerCollapsingToolbarImageView) {
                     contentDescription = when(pictureOfTheDay?.mediaType ?: MediaType.IMAGE) {
                         MediaType.IMAGE.type -> {
