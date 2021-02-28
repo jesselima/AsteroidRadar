@@ -13,11 +13,12 @@
     <item
         android:id="@+id/app_bar_label_images_filters"
         android:title="@string/app_bar_label_images_filters"
-        app:showAsAction="collapseActionView">
+        android:icon="@drawable/ic_image_filter"
+        app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/app_bar_show_only_favorites_pictures"
-                android:icon="@drawable/ic_favorite_filled"
+                android:icon="@drawable/ic_favorite_filled_action_menu"
                 android:title="@string/app_bar_show_only_favorites_pictures"
                 android:contentDescription="@string/app_bar_show_only_favorites_pictures"
                 app:showAsAction="never"
@@ -44,7 +45,8 @@
     <item
         android:id="@+id/asteroids_filters_submenu"
         android:title="@string/app_bar_label_asteroids_filters"
-        app:showAsAction="collapseActionView">
+        android:icon="@drawable/ic_meteor"
+        app:showAsAction="never">
         <menu>
             <item
                 android:id="@+id/app_bar_show_today_asteroids"

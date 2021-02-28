@@ -34,7 +34,7 @@
     <dimen name="text_block_width_tiny">100dp</dimen>
     <dimen name="elevation_none">0dp</dimen>
     <dimen name="app_bar_default_height">56dp</dimen>
-    <dimen name="margin_pictures_pager_bottom">60dp</dimen>
+    <dimen name="margin_pictures_pager_bottom">48dp</dimen>
     <dimen name="line_space_for_titles">4dp</dimen>
     <dimen name="dot_view_pager">30dp</dimen>
     <dimen name="tab_height">30dp</dimen>
