@@ -72,11 +72,13 @@ class MainFragment : Fragment() {
         pictureOfTheDayViewPager.adapter = picturesViewPagerAdapter
         pictureOfTheDayViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pictureOfTheDayViewPager.setPageTransformer(getPageTransformer())
-        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager){_, _ -> }.attach()
+        TabLayoutMediator(tabLayout, pictureOfTheDayViewPager){ _ , _ -> }.attach()
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 viewModel.setCurrentPageAdapterPosition(tab?.position ?: FIRST_TAB_POSITION)
+                val position = tab?.position ?: FIRST_TAB_POSITION
+                tab?.contentDescription = picturesViewPagerAdapter.getCurrentPicture(position)?.title
             }
             override fun onTabReselected(tab: TabLayout.Tab?) { }
             override fun onTabUnselected(tab: TabLayout.Tab?) { }

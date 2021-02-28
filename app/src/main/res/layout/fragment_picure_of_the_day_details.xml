@@ -50,6 +50,7 @@
                 android:background="@android:color/transparent"
                 app:titleTextColor="@color/primaryTextColor"
                 app:navigationIcon="@drawable/ic_arrow_back"
+                app:navigationContentDescription="@string/label_go_back_to_main_screen"
                 app:layout_collapseMode="pin"
                 android:elevation="0dp"/>
 
@@ -75,7 +76,7 @@
                     android:layout_height="@dimen/icon_size_default"
                     android:layout_gravity="bottom|start"
                     android:layout_marginEnd="@dimen/space_small"
-                    android:contentDescription="@string/label_load_high_definition_image"
+                    android:contentDescription="@string/label_add_image_to_favorites"
                     android:elevation="@dimen/elevation_default"
                     android:src="@drawable/ic_favorite_filled"
                     app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayDetailsToggleHighDefinition"

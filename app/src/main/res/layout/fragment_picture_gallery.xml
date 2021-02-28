@@ -23,6 +23,8 @@
             android:background="@android:color/transparent"
             app:titleTextColor="@color/primaryTextColor"
             app:title="@string/label_favorites_pictures_of_the_day"
+            app:navigationContentDescription="@string/label_go_back_to_gallery"
+            android:importantForAccessibility="yes"
             app:layout_collapseMode="none"
             app:navigationIcon="@drawable/ic_arrow_back"
             android:elevation="0dp"/>

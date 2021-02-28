@@ -24,4 +24,8 @@ class PictureOfTheDayPagerAdapter(
         picturesOfTheDay = listOfPicturesOfTheDays.toMutableList()
         notifyDataSetChanged()
     }
+
+    fun getCurrentPicture(position: Int) : PictureOfDay? {
+        return picturesOfTheDay[position]
+    }
 }

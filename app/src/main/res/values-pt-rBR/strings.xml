@@ -33,6 +33,7 @@
     <string name="message_check_connection">Você está conectado?</string>
     <string name="message_check_connection_before_to_play_video">Oops! É preciso conecxão com a internet para ver o vídeo.\n\nVocê está conectado?</string>
     <string name="label_load_high_definition_image">Carregar imagem de alta definição</string>
+    <string name="label_add_image_to_favorites">Adicionar imagem as favoritas</string>
     <string name="hd_image_loaded">Image de alta definição carregada</string>
     <string name="hd_image_not_loaded">Imagem de alta definição não pode ser carregada.</string>
     <string name="label_success">Sucesso</string>
@@ -79,6 +80,9 @@
     <string name="message_warning_delete_favorite_pictures">Esta ação excluirá todas as imagens favoritas (apenas) do cache local. Essa ação não pode ser desfeita.</string>
     <string name="message_warning_delete_not_favorite_pictures">Esta ação excluirá todas as imagens não definidas como favoritas do cache local.\nEssa ação não pode ser desfeita.</string>
     <string name="message_warning_delete_all_pictures">Esta ação excluirá todas as imagens favoritas do cache local. Apenas a imagem de hoje permanecerá.\nEssa ação não pode ser desfeita.</string>
+    <string name="label_go_back_to_main_screen">Voltar para tela principal</string>
+    <string name="label_go_back_to_gallery">Voltar para galeria</string>
+
 
     <plurals name="number_of_items_delete">
         <item quantity="one">%d item alterado!</item>

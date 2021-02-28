@@ -56,7 +56,7 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/tab_layout_only_dots_height"
+                    android:layout_height="@dimen/tab_height"
                     android:layout_gravity="bottom"
                     android:background="@color/transparent"
                     tools:background="@color/colorStateOn"
@@ -66,6 +66,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:tabBackground="@drawable/tab_dot_selector"
                     app:tabGravity="center"
+                    app:tabPadding="@dimen/layout_margin_small"
+                    app:tabPaddingStart="@dimen/layout_margin_small"
+                    app:tabPaddingEnd="@dimen/layout_margin_small"
+                    app:tabMinWidth="@dimen/dot_view_pager"
+                    app:tabMode="auto"
                     app:tabIndicatorHeight="0dp" />
 
                 <androidx.recyclerview.widget.RecyclerView

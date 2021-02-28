@@ -43,6 +43,7 @@
     <string name="message_check_connection">Are you connected?</string>
     <string name="message_check_connection_before_to_play_video">Oops! Internet connection is required to play the video.\n\nAre you connected?</string>
     <string name="label_load_high_definition_image">Load high definition image</string>
+    <string name="label_add_image_to_favorites">Add image to favorites</string>
     <string name="hd_image_loaded">High Definition image loaded.</string>
     <string name="hd_image_not_loaded">High Definition image could not be loaded.</string>
     <string name="label_success">Success</string>
@@ -61,8 +62,8 @@
     <string name="content_description_asteroid_status_hazardous">This asteroid is potentially hazardous</string>
     <string name="content_description_asteroid_status_not_hazardous">This asteroid is not potentially hazardous</string>
     <string name="see_more_at_nasa_jpl_website">See more at NASA JPL website</string>
-    <string name="content_description_click_to_get_to_know_about_lunar_units">Click to get to know about lunar units</string>
-    <string name="content_description_click_to_get_to_know_about_astronomical_units">Click to get to know about astronomical units</string>
+    <string name="content_description_click_to_get_to_know_about_lunar_units">Lunar units</string>
+    <string name="content_description_click_to_get_to_know_about_astronomical_units">Astronomical units</string>
     <string name="saved">Saved!</string>
     <string name="removed">Removed!</string>
     <string name="app_bar_sort_by_speed">Sort by speed</string>
@@ -81,7 +82,7 @@
     <string name="app_bar_label_images_filters">IMAGE FILTERS</string>
     <string name="go_into_space_and_try_again">Go into space and try again</string>
     <string name="label_favorites_pictures_of_the_day">Favorite pictures</string>
-    <string name="message_no_favorite_pictures_found_try_to_add_some">Oops! No favorite\npictures found.\nTry to add some first.</string>
+    <string name="message_no_favorite_pictures_found_try_to_add_some">Oops!\nNo favorite pictures found.\nTry to add some first.</string>
     <string name="favorite_picture">Favorite picture</string>
     <string name="message_this_image_could_not_be_loaded">This image could not be loaded</string>
     <string name="message_attention">Attention!</string>
@@ -89,6 +90,8 @@
     <string name="message_warning_delete_favorite_pictures">This action will delete all favorite (only) pictures from the local cache. This action can not be undone.</string>
     <string name="message_warning_delete_not_favorite_pictures">This action will delete all pictures not set as favorite from the local cache.\nThis action can not be undone.</string>
     <string name="message_warning_delete_all_pictures">This action will delete all favorite pictures from the local cache. Only the today\'s picture will remain.\nThis action can not be undone.</string>
+    <string name="label_go_back_to_main_screen">Go back to main screen</string>
+    <string name="label_go_back_to_gallery">Go back to pictures gallery</string>
 
 
     <plurals name="number_of_items_delete">
