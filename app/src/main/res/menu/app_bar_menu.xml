@@ -118,4 +118,13 @@
                 />
         </menu>
     </item>
+
+    <!--  THIS ITEM IS NOT FEATURE RELATED. ITS PURPOSE IS TO PROVIDE THA VISIBILITY TO FREE CONTENT CREATORS   -->
+    <item
+        android:id="@+id/app_bar_show_copyrights_screen"
+        android:icon="@drawable/ic_copyright"
+        android:title="@string/app_bar_show_copyrights_screen"
+        android:contentDescription="@string/app_bar_show_copyrights_screen"
+        app:showAsAction="never"
+        />
 </menu>

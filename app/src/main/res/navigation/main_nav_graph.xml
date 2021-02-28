@@ -36,6 +36,11 @@
             app:enterAnim="@anim/fade_in_animation"
             app:popUpToInclusive="false">
         </action>
+        <action
+            android:id="@+id/navigateToCopyrightFragment"
+            app:destination="@id/copyrightFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out_animation"/>
     </fragment>
 
     <fragment
@@ -80,4 +85,9 @@
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_picture_gallery"/>
 
+    <fragment
+        android:id="@+id/copyrightFragment"
+        android:name="com.udacity.asteroidradar.features.copyright.CopyrightFragment"
+        android:label="fragment_copyright"
+        tools:layout="@layout/fragment_copyrights"/>
 </navigation>

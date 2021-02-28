@@ -144,6 +144,10 @@ class MainFragment : Fragment() {
                     { viewModel.deleteAllPictures() }
                     true
                 }
+                R.id.app_bar_show_copyrights_screen -> {
+                    findNavController().navigate(R.id.navigateToCopyrightFragment)
+                    true
+                }
                 else -> false
             }
         }

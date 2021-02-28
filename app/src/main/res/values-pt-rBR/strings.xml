@@ -73,6 +73,7 @@
     <string name="go_into_space_and_try_again">Ir até o espaço e tentar novamente</string>
     <string name="label_favorites_pictures_of_the_day">Imagens favoritas</string>
     <string name="message_no_favorite_pictures_found_try_to_add_some">Oops!\nNenhuma imagem\nfavorita encontrada.\nTente adicionar algumas.</string>
+    <string name="message_balon_copyright_notes">Vaje abaixo quem\ndisponibilizou conteúdo grátis\nusado neste App…</string>
     <string name="favorite_picture">Imagem favorita</string>
     <string name="message_this_image_could_not_be_loaded">Esta imagem não pode ser carregada</string>
     <string name="message_attention">Atenção!</string>
@@ -82,7 +83,11 @@
     <string name="message_warning_delete_all_pictures">Esta ação excluirá todas as imagens favoritas do cache local. Apenas a imagem de hoje permanecerá.\nEssa ação não pode ser desfeita.</string>
     <string name="label_go_back_to_main_screen">Voltar para tela principal</string>
     <string name="label_go_back_to_gallery">Voltar para galeria</string>
-
+    <string name="more">MAIS</string>
+    <string name="label_source">Fonte</string>
+    <string name="label_link">LINK</string>
+    <string name="label_author">Autor</string>
+    <string name="label_copyright">Copyrights</string>
 
     <plurals name="number_of_items_delete">
         <item quantity="one">%d item alterado!</item>

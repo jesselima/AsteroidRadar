@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="@dimen/layout_margin_small"
+    android:layout_margin="@dimen/layout_margin_medium"
+    app:cardCornerRadius="@dimen/cardElevation_low"
+    app:cardElevation="@dimen/layout_margin_medium"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/primaryDarkColor">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_margin_small"
+        android:background="?android:attr/selectableItemBackground">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/copyrightImage"
+            android:layout_width="@dimen/space_100"
+            android:layout_height="@dimen/space_100"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/layout_margin_medium"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/image_is_potentially_hazardous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            tools:src="@drawable/ic_emoji_friendly" />
+
+        <TextView
+            android:id="@+id/labelSource"
+            style="@style/LabelTextDiscreteDescription"
+            android:layout_width="@dimen/text_block_width_copyright_label"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:text="@string/label_source"
+            app:layout_constraintStart_toEndOf="@+id/copyrightImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/copyrightSource"
+            style="@style/LabelTextValue"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelSource"
+            app:layout_constraintStart_toEndOf="@+id/labelSource"
+            app:layout_constraintTop_toTopOf="@+id/labelSource"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="Freepik" />
+
+        <TextView
+            android:id="@+id/labelAuthor"
+            style="@style/LabelTextDiscreteDescription"
+            android:layout_width="@dimen/text_block_width_copyright_label"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:text="@string/label_author"
+            app:layout_constraintStart_toStartOf="@+id/labelSource"
+            app:layout_constraintTop_toBottomOf="@+id/labelSource" />
+
+        <TextView
+            android:id="@+id/copyrightauthorName"
+            style="@style/LabelTextValue"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelAuthor"
+            app:layout_constraintStart_toEndOf="@+id/labelAuthor"
+            app:layout_constraintTop_toTopOf="@+id/labelAuthor"
+            tools:text="Jesse James" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/copyrightButtonActionLink"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/label_link"
+            android:textColor="@color/colorStateOn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/copyrightImage"
+            app:layout_constraintTop_toBottomOf="@+id/labelAuthor" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+

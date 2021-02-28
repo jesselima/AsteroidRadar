@@ -28,10 +28,13 @@
     <dimen name="space_200">200dp</dimen>
     <dimen name="space_150">150dp</dimen>
     <dimen name="space_100">100dp</dimen>
+    <dimen name="space_50">50dp</dimen>
     <dimen name="text_block_width_large">200dp</dimen>
     <dimen name="text_block_width_medium">150dp</dimen>
     <dimen name="text_block_width_small">130dp</dimen>
     <dimen name="text_block_width_tiny">100dp</dimen>
+    <dimen name="text_block_width_copyright_label">70dp</dimen>
+    <dimen name="app_bar_margin_top_copyright">70dp</dimen>
     <dimen name="elevation_none">0dp</dimen>
     <dimen name="app_bar_default_height">56dp</dimen>
     <dimen name="margin_pictures_pager_bottom">48dp</dimen>
