@@ -21,7 +21,7 @@ class PicturesOfTheDayWorkReceiver(
 
 	override suspend fun doWork(): Result {
 		return try {
-			pictureOfTheDayRepository.getRemotePictureOfTheLastSevenDays()
+			pictureOfTheDayRepository.getRemotePictureOfTheDayLatestDays()
 			Result.success()
 		} catch (exception: HttpException) {
 			Result.retry()

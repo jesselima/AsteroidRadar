@@ -9,6 +9,7 @@ import com.udacity.asteroidradar.features.mainscreen.data.datasource.remote.api.
 import com.udacity.asteroidradar.features.mainscreen.data.models.PictureOfDayResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 
 
 class PictureOfTheDayRemoteDataSourceImpl(
@@ -48,14 +49,12 @@ class PictureOfTheDayRemoteDataSourceImpl(
         )
     }
 
-    override suspend fun getRemotePictureOfTheLastSevenDays(
-        startDate: String,
-        endDate: String
+    override suspend fun getRemotePictureOfTheDayLatestDays(
+        startDate: String
     ) : ResultEither<List<PictureOfDayResponse>?, ErrorHandler> {
         return requestExecutor.safeRequest(dispatcher) {
-            service.getRemotePictureOfTheLastSevenDays(
+            service.getRemotePictureOfTheDayLatestDays(
                 startDate = startDate,
-                endDate = endDate
             )
         }.flow(
             {

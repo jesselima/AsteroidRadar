@@ -2,13 +2,13 @@ package com.udacity.asteroidradar.features.mainscreen.data.repository
 
 import com.udacity.asteroidradar.core.api.ResultEither
 import com.udacity.asteroidradar.core.api.flow
-import com.udacity.asteroidradar.core.extensions.getCurrentDate
-import com.udacity.asteroidradar.core.extensions.getDateForDaysBehind
+import com.udacity.asteroidradar.core.extensions.getCurrentDateApiQueryParamFormat
 import com.udacity.asteroidradar.features.mainscreen.data.datasource.local.PictureOfTheDayLocalDataSource
 import com.udacity.asteroidradar.features.mainscreen.data.datasource.remote.PictureOfTheDayRemoteDataSource
 import com.udacity.asteroidradar.features.mainscreen.data.models.mapToLocalDatabaseModel
 import com.udacity.asteroidradar.features.mainscreen.domain.entities.PictureOfDay
 import com.udacity.asteroidradar.features.mainscreen.domain.reposirory.PictureOfTheDayRepository
+import timber.log.Timber
 
 /**
  * Created by jesselima on 9/01/21.
@@ -51,13 +51,13 @@ class PictureOfTheDayRepositoryImpl(
 			)
 	}
 
-	override suspend fun getRemotePictureOfTheLastSevenDays() {
-		pictureOfTheDayRemoteDataSource.getRemotePictureOfTheLastSevenDays(
-			startDate = getDateForDaysBehind(),
-			endDate = getCurrentDate()
+	override suspend fun getRemotePictureOfTheDayLatestDays() {
+		pictureOfTheDayRemoteDataSource.getRemotePictureOfTheDayLatestDays(
+			startDate = getCurrentDateApiQueryParamFormat()
 		).flow(
 			{ picturesOfTheDayResponse ->
 				picturesOfTheDayResponse?.forEach {
+					Timber.d(it.imageUrl)
 					pictureOfTheDayLocalDataSource.savePictureOfTheDayToLocalDatabase(
 						it.mapToLocalDatabaseModel()
 					)
@@ -77,11 +77,8 @@ class PictureOfTheDayRepositoryImpl(
 		return pictureOfTheDayLocalDataSource.getLocalPictureOfTheDayById(id = id)
 	}
 
-	override suspend fun getLocalPictureOfTheLastSevenDays(): List<PictureOfDay> {
-		return  pictureOfTheDayLocalDataSource.getLocalPictureOfTheLastSevenDays(
-			startDate = getDateForDaysBehind(),
-			endDate = getCurrentDate()
-		)
+	override suspend fun getLocalPictureOfTheDayLatestDays(): List<PictureOfDay> {
+		return  pictureOfTheDayLocalDataSource.getLocalPictureOfTheDayLatestDays()
 	}
 
 	override suspend fun getAllLocalFavoritesPicturesOfTheDay(): List<PictureOfDay> {

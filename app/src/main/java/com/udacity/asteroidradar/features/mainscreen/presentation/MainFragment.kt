@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.core.extensions.ToastType
 import com.udacity.asteroidradar.core.extensions.getPageTransformer
 import com.udacity.asteroidradar.core.extensions.hideWithFadeOut
+import com.udacity.asteroidradar.core.extensions.isConnected
 import com.udacity.asteroidradar.core.extensions.showAppToast
 import com.udacity.asteroidradar.core.extensions.showDialog
 import com.udacity.asteroidradar.core.extensions.showWithFadeIn
@@ -58,6 +60,19 @@ class MainFragment : Fragment() {
         setupObservers()
         setupListeners()
         setupAsteroidsAdapter()
+        checkConnection()
+    }
+
+    private fun checkConnection() {
+        context?.let {
+            if (it.isConnected().not()) {
+                showAppToast(
+                    text = getString(R.string.message_you_are_offline),
+                    type = ToastType.WARNING,
+                    toastDuration = Toast.LENGTH_LONG
+                )
+            }
+        }
     }
 
     private fun setupAsteroidsAdapter() {
@@ -119,7 +134,7 @@ class MainFragment : Fragment() {
                     true
                 }
                 R.id.app_bar_show_all_pictures -> {
-                    viewModel.getLocalPictureOfTheLastSevenDays()
+                    viewModel.getLocalPictureOfTheDayLatestDays()
                     true
                 }
                 // Reset Actions

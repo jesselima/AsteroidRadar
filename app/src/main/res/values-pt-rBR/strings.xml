@@ -88,6 +88,7 @@
     <string name="label_link">LINK</string>
     <string name="label_author">Autor</string>
     <string name="label_copyright">Copyrights</string>
+    <string name="message_you_are_offline">Você não está conectado!</string>
 
     <plurals name="number_of_items_delete">
         <item quantity="one">%d item alterado!</item>

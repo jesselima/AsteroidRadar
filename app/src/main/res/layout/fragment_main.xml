@@ -60,8 +60,6 @@
                     android:layout_gravity="bottom"
                     android:background="@color/transparent"
                     tools:background="@color/colorStateOn"
-                    android:layout_marginStart="@dimen/layout_margin_default"
-                    android:layout_marginEnd="@dimen/layout_margin_default"
                     android:layout_marginBottom="@dimen/layout_margin_medium"
                     app:layout_constraintBottom_toBottomOf="@+id/pictureOfTheDayViewPager"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -11,8 +11,8 @@ interface PictureOfTheDayRepository {
 	suspend fun getRemotePictureOfTheDayByDate(date: String)
 	suspend fun getLocalPictureOfTheDayByDate(date: String) : PictureOfDay?
 	suspend fun getLocalPictureOfTheDayById(id: Long) : PictureOfDay?
-	suspend fun getRemotePictureOfTheLastSevenDays()
-	suspend fun getLocalPictureOfTheLastSevenDays() : List<PictureOfDay>
+	suspend fun getRemotePictureOfTheDayLatestDays()
+	suspend fun getLocalPictureOfTheDayLatestDays() : List<PictureOfDay>
 	suspend fun getAllLocalFavoritesPicturesOfTheDay() : List<PictureOfDay>
 	suspend fun updateFavoritePictureState(pictureOfDay: PictureOfDay) : Int
 	suspend fun deleteAllPictures() : Int

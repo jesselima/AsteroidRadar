@@ -11,12 +11,12 @@ class PictureOfTheDayUseCaseImpl(
 	private val repository: PictureOfTheDayRepository
 ) : PictureOfTheDayUseCase {
 
-	override suspend fun getRemotePictureOfTheLastSevenDays() {
-		repository.getRemotePictureOfTheLastSevenDays()
+	override suspend fun getRemotePictureOfTheDayLatestDays() {
+		repository.getRemotePictureOfTheDayLatestDays()
 	}
 
 	override suspend fun getLocalPictureOfTheDayLastSevenDays(): List<PictureOfDay> {
-		return repository.getLocalPictureOfTheLastSevenDays()
+		return repository.getLocalPictureOfTheDayLatestDays()
 	}
 
 	override suspend fun updateFavoritePictureState(pictureOfDay: PictureOfDay): Int {

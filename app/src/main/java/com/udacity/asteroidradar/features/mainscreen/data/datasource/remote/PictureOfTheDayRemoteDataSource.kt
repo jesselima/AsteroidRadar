@@ -10,8 +10,7 @@ interface PictureOfTheDayRemoteDataSource {
     suspend fun getRemotePictureOfTheDayByDate(
         date: String
     ) : ResultEither<PictureOfDayResponse?, ErrorHandler>
-    suspend fun getRemotePictureOfTheLastSevenDays(
+    suspend fun getRemotePictureOfTheDayLatestDays(
         startDate: String,
-        endDate: String
     ) : ResultEither<List<PictureOfDayResponse>?, ErrorHandler>
 }

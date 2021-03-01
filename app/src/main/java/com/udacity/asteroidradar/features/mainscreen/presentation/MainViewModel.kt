@@ -53,13 +53,9 @@ class MainViewModel(
 
 		viewModelScope.launch {
 			withContext(Dispatchers.IO) {
-				val hasRetrievedAsteroidsDataPreviously = sharedPrefStorage.getBooleanValue(
-					key = HAS_RETRIEVED_REMOTE_ASTEROIDS_DATA_PREVIOUSLY
-				)
+				val hasRetrievedAsteroidsDataPreviously = hasRetrievedAsteroidsPreviously()
 
-				val hasRetrievedPicturesDataPreviously = sharedPrefStorage.getBooleanValue(
-					key = HAS_RETRIEVED_REMOTE_PICTURES_DATA_PREVIOUSLY
-				)
+				val hasRetrievedPicturesDataPreviously = hasRetrievedPictureDataPreviously()
 
 				if (hasRetrievedAsteroidsDataPreviously.not()) {
 					if (isConnected) {
@@ -93,7 +89,7 @@ class MainViewModel(
 						 * for local data.
 						 */
 						delay(1000)
-						getLocalPictureOfTheLastSevenDays()
+						getLocalPictureOfTheDayLatestDays()
 					}
 				} else {
 					/**
@@ -102,13 +98,25 @@ class MainViewModel(
 					 * for local data.
 					 */
 					delay(1000)
-					getLocalPictureOfTheLastSevenDays()
+					getLocalPictureOfTheDayLatestDays()
 				}
 			}
 		}
 	}
 
-	fun getLocalPictureOfTheLastSevenDays() {
+	private fun hasRetrievedPictureDataPreviously() : Boolean {
+		return sharedPrefStorage.getBooleanValue(
+			key = HAS_RETRIEVED_REMOTE_PICTURES_DATA_PREVIOUSLY
+		)
+	}
+
+	private fun hasRetrievedAsteroidsPreviously() : Boolean {
+		return sharedPrefStorage.getBooleanValue(
+			key = HAS_RETRIEVED_REMOTE_ASTEROIDS_DATA_PREVIOUSLY
+		)
+	}
+
+	fun getLocalPictureOfTheDayLatestDays() {
 		viewModelScope.launch {
 			val data = withContext(Dispatchers.IO) {
 				pictureOfTheDayUseCase.getLocalPictureOfTheDayLastSevenDays()
@@ -151,12 +159,12 @@ class MainViewModel(
 		}
 	}
 
-	private fun requestRemotePicturesData() {
+	fun requestRemotePicturesData() {
 		viewModelScope.launch {
 			withContext(Dispatchers.IO) {
-				pictureOfTheDayUseCase.getRemotePictureOfTheLastSevenDays()
+				pictureOfTheDayUseCase.getRemotePictureOfTheDayLatestDays()
 			}
-			getLocalPictureOfTheLastSevenDays()
+			getLocalPictureOfTheDayLatestDays()
 		}
 	}
 
@@ -232,7 +240,7 @@ class MainViewModel(
 				pictureOfTheDayUseCase.deleteFavoritesOnly()
 			}
 			_affectedDataItems.value = deletedFavorites
-			getLocalPictureOfTheLastSevenDays()
+			getLocalPictureOfTheDayLatestDays()
 		}
 	}
 
@@ -243,7 +251,7 @@ class MainViewModel(
 			}
 			_affectedDataItems.value = deletedRows
 			_affectedDataItems.value = null
-			getLocalPictureOfTheLastSevenDays()
+			getLocalPictureOfTheDayLatestDays()
 		}
 	}
 
@@ -254,7 +262,7 @@ class MainViewModel(
 
 			}
 			_picturesState.value = null
-			getLocalPictureOfTheLastSevenDays()
+			getLocalPictureOfTheDayLatestDays()
 		}
 	}
 

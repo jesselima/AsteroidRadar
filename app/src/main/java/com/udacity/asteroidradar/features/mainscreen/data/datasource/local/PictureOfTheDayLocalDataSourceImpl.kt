@@ -20,14 +20,8 @@ class PictureOfTheDayLocalDataSourceImpl(
 		return pictureOfTheDayDao.getLocalPictureOfTheDayById(id = id)
 	}
 
-	override suspend fun getLocalPictureOfTheLastSevenDays(
-        startDate: String,
-        endDate: String
-    ): List<PictureOfDay> {
-        return pictureOfTheDayDao.getLocalPictureOfTheDayLastSevenDays(
-            startDate = startDate,
-            endDate = endDate
-        )
+	override suspend fun getLocalPictureOfTheDayLatestDays(): List<PictureOfDay> {
+        return pictureOfTheDayDao.getLocalPictureOfTheDayLatestDays()
     }
 
 	override suspend fun getAllLocalFavoritesPicturesOfTheDay(): List<PictureOfDay> {

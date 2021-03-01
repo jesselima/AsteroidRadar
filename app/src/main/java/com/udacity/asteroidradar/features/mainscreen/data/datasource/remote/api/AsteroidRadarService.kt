@@ -30,9 +30,8 @@ interface AsteroidRadarService {
     ) : PictureOfDayResponse?
 
     @GET("planetary/apod")
-    suspend fun getRemotePictureOfTheLastSevenDays(
+    suspend fun getRemotePictureOfTheDayLatestDays(
         @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ) : List<PictureOfDayResponse>?
 

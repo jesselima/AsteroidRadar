@@ -16,8 +16,8 @@ interface PictureOfTheDayDao {
     @Query("SELECT * FROM picture_of_the_day WHERE date = :date")
     fun getLocalPictureOfTheDay(date: String): PictureOfDay?
 
-    @Query("SELECT * FROM picture_of_the_day WHERE date >= :startDate AND date <= :endDate ORDER BY date DESC LIMIT 10")
-    fun getLocalPictureOfTheDayLastSevenDays(startDate: String, endDate: String): List<PictureOfDay>
+    @Query("SELECT * FROM picture_of_the_day ORDER BY date DESC LIMIT 20")
+    fun getLocalPictureOfTheDayLatestDays(): List<PictureOfDay>
 
     @Query("SELECT * FROM picture_of_the_day WHERE is_favorite = 1 ORDER BY date DESC")
     fun getAllLocalFavoritesPicturesOfTheDay(): List<PictureOfDay>
