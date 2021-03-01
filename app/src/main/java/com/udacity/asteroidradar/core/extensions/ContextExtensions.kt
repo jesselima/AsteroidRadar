@@ -19,9 +19,11 @@ fun Context.isConnected(): Boolean {
 		Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
 			val network = connectivityManager.activeNetwork ?: return false
 			val networkCapabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+			val isConnectingOrConnected = connectivityManager.activeNetworkInfo?.isConnectedOrConnecting ?: return false
 			when {
 				networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
 				networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+				isConnectingOrConnected -> true
 				else -> false
 			}
 		}
