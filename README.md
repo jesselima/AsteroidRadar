@@ -37,7 +37,7 @@ today is deleted.
 - See picture details. 
 - Save pictures to favorites.
 - Load high definition image.
-- Zoom picture from picture details screen or from full screen.
+- Zoom picture from picture details screen or from full screen (uses PhotoView https://github.com/Baseflow/PhotoView).
 - See picture high definition image in full screen.
 - Pictures can be filtered by favorites only or show all pictures.
 - Favorites pictures can be reset at once (all pictures) or one by one at the picture details screen.
@@ -45,3 +45,7 @@ today is deleted.
 - Viewed images remains in the Picasso offline cache, so it can be viewed offline. 
 - Picture can be viewed in full screen with drag and zoom in or out from full screen.
 - All favorite pictures can be viewed from a gallery.
+
+# VIDEO DEMO
+
+https://github.com/jesselima/AsteroidRadar/blob/master/screenshots_and_video/video/app-asteroid-radar.mp4
