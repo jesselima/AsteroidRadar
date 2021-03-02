@@ -48,4 +48,9 @@ today is deleted.
 
 # VIDEO DEMO
 
+https://user-images.githubusercontent.com/17894156/109640100-c8a68380-7b2e-11eb-987a-a335bd9f4333.mp4
+
+Raw:
+
 https://github.com/jesselima/AsteroidRadar/blob/master/screenshots_and_video/video/app-asteroid-radar.mp4
+
