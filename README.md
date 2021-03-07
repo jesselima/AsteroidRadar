@@ -41,10 +41,14 @@ today is deleted.
 - See picture high definition image in full screen.
 - Pictures can be filtered by favorites only or show all pictures.
 - Favorites pictures can be reset at once (all pictures) or one by one at the picture details screen.
-- Pictures can be sorted by distance, by speed and by date.
 - Viewed images remains in the Picasso offline cache, so it can be viewed offline. 
 - Picture can be viewed in full screen with drag and zoom in or out from full screen.
 - All favorite pictures can be viewed from a gallery.
+
+# Accessibility
+
+The App can be used with Talkback.
+
 
 # VIDEO DEMO
 
