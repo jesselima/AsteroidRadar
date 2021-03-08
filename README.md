@@ -14,8 +14,8 @@ API_KEY="PUT_YOUR_NASA_API_KEY_HERE"
 
 ## Features
 
-At the first launch the if the device is connected, it will try to retrieve remote data. If not 
-connected, the WorkManager will schedule a back ground task and run when its constraints are met. 
+At the first launch if the device is connected, the App will try to retrieve remote data. If not 
+connected, the WorkManager will schedule a background task and run when its constraints are met. 
 At the first launch, if device is connected, the app gets the latest pictures and asteroids and save 
 them to local database. 
 
@@ -23,26 +23,26 @@ them to local database.
 **The Asteroid side of the features:**
 
 - Get Asteroids data for the next 7 days. This data persists offline.
-- See Asteroids details uses also offline feature. 
+- See Asteroids details. This also uses offline feature. 
 - Asteroids details provides a link to NASA JPL Web site for more info about the asteroid.
-- New data is retrieved once a day on a background task. When new data is retrieved, old data behind 
+- New data is retrieved once a day on a background task by the WorkManager. When new data is retrieved, old data behind 
 today is deleted.  
 - Asteroids can be filtered by today or by current week.
 - Asteroids can be sorted by distance, by speed and by date.
 
 **The Pictures side of the features:**
 
-- Get Picture of the day for the last 10 days. Including. This data persists offline.
-- Pictures are displayed in a format of gallery that you can swipe them around. 
+- Get Picture of the day for the last 10 days. The data persists offline.
+- Pictures are displayed in a format of gallery that you can swipe them around from the main screen. 
 - See picture details. 
+- Play YouTube vídeos when the media of the day is a video.
 - Save pictures to favorites.
-- Load high definition image.
+- Load high definition image from the Picture details where it can be zoom in or out.
 - Zoom picture from picture details screen or from full screen (uses PhotoView https://github.com/Baseflow/PhotoView).
-- See picture high definition image in full screen.
 - Pictures can be filtered by favorites only or show all pictures.
 - Favorites pictures can be reset at once (all pictures) or one by one at the picture details screen.
 - Viewed images remains in the Picasso offline cache, so it can be viewed offline. 
-- Picture can be viewed in full screen with drag and zoom in or out from full screen.
+- Picture in high definition can be viewed in full screen with drag and zoom in or out from full screen.
 - All favorite pictures can be viewed from a gallery.
 
 # Accessibility
